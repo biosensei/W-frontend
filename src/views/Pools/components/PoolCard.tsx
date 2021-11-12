@@ -30,7 +30,6 @@ const Quote = styled.p`
 const QuoteTitle = styled.p`
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 0px;
   text-shadow: 1px 1px 5px #ccc;
   margin-top: 5px;
 `
@@ -39,8 +38,25 @@ const QuoteTitle2 = styled.p`
   color: #979797;
   font-size: 15px;
   font-weight: 300;
+  text-shadow: 0px 0px 0px #ccc;
+`
+
+const Text1 = styled.p`
+  color: #EBEBEB;
+  font-size: 15px;
+  font-weight: 400;
   margin-bottom: 0px;
   text-shadow: 0px 0px 0px #ccc;
+`
+
+const Divider = styled.div`
+  background-color: #7B7B7B;
+  height: 1.5px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 15px;
+  margin-bottom: 15px;
+  width: 100%;
 `
 
 const SmallText = styled.p`
@@ -57,6 +73,56 @@ const Wrapper = styled(Flex)`
   }
 `
 
+const StyledBtn = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 30px;
+  max-height: 30px;
+  max-width: 135px;
+  padding: 20px;
+`
+
+const StyledBtn2 = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 30px;
+  max-height: 30px;
+  max-width: 118px;
+  padding: 20px;
+
+  border: 2px solid #fff;
+  box-shadow: 0px 0px 7px #ffff;
+`
+
+const CCARD = styled.div`
+  background: #1E2129;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 30px;
+  position: center;
+  text-align: center;
+`
 
 interface PoolWithApy extends Pool {
   apy: BigNumber
@@ -151,44 +217,40 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
 
 
-  const APR = new BigNumber(apr);
-
-  const UserStakedRVRS = stakedBalance.toNumber();
-
-  const Expected7DayRVRS = new BigNumber(UserStakedRVRS).times(APR).div(52).toLocaleString();
-
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
 
       <div style={{padding: '34px'}}>
 
-      <Wrapper justifyContent="space-between" 
-      alignItems="center" mb="0px" 
-      paddingLeft='150px' paddingRight='150px' marginTop='20px' >
+        <Wrapper justifyContent="space-between" 
+        alignItems="center" mb="0px" 
+        paddingLeft='150px' 
+        paddingRight='150px' 
+        paddingTop='10px'
+        paddingBottom='20px'
+         >
 
-        <Flex  flexDirection="column" alignItems='center'>
-          <QuoteTitle2>APY</QuoteTitle2>
-          <QuoteTitle>{APY}%</QuoteTitle>
-        </Flex>
+          <Flex flexDirection="column" alignItems='center'>
+            <QuoteTitle2>APY</QuoteTitle2>
+            <QuoteTitle>{APY}%</QuoteTitle>
+          </Flex>
 
-        <Flex  flexDirection="column" alignItems='center' marginTop='0px'>
-          <QuoteTitle2> TVL</QuoteTitle2>
-          <QuoteTitle >${TVL}</QuoteTitle>
-        </Flex>
-
-
+          <Flex  flexDirection="column" alignItems='center' marginTop='0px'>
+            <QuoteTitle2> TVL</QuoteTitle2>
+            <QuoteTitle >${TVL}</QuoteTitle>
+          </Flex>
         </Wrapper>
 
 
         <Flex justifyContent='space-between' marginTop='26px'>
-          <span>Unstaked Balance</span>
+          <Text1>Unstaked Balance</Text1>
           <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
         </Flex>
 
 
-        <Flex justifyContent='space-between' marginTop='8px'>
-          <span>Staked Balance</span>
+        <Flex justifyContent='space-between' marginTop='5px'>
+          <Text1>Staked Balance</Text1>
           <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
         </Flex>
 
@@ -197,54 +259,69 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <SmallText>${getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })}</SmallText>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='2px'>
+        <Flex justifyContent='space-between' marginTop='3px'>
           <SmallText>Expected Balance (7 Days)</SmallText>
-          <SmallText>{Expected7DayRVRS}</SmallText>
+          <SmallText>...Fetching</SmallText>
         </Flex>
+
+        <Divider/>
 
         <Flex justifyContent='space-between' marginTop='8px'>
-          <span> 0.2% Withdrawal Fee Until</span>
-          <WithdrawalFeeTimer secondsRemaining={secondsRemaining} />
+          <Text1> 2% Withdrawal For</Text1>
+          <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining </WithdrawalFeeTimer>
         </Flex>
 
-        <StyledCardActions  >
-          
-          {!account && <UnlockButton />}
-          {account &&
-            (needsApproval && !isOldSyrup ? (
-              <div style={{ flex: 1 }}>
-                <Button disabled={isFinished || requestedApproval} marginTop='20px' onClick={handleApprove} fullWidth >
-                  Approve
-                </Button>
-              </div>
-            ) : (
-              <>
-                <IconButton marginTop='20px' marginLeft='0px'
-                  disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
-                  onClick={
-                    isOldSyrup
-                      ? async () => {
-                          setPendingTx(true)
-                          await onUnstake('0')
-                          setPendingTx(false)
-                        }
-                      : onPresentWithdraw
-                  }>
-                Withdraw
-                </IconButton>
+        <Flex justifyContent='space-between' marginTop='3px'>
+          <Text1> APY</Text1>
+          <Text1>{APY}%</Text1>
+        </Flex>
 
-                <StyledActionSpacer />
+        <Wrapper alignItems="end">
+        <Flex alignItems="end">
+          <StyledCardActions style={{alignItems:"end"}} >
+            
+            {!account && <UnlockButton />}
+            {account &&
+              (needsApproval && !isOldSyrup ? (
 
-                {!isOldSyrup && (
-                <IconButton marginTop='20px' marginRight='0px' disabled={isFinished && sousId !== 0} onClick={onPresentDeposit}>
+                <div style={{ flex: 1 }}>
 
-                  <AddIcon color="background" />
-                </IconButton>)}
-              </>
-            ))}
+                  <StyledBtn 
+                  disabled={isFinished || requestedApproval}
+                  onClick={handleApprove}
+                  >
+                    Approve 
+                  </StyledBtn>
+                </div>
+              ) : (
+                <>
+                  <StyledBtn 
+                    style={{marginTop:'20px'}}
+                    disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
+                    onClick={
+                      isOldSyrup
+                        ? async () => {
+                            setPendingTx(true)
+                            await onUnstake('0')
+                            setPendingTx(false)
+                          }
+                        : onPresentWithdraw
+                    }>
+                  Unstake (0,0)
+                  </StyledBtn>
 
+                  <StyledActionSpacer/>
 
-        </StyledCardActions>
+                  {!isOldSyrup && (
+                  <StyledBtn2 style={{marginTop:'20px'}} disabled={isFinished && sousId !== 0} onClick={onPresentDeposit}>
+                    Stake (3,3)
+                  </StyledBtn2>)}
+                </>
+              ))}
+          </StyledCardActions>       
+        </Flex>
+        </Wrapper>
+
       </div>
     </Card>
   )

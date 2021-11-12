@@ -61,6 +61,7 @@ const StyledBtn = styled.button`
   max-height: 30px;
   max-width: 90px;
   padding: 20px;
+
   `
 
 const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }) => {

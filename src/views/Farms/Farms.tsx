@@ -197,34 +197,9 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
     <Page>
 
     <Flexed2>
-
         <PoolsDashboard1/>
-
-
     </Flexed2>
-    
-        {/*
-    <Flexed>
-      <PoolsDashboard/>
-              <CardBG>
-
-    </Flexed>
-
-
-
-
-
-
- <div className="warningAlert" style={{'display': ( modalOpen ? 'block' : 'none' )}}>
-      <Alert title="" variant="warning" onClick={handleModal}>
-        <p>Artemis Earn rewards will begin on <a target="_blank" rel="noreferrer" style={{"color": "#0073ff"}} href="https://explorer.harmony.one/block/17996500">October 9th.</a></p>
-      </Alert>
-      </div>    */}
-
       <div>
-
-
-
           <FarmsFlex>
             <Route exact path={`${path}`}>
               {stakedOnly ? farmsList(stakedOnlyFarms, false) : farmsList(activeFarms, false)}
@@ -233,16 +208,8 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
               {farmsList(inactiveFarms, true)}
             </Route>
           </FarmsFlex>
-          
-          {/* <FarmsFlex>
-            <Feature >
-              <p>At current rates, {vikingPerBlock} RVRS is being minted per block.</p>
-            </Feature>
-          </FarmsFlex> */ }
-                  <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly} tokenMode={tokenMode}/>
 
-
-
+        <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly} tokenMode={tokenMode}/>
       </div>
       
     </Page>

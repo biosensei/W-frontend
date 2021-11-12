@@ -14,7 +14,7 @@ import CakeWalletBalance from 'views/Home/components/CakeWalletBalance'
 import CardValue from 'views/Home/components/CardValue'
 import DashboardPage from 'components/layout/DashboardPage'
 import farms from 'state/farms'
-import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaHistory, FaHandHolding, FaHandHoldingUsd, FaQuestion, FaQuestionCircle } from 'react-icons/fa';
+import { FaHandHoldingUsd, FaQuestion, FaQuestionCircle } from 'react-icons/fa';
 
 import { useTotalRewards } from 'hooks/useTickets'
 
@@ -226,11 +226,11 @@ const MoneyWheel: React.FC = () => {
               <Flex justifyContent='space-between' alignItems='left'  ml='10px' mr='10px'  marginBottom='-5px' mt='0px'> 
 
                 <Flex>
-                  <Test>{TranslateString(9299, 'Pools')}</Test>
+                  <Test>{TranslateString(9299, 'Pools')}&nbsp;</Test>
                     {account ? (
                       <StyledBtn id="harvest-all" disabled={balancesWithValue.length <= 0 || pendingTx} 
                       onClick={harvestAllFarms} style={{'marginLeft':'15px', 'marginTop':'-5px'}}>
-                      {pendingTx ? <FaHandHoldingUsd/> : <FaHandHoldingUsd/>} </StyledBtn>) : (<UnlockButton/>)}
+                      {pendingTx ? <FaHandHoldingUsd/> : <FaHandHoldingUsd/>} </StyledBtn>) : (<FaHandHoldingUsd/>)}
                 </Flex>
 
                   <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>

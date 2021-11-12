@@ -20,13 +20,6 @@ const Wrapper = styled(Flex)`
   }
 `
 
-const MultiplierTag = styled(Tag)`
-  margin-left: 3px;
-  background-color: rgba(0,0,0,0);
-  border-color: #6E4EED
-  size: 1px;
-`
-
 const CardHeading: React.FC<ExpandableSectionProps> = ({
   lpLabel,
   multiplier,
@@ -38,17 +31,15 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
   return (
     <Wrapper justifyContent="space-between" alignItems="center" mb="20px">
 
-
-      <object type="image/svg+xml" data="/images/farms/mis-one.svg" width="40px">&nbsp;</object>
+      <object type="image/svg+xml" data="/images/staking/RVRS.svg" width="20px">&nbsp;</object>
 
       <Flex flexDirection="column" alignItems="flex-end">
         <Link style={{'color': '#FFF', 'fontSize': '15px'}} href='https://explorer.harmony.one/'>{lpLabel}</Link>
       </Flex>
 
       <Flex flexDirection="column" alignItems="flex-end">
-        <Link style={{'color': '#CBCBCB', 'fontSize': '15px'}} href='https://game.defikingdoms.com/#/marketplace'><FaGhost/></Link>
+        <Link style={{'color': '#CBCBCB', 'fontSize': '15px'}} href='https://app.sushi.com/add/0xed0b4b0f0e2c17646682fc98ace09feb99af3ade'><FaGhost/></Link>
       </Flex>
-
 
     </Wrapper>
   )

@@ -7,7 +7,6 @@ import useI18n from 'hooks/useI18n'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import getLiquidityUrlPathParts from 'utils/getLiquidityUrlPathParts'
 import { PoolCategory, QuoteToken } from 'config/constants/types'
-import { FaArrowRight, FaGhost, FaInfinity, FaPlus, FaPlusCircle } from 'react-icons/fa'
 import styled, { keyframes } from 'styled-components'
 import DetailsSection from './DetailsSection'
 import CardHeading from './CardHeading'
@@ -247,12 +246,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
 
       </DCard>
 
-
- 
-      
-
       <Divider2/>
-
 
       <CCARD>
 

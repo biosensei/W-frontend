@@ -6,6 +6,7 @@ import useRefresh from 'hooks/useRefresh'
 import {
   fetchFarmsPublicDataAsync,
   fetchPools2PublicDataAsync,
+  fetchPoolsPublicDataAsync,
   fetchPoolsUserDataAsync,
   fetchPools2UserDataAsync
 } from './actions'
@@ -20,6 +21,7 @@ export const useFetchPublicData = () => {
   const { slowRefresh } = useRefresh()
   useEffect(() => {
     dispatch(fetchFarmsPublicDataAsync())
+    dispatch(fetchPoolsPublicDataAsync())
   }, [dispatch, slowRefresh])
 }
 

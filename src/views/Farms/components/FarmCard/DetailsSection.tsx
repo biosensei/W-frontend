@@ -62,15 +62,6 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 
     <Wrapper>
 
-      {!removed && (
-        <Flex justifyContent="space-between">
-          <span><FaScroll/> Total Deposited</span><Text bold>{totalValueFormated}</Text>
-          
-        </Flex>
-      )}
-
-<Divider3/>
-
       <Flex justifyContent="flex-start">
         <StyledLinkExternal external href={bscScanAddress} bold={false} style={{"color": "#1E2129"}}>
           {TranslateString(999, 'View on Explorer')}

@@ -2,8 +2,6 @@ import React, { useEffect, useCallback, useState } from 'react'
 import { Route, useRouteMatch } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import styled from 'styled-components'
-import { Flex } from '@pancakeswap-libs/uikit'
-
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { provider } from 'web3-core'
@@ -15,8 +13,6 @@ import useRefresh from 'hooks/useRefresh'
 import { fetchFarmUserDataAsync } from 'state/actions'
 import useI18n from 'hooks/useI18n'
 import PoolsDashboard1 from 'views/PoolsDashboard1'
-
-import ClaimBalance from 'views/ClaimBalance'
 import FarmCard, { FarmWithStakedValue } from './components/FarmCard/FarmCard'
 import FarmTabButtons from './components/FarmTabButtons'
 
@@ -36,86 +32,6 @@ const Flexed2 = styled.div`
     margin-bottom: 18px;
   }
 `
-
-const Test = styled.text`
-  background-color: rgba(0, 0, 0,0) !important;
-  background: rgba(0, 0, 0,0) !important;
-  font-size: 18px;
-  font-weight: 700;
-  text-shadow: 0px 0px 10px #ccc;
-
-`
-
-const Stat = styled.text`
-  font-size: 15px;
-  font-weight: 500;
-  text-shadow: 0px 0px 10px #ccc;
-`
-
-const Sub = styled.p`
-  font-size: 0.97em;
-  color: #7D7D7D;
-`
-
-const Feature = styled.div`
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  margin: 19px;
-  font-size: 1.1em !important;
-  max-width: 180px;
-  text-align: center;
-
-
-  @media screen and (max-width: 680px){
-    max-width: 64%;
-    flex-flow: row;
-    align-items: flex-start;
-    & > svg{
-      width: 42px;
-    }
-    & > p{
-      text-align: left;
-      margin-left: 15px;
-    }
-  
-`
-
-const Flexed = styled.div`
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-
-  & > * {
-    min-width: 450px;
-    max-width: 40%;
-    margin-bottom: 20px;
-  }
-`
-
-
-const CardBG = styled.div`
-  align-self: baseline;
-  background-image: linear-gradient(to right, #2E3646, #3B4557 , #2B3344);
-  border-radius:  20px;
-  display: flex;
-  flex-direction: ce;
-  justify-content: space-around;
-  padding: 50px;
-  position: relative;
-  text-align: center;
-  max-width: 750px;
-  min-height: 180px;
-
-  margin-bottom: 50px;
-  margin-top: 25px;
-
-  border:2px solid #fff;
-  box-shadow: 0px 0px 20px #ccc;
-
-`
-
 
 const Farms: React.FC<FarmsProps> = (farmsProps) => {
   const { path } = useRouteMatch()
@@ -143,8 +59,8 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
 
   const [stakedOnly, setStakedOnly] = useState(false)
 
-  const activeFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier !== '0X')
-  const inactiveFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier === '0X')
+  const activeFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier !== '0X' && farm.pid > 0)
+  const inactiveFarms = farmsLP.filter((farm) => !!farm.isTokenOnly === !!tokenMode && farm.multiplier === '0X' && farm.pid > 0)
 
   const stakedOnlyFarms = activeFarms.filter(
     (farm) => farm.userData && new BigNumber(farm.userData.stakedBalance).isGreaterThan(0),

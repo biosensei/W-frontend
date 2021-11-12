@@ -113,6 +113,8 @@ export const aprToApy = (apr: number): BigNumber => {
   return apy.isNaN() || !apy.isFinite() ? null : apy;
 };
 
+export const BIG_TEN = new BigNumber(10);
+
 
 const Farm: React.FC = () => {
   const { path } = useRouteMatch()
@@ -124,10 +126,15 @@ const Farm: React.FC = () => {
 
   const poolsWithApy = pools.map((pool) => {
 
-    const quoteTokens = pool.userData ?
-        new BigNumber(pool.userData.stakedBalance).div(2).div(new BigNumber(10).pow(18)) :
+    const quoteTokens = pool.totalStaked ?
+        new BigNumber(pool.totalStaked.toString()).div(2).div(BIG_TEN.pow(18)) :
         new BigNumber(0)
     const tvl = getTotalValueFromQuoteTokens(quoteTokens, pool.quoteTokenSymbol, prices)
+
+    console.log(pool)
+    console.log(quoteTokens && quoteTokens.toNumber())
+    console.log(tvl && tvl.toNumber())
+    console.log(farm0)
 
     const reverseAtlastUserAction = pool.userData ?
         new BigNumber(pool.userData.reverseAtlastUserAction) :
@@ -145,7 +152,7 @@ const Farm: React.FC = () => {
     const rewardTokenPrice = lookupPrice(pool.tokenName, prices)
     // console.log("price", pool.tokenName, rewardTokenPrice && rewardTokenPrice.toNumber())
 
-    const totalRewardPricePerYear = rewardTokenPrice.times(pool.tokenPerBlock).times(BLOCKS_PER_YEAR)
+    const totalRewardPricePerYear = rewardTokenPrice.times(farm0.vikingPerBlock).div(BIG_TEN.pow(18)).times(farm0.poolWeight).times(BLOCKS_PER_YEAR)
     // const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
     const apr = totalRewardPricePerYear.div(tvl).times(100)
     const apy = aprToApy(apr)

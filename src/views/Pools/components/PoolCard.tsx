@@ -146,7 +146,17 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   }, [onApprove, setRequestedApproval])
 
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
+
   const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
+
+
+
+  const APR = new BigNumber(apr);
+
+  const UserStakedRVRS = stakedBalance.toNumber();
+
+  const Expected7DayRVRS = new BigNumber(UserStakedRVRS).times(APR).div(52).toLocaleString();
+
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
@@ -170,6 +180,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
         </Wrapper>
 
+
         <Flex justifyContent='space-between' marginTop='26px'>
           <span>Unstaked Balance</span>
           <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
@@ -181,12 +192,17 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='8px'>
+        <Flex justifyContent='space-between' marginTop='2px'>
           <SmallText>Balance in UST</SmallText>
           <SmallText>${getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })}</SmallText>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='6px'>
+        <Flex justifyContent='space-between' marginTop='2px'>
+          <SmallText>Expected Balance (7 Days)</SmallText>
+          <SmallText>{Expected7DayRVRS}</SmallText>
+        </Flex>
+
+        <Flex justifyContent='space-between' marginTop='8px'>
           <span> 0.2% Withdrawal Fee Until</span>
           <WithdrawalFeeTimer secondsRemaining={secondsRemaining} />
         </Flex>

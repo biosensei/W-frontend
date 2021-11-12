@@ -32,15 +32,11 @@ const SYRUPIDS = [0]
 export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
   const dispatch = useDispatch();
   const { account } = useWallet();
-  const masterChefContract = useMasterchef();
   const sousChefContract = useAutoRvrs();
 
   const handleUnstake = useCallback(
     async (amount: string) => {
-      if (sousId === 0) {
-        const txHash = await unstake(masterChefContract, 0, amount, account);
-        console.info(txHash);
-      } else if (enableEmergencyWithdraw) {
+      if (enableEmergencyWithdraw) {
         const txHash = await sousEmegencyUnstake(sousChefContract, amount, account);
         console.info(txHash);
       } else {
@@ -50,7 +46,7 @@ export const useSousUnstake = (sousId, enableEmergencyWithdraw = false) => {
       dispatch(updateUserStakedBalance(sousId, account));
       dispatch(updateUserBalance(sousId, account));
     },
-    [account, dispatch, enableEmergencyWithdraw, masterChefContract, sousChefContract, sousId]
+    [account, dispatch, enableEmergencyWithdraw, sousChefContract, sousId]
   )
 
   return { onUnstake: handleUnstake };

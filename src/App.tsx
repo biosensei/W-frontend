@@ -47,15 +47,15 @@ const App: React.FC = () => {
             <Farms />
             </Route>
             
-            <Route path="/pools">
+            <Route path="/LiquidityPools">
               <Farms />
             </Route>
 
-            <Route path="/bonding">
+            <Route path="/BondingPools">
               <Pools2/>
             </Route>
 
-            <Route path="/stake">
+            <Route path="/Stake">
               <Pools/>
             </Route>
 

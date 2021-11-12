@@ -395,7 +395,7 @@ div.warningAlert > div > div.sc-jSgupP.gMeKF{
   }
 }
 button:hover:not(:disabled){
-  background-color: #A8B7FF !important;
+  background-color: #1E2129 !important;
 }
 
 `

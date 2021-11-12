@@ -18,7 +18,7 @@ export interface ExpandableSectionProps {
 }
 
 const Divider3 = styled.div`
-  background-color: #4c68ef;
+  background-color: #1E2129;
   height: 2px;
   margin-left: auto;
   margin-right: auto;
@@ -72,13 +72,13 @@ const DetailsSection: React.FC<ExpandableSectionProps> = ({
 <Divider3/>
 
       <Flex justifyContent="flex-start">
-        <StyledLinkExternal external href={bscScanAddress} bold={false} style={{"color": "#4c68ef"}}>
+        <StyledLinkExternal external href={bscScanAddress} bold={false} style={{"color": "#1E2129"}}>
           {TranslateString(999, 'View on Explorer')}
         </StyledLinkExternal>
       </Flex>
 
       <Flex justifyContent="flex-start">
-        <StyledLinkExternal external href='https://vfat.tools/harmony/artemisprotocol/' bold={false} style={{"color": "#4c68ef"}}>
+        <StyledLinkExternal external href='https://vfat.tools/harmony/artemisprotocol/' bold={false} style={{"color": "#1E2129"}}>
           {TranslateString(999, 'More on VFAT')}
         </StyledLinkExternal>
       </Flex>

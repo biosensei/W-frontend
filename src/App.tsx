@@ -8,15 +8,10 @@ import GlobalStyle from './style/Global'
 import NavBar from './components/NavBar'
 
 // Route-based code splitting
-// Only pool is included in the main bundle because of it's the most visited page'
-const Home = lazy(() => import('./views/Home'))
 const Farms = lazy(() => import('./views/Farms'))
 const Pools2 = lazy(() => import('./views/Pools2'))
-// const MoneyWheel = lazy(() => import('./views/MoneyWheel'))
-// const MoneyWheel2 = lazy(() => import('./views/MoneyWheel2'))
 const Pools = lazy(() => import('./views/Pools'))
 const NotFound = lazy(() => import('./views/NotFound'))
-// const Nft = lazy(() => import('./views/Nft'))
 
 // This config is required for number formating
 BigNumber.config({
@@ -46,7 +41,6 @@ const App: React.FC = () => {
             <Route path="/" exact>
             <Farms />
             </Route>
-            
             <Route path="/LiquidityPools">
               <Farms />
             </Route>
@@ -58,8 +52,6 @@ const App: React.FC = () => {
             <Route path="/Stake">
               <Pools/>
             </Route>
-
-
             <Route component={NotFound} />
           </Switch>
         </Suspense>

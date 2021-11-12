@@ -354,7 +354,13 @@ a[variant="tertiary"]{
 .cbSyWB:disabled, .cbSyWB.button--disabled, .cgkvJQ:disabled, .cgkvJQ.button--disabled{
   color: #ccc;
 }
-
+.bpIRKj{
+  fill: #fff;
+}
+button[aria-label="Close the dialog"] {
+  background-color: #1E2129 !important;
+  border: 1px solid #fff;
+}
 
 @media screen and (max-width: 800px){
   .warningAlert{

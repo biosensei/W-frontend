@@ -2050,9 +2050,9 @@
     eslint-plugin-react "^7.21.5"
     eslint-plugin-react-hooks "^4.0.0"
 
-"@pancakeswap-libs/uikit@https://github.com/ReverseProtocol/reverse-uikit.git#d20f82c98c20118bac280f4951c7b9dee519900f":
+"@pancakeswap-libs/uikit@https://github.com/ReverseProtocol/reverse-uikit#c4f005e5eeb12d70b31557acef8b797232b53897":
   version "0.10.2"
-  resolved "https://github.com/ReverseProtocol/reverse-uikit.git#d20f82c98c20118bac280f4951c7b9dee519900f"
+  resolved "https://github.com/ReverseProtocol/reverse-uikit#c4f005e5eeb12d70b31557acef8b797232b53897"
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
@@ -2060,9 +2060,9 @@
     react-transition-group "^4.4.1"
     styled-system "^5.1.5"
 
-"@pancakeswap-libs/uikit@https://github.com/snappycreeper/artemis-uikit.git":
+"@pancakeswap-libs/uikit@https://github.com/ReverseProtocol/reverse-uikit.git#d20f82c98c20118bac280f4951c7b9dee519900f":
   version "0.10.2"
-  resolved "https://github.com/snappycreeper/artemis-uikit.git#b7e01bf482084f52cab774fac2c40d4f79ef1fa1"
+  resolved "https://github.com/ReverseProtocol/reverse-uikit.git#d20f82c98c20118bac280f4951c7b9dee519900f"
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"

@@ -1,0 +1,2 @@
+ui-kit update
+reduce import stress on stake page

@@ -49,7 +49,7 @@ const Price = styled.button`
 
 const Logo = styled.p`
   font-size: 30px;
-  color: #4c68ef !important;
+  color: #1E2129 !important;
   padding-bottom: 0px;
   @media screen and (max-width: 800px) {
     font-size: 21px;

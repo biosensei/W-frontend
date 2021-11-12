@@ -25,7 +25,7 @@ const Label = styled.div`
 `
 
 const Divider = styled.div`
-background-color: #4c68ef;
+background-color: #1E2129;
 height: 2px;
 margin-left: auto;
 margin-right: auto;
@@ -51,7 +51,7 @@ const Value = styled.div`
 `
 
 const Footer = styled.div`
-  border-top: 1px solid ${({ theme }) => (theme.isDark ? '#524B63' : '#4c68ef')};
+  border-top: 1px solid ${({ theme }) => (theme.isDark ? '#524B63' : '#1E2129')};
   padding: 24px;
 `
 const Coming: React.FC = () => {

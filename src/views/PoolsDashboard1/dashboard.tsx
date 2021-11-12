@@ -278,7 +278,7 @@ export default MoneyWheel
 
 
 const Divider = styled.div`
-  background-color: #4c68ef;
+  background-color: #1E2129;
   height: 0px;
   margin-left: auto;
   margin-right: auto;

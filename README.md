@@ -8,6 +8,4 @@ Please do not run locally until main contracts are deployed.
 
     yarn start  
     
-#### Written in TypeScript
-
-#### Contributions are always appreciated and will be taken as bounties!
+#### Written in TypeScript. Contributions are always appreciated and will be taken as bounties!

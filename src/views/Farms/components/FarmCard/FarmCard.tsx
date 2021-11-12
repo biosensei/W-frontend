@@ -222,14 +222,14 @@ const FarmCard: React.FC<FarmCardProps> = ({
 
 
           <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
-            <Text01>APY</Text01>
+            <Text01>APR</Text01>
             <Text01>Liquidity</Text01>
           </Flex>
 
 
         {!removed && (
         <Flex justifyContent='space-between'>
-          <Quote>{ APY }</Quote>
+          <Quote>{ farmAPY }</Quote>
           <Quote>{totalValueFormated}</Quote>
         </Flex> )}
 

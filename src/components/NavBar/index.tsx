@@ -8,7 +8,7 @@ import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
 import {Accordion, Button, Card, useAccordionToggle} from 'react-bootstrap';
-import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub } from 'react-icons/fa';
+import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaGithub } from 'react-icons/fa';
 import ReactTooltip from 'react-tooltip';
 import labo from 'config/constants/labo';
 
@@ -169,26 +169,25 @@ const NavBar = (props) => {
                   <div className="menu"/>
                 </button>
                 
-
                   <div className="nav-container">
                       <ul className="nav-tabs">
 
                       <li className="nav-tab">
-                          <Link to="/pools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/LiquidityPools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Pools</span>
                           </Link>
                         </li>
 
 
                         <li className="nav-tab">
-                          <Link to="/bonding" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/BondingPools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Bonding</span>
                           </Link>
                         </li>
 
                         
                       <li className="nav-tab">
-                          <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/Stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Stake (3, 3)</span>
                           </Link>
                         </li>
@@ -204,8 +203,13 @@ const NavBar = (props) => {
                         </li>
 
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/reverseprotocol" className="nav-links">
+                          <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol" className="nav-links">
                             <FaDiscord style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
+                        </li>
+
+                        <li>
+                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/reverseprotocol" className="nav-links">
+                            <FaGithub style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
                         <li>

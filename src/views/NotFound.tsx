@@ -24,11 +24,7 @@ const NotFound = () => {
   return (
     <Page>
       <StyledNotFound>
-        <object type="image/svg+xml" data="images/ppltalking.svg" height="370px">&nbsp;</object>
-        <Sub >{TranslateString(999, 'Currently Unavailable')}</Sub>
-        <Button as="a" variant='secondary' href="/earn" size="md">
-          {TranslateString(999, 'Dashboard')}
-        </Button>
+        <object type="image/svg+xml" data="images/404.svg" height="370px">&nbsp;</object>
       </StyledNotFound>
     </Page>
   )

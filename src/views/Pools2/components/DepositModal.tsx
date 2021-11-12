@@ -51,7 +51,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
       <Blablabla >
       <FaBurn/> By entering these pools, you understand and agree that 
         <br />
-        100% of your deposited MIS will be burned to earn the
+        100% of your deposited ${tokenName} will be burned to earn the
         <br />
         reward tokens over the remaining duration of the pool <FaBurn/>
         </Blablabla>

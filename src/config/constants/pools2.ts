@@ -3,31 +3,53 @@ import { QuoteToken, PoolCategory, Pool2Config } from './types'
 const pools2: Pool2Config[] = [
   {
     sousId: 1,
-    tokenName: 'MIS',
-    quoteTokenSymbol: QuoteToken.MIS,
-    stakingTokenName: QuoteToken.MIS,
-    // this is MIS
-    stakingTokenAddress: '0xd74433b187cf0ba998ad9be3486b929c76815215',
-    // this is MIS
-    quoteTokenPoolAddress: '0xd74433b187cf0ba998ad9be3486b929c76815215',
-    // this is MIS
-    tokenPoolAddress: '0xd74433b187cf0ba998ad9be3486b929c76815215',
+    tokenName: 'RVRS',
+    quoteTokenSymbol: QuoteToken.UST,
+    stakingTokenName: QuoteToken.UST,
+    // this is UST
+    stakingTokenAddress: '0x224e64ec1BDce3870a6a6c777eDd450454068FEC',
+    quoteTokenPoolAddress: '0x224e64ec1BDce3870a6a6c777eDd450454068FEC',
+    tokenPoolAddress: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',
     contractAddress: {
-      1666700000: '0x097C88dE6716f374F84381D39aaCc0ec1433928C',
-      1666600000: '0x097C88dE6716f374F84381D39aaCc0ec1433928C',
+      1666700000: '0xb4b35A9bA3cef0565A0039392f9c58982E9aA573',
+      1666600000: '0xb4b35A9bA3cef0565A0039392f9c58982E9aA573',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://www.app.artemisprotocol.one',
     harvest: true,
-    tokenPerBlock: '0.06',
+    tokenPerBlock: '0.1',
     sortOrder: 1,
     isFinished: false,
     isDepositFinished: false,
-    startBlock: 18519057,
-    endBlock: 20939210,
-    lockBlock: 19728610,
+    startBlock: 19368333,
+    endBlock: 19411533,
+    lockBlock: 19411533,
     tokenDecimals: 18,
    },
+   {
+    sousId: 2,
+    tokenName: 'RVRS',
+    tokenPoolAddress: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',
+    quoteTokenSymbol: QuoteToken.RVRS,
+    quoteTokenPoolAddress: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',
+    stakingTokenName: QuoteToken.ONERVRS,
+    stakingTokenAddress: '0x006d392b015d154f6580f68d659f803f0d22bcee',
+    contractAddress: {
+      1666700000: '0x7429FF70159be178c8a92bEd81068BcB2a6d0686',
+      1666600000: '0x7429FF70159be178c8a92bEd81068BcB2a6d0686',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.app.artemisprotocol.one',
+    harvest: true,
+    tokenPerBlock: '0.1',
+    sortOrder: 1,
+    isFinished: false,
+    isDepositFinished: false,
+    startBlock: 19368333,
+    endBlock: 19411533,
+    lockBlock: 19411533,
+    tokenDecimals: 18,
+  }
 ]
 
 export default pools2

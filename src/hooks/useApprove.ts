@@ -3,7 +3,7 @@ import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { Contract } from 'web3-eth-contract'
 import { ethers } from 'ethers'
 import { useDispatch } from 'react-redux'
-import { updateUserAllowance, fetchFarmUserDataAsync } from 'state/actions'
+import {updateUserAllowance, fetchFarmUserDataAsync, updateUserAllowance2} from 'state/actions'
 import { approve } from 'utils/callHelpers'
 import { useMasterchef, useCake, useLottery, useMoneyWheel, useMoneyWheel2, useWone, useSousChefBurn, useAutoRvrs } from './useContract'
 
@@ -53,7 +53,7 @@ export const useSousApproveBurn = (lpContract: Contract, sousId) => {
   const handleApprove = useCallback(async () => {
     try {
       const tx = await approve(lpContract, sousChefContract, account)
-      dispatch(updateUserAllowance(sousId, account))
+      dispatch(updateUserAllowance2(sousId, account))
       return tx
     } catch (e) {
       return false

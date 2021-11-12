@@ -44,6 +44,21 @@ export const PoolsSlice = createSlice({
 // Actions
 export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData } = PoolsSlice.actions
 
+// Thunks
+export const fetchPoolsPublicDataAsync = () => async (dispatch) => {
+  const totalStakings = await fetchPoolsTotalStaking()
+
+  const liveData = poolsConfig.map((pool) => {
+    console.log('fetchPoolsPublicDataAsync', totalStakings)
+    return {
+      ...pool,
+      totalStaked: totalStakings[0].amount
+    }
+  })
+
+  dispatch(setPoolsPublicData(liveData))
+}
+
 export const fetchPoolsUserInfo = async (account) => {
   const calls = [
     {
@@ -61,7 +76,6 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
   const allowances = await fetchPoolsAllowance(account)
   const stakingTokenBalances = await fetchUserBalances(account)
   const stakedBalances = await fetchUserStakeBalances(account)
-  const userInfoMC = await fetchPoolsTotalStaking()
   const userInfo = await fetchPoolsUserInfo(account)
 
   const userData = poolsConfig.map((pool) => ({
@@ -69,7 +83,6 @@ export const fetchPoolsUserDataAsync = (account) => async (dispatch) => {
     allowance: allowances[pool.sousId],
     stakingTokenBalance: stakingTokenBalances[pool.sousId],
     stakedBalance: stakedBalances[pool.sousId],
-    totalStaking: userInfoMC[pool.sousId].amount,
     lastDepositedTime: userInfo[pool.sousId].lastDepositedTime,
     lastUserActionTime: userInfo[pool.sousId].lastUserActionTime,
     reverseAtlastUserAction: userInfo[pool.sousId].reverseAtlastUserAction,

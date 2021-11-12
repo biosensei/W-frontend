@@ -5,6 +5,16 @@ import labo  from './labo'
 
 const farms: FarmConfig[] = [
   {
+    pid: 0,
+    risk: 5,
+    lpSymbol: 'RVRS',
+    lpAddresses: contracts.rvrs,
+    tokenSymbol: 'ONE',
+    tokenAddresses: contracts.one,
+    quoteTokenSymbol: QuoteToken.RVRS,
+    quoteTokenAdresses: contracts.rvrs,
+  },
+  {
     pid: 1,
     risk: 5,
     lpSymbol: 'RVRS & ONE',

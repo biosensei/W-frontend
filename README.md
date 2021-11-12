@@ -6,4 +6,4 @@
 
     yarn start  
 
-# Contributions are always appreciated and will be taken as bounties!
+#### Contributions are always appreciated and will be taken as bounties!

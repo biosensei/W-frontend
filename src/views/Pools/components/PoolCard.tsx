@@ -1,7 +1,7 @@
 import BigNumber from 'bignumber.js'
 import React, { useCallback, useState } from 'react'
 import styled from 'styled-components'
-import { Button, IconButton, useModal, AddIcon, Flex, MinusIcon } from '@pancakeswap-libs/uikit'
+import { useModal, Flex } from '@pancakeswap-libs/uikit'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import UnlockButton from 'components/UnlockButton'
 import { useERC20 } from 'hooks/useContract'
@@ -22,10 +22,6 @@ import {usePriceCakeBusd} from "../../../state/hooks";
 import useWithdrawFeeTimer from "./useWithdrawFeeTimer";
 import WithdrawalFeeTimer from "./withdrawFeeTimer";
 
-const Quote = styled.p`
-    font-size: 15px;
-    margin-bottom: 0px;
-`
 
 const QuoteTitle = styled.p`
   font-size: 20px;
@@ -92,6 +88,21 @@ const StyledBtn = styled.button`
   padding: 20px;
 `
 
+const StyledCardActions = styled.div`
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+  width: 100%;
+  margin-bottom: 15px;
+  box-sizing: border-box;
+`
+
+
+const StyledActionSpacer = styled.div`
+  height: ${(props) => props.theme.spacing[4]}px;
+  width: ${(props) => props.theme.spacing[4]}px;
+`
+
 const StyledBtn2 = styled.button`
   -webkit-box-align: center;
   align-items: center;
@@ -102,7 +113,7 @@ const StyledBtn2 = styled.button`
   border-radius: 10px;
   color: #ffff;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 800;
   width: 100%;
   display: inline-flex;
   min-height: 30px;
@@ -212,10 +223,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   }, [onApprove, setRequestedApproval])
 
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
-
   const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
-
-  const UserStakedBalance = stakedBalance.toNumber();
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
@@ -274,7 +282,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <Text1>{APY}%</Text1>
         </Flex>
 
-
         <Wrapper alignItems="end">
         <Flex alignItems="end">
           <StyledCardActions style={{alignItems:"end"}} >
@@ -282,14 +289,14 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             {!account && <UnlockButton />}
             {account &&
               (needsApproval && !isOldSyrup ? (
-
                 <div style={{ flex: 1 }}>
 
                   <StyledBtn 
+                  style={{minWidth:'100px', maxWidth:'150px', boxShadow:'0px 0px 5px #fff', 'marginTop':'10px'}}
                   disabled={isFinished || requestedApproval}
                   onClick={handleApprove}
                   >
-                    Approve 
+                    Enable Staking
                   </StyledBtn>
                 </div>
               ) : (
@@ -312,7 +319,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
                   <StyledActionSpacer/>
 
                   {!isOldSyrup && (
-                  <StyledBtn2 style={{marginTop:'20px'}} disabled={isFinished && sousId !== 0} onClick={onPresentDeposit}>
+                  <StyledBtn2 
+                    style={{marginTop:'20px'}} 
+                    disabled={isFinished && sousId !== 0} 
+                    onClick={onPresentDeposit}>
                     Stake (3,3)
                   </StyledBtn2>)}
                 </>
@@ -320,48 +330,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           </StyledCardActions>       
         </Flex>
         </Wrapper>
-
       </div>
     </Card>
   )
 }
-
-
-const PoolFinishedSash = styled.div`
-  background-image: url('/images/pool-finished-sash.svg');
-  background-position: top right;
-  background-repeat: not-repeat;
-  height: 135px;
-  position: absolute;
-  right: -24px;
-  top: -24px;
-  width: 135px;
-`
-
-const StyledCardActions = styled.div`
-  display: flex;
-  justify-content: center;
-  margin-top: 15px;
-  width: 100%;
-  margin-bottom: 15px;
-  box-sizing: border-box;
-`
-
-const BalanceAndCompound = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row;
-`
-
-const StyledActionSpacer = styled.div`
-  height: ${(props) => props.theme.spacing[4]}px;
-  width: ${(props) => props.theme.spacing[4]}px;
-`
-
-const StyledDetails = styled.div`
-  display: flex;
-  font-size: 14px;
-`
 
 export default PoolCard

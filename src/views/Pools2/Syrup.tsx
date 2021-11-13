@@ -1,9 +1,7 @@
 import React, { useState } from 'react'
-import { Route, useRouteMatch, Link } from 'react-router-dom'
+import { Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
-import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Alert, ButtonMenu, ButtonMenuItem, Card, Flex, Heading, LinkExternal } from '@pancakeswap-libs/uikit'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
@@ -21,9 +19,7 @@ import {
 import { QuoteToken, Pool2Category } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
-import ClaimBalance from 'views/ClaimBalance/ClaimBalance'
 import BondsDashboard from 'views/BondsDashboard'
-import Coming from './components/Coming'
 import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Hero2 from './components/Hero'
@@ -82,11 +78,8 @@ const Farm: React.FC = () => {
   return (
     <Page>
 
-
-
-{/*
-      <Wrapper>
-      <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm">
+{/*   <Wrapper>
+        <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm">
           <ButtonMenuItem as={Link} to={`${url}`} >
             {TranslateString(698, 'Active')}
           </ButtonMenuItem>
@@ -94,47 +87,10 @@ const Farm: React.FC = () => {
             {TranslateString(700, 'Inactive')}
           </ButtonMenuItem>
         </ButtonMenu>
-      </Wrapper> 
+      </Wrapper> */}
 
+      <BondsDashboard/>
 
-
-<div>
-        <Features >
-           <Feature>
-            <FaBurn /><br />
-            <p>Your deposited MIS will be burned</p>
-          </Feature>
-          <Feature>
-            <FaHistory /><br />
-            <p>ROI is not fixed and will change over time</p>
-          </Feature>
-          <Feature>
-          <FaQuestionCircle/><br />
-             <a target="_blanK" rel="noreferrer" href="https://artemis-protocol.gitbook.io/artemis/the-protocol/artemis-earn/hades-pools"> Learn more about Hades here</a>
-          </Feature> 
-        </Features>
-        </div>    
-
-        <Wrapper>
-
-        <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm">
-
-            <ButtonMenuItem as={Link} to={`${url}`} >
-              {TranslateString(698, 'Active')}
-            </ButtonMenuItem>
-
-            <ButtonMenuItem as={Link} to={`${url}/history`}>
-              {TranslateString(700, 'Inactive')}
-            </ButtonMenuItem>
-
-        </ButtonMenu>
-
-        </Wrapper> */ }
-
-    <BondsDashboard/>
-
-
-  
       <FlexLayout>
         <Route exact path={`${path}`}>
           <>
@@ -149,40 +105,11 @@ const Farm: React.FC = () => {
             <PoolCard key={pool2.sousId} pool2={pool2} />
           ))}
         </Route>
-      </FlexLayout>
+      </FlexLayout> 
 
-          
     </Page>
   )
 }
-
-const Features = styled.div`
-  display: flex;
-  flex-flow: row;
-  width: 100%;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 35px;
-  @media screen and (max-width: 680px){
-    flex-flow: column;
-  }
-`
-
-const Hero = styled.div`
-  display: flex;
-  flex-flow: row;
-  justify-content: center;
-  padding-bottom: 33px;
-`
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-flow: column;
-  margin-bottom: 25px;
-  
-`
 
 export default Farm
 

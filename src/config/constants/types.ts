@@ -158,6 +158,7 @@ export interface Pool2Config {
   startBlock?: number
   endBlock?: number
   sortOrder?: number
+  isSingleAsset?: boolean
   harvest?: boolean
   isFinished?: boolean
   tokenDecimals: number

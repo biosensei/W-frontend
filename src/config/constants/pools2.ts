@@ -20,6 +20,7 @@ const pools2: Pool2Config[] = [
     tokenPerBlock: '0.1',
     sortOrder: 1,
     isFinished: false,
+    isSingleAsset: true,
     isDepositFinished: false,
     startBlock: 19368333,
     endBlock: 19411533,

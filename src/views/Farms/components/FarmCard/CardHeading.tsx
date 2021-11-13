@@ -34,7 +34,7 @@ const CardHeading: React.FC<ExpandableSectionProps> = ({
       <object type="image/svg+xml" data={`/images/staking/${farmImage}.svg`} width="40px" height='40px'>&nbsp;</object>
 
       <Flex flexDirection="column" alignItems="flex-end">
-        <Link style={{'color': '#FFF', 'fontSize': '15px'}} href='https://explorer.harmony.one/'>{lpLabel}</Link>
+        <Link style={{'color': '#FFF', 'fontSize': '15px'}} href='https://explorer.harmony.one/address/0xed0b4b0f0e2c17646682fc98ace09feb99af3ade'>{lpLabel}</Link>
       </Flex>
 
       <Flex flexDirection="column" alignItems="flex-end">

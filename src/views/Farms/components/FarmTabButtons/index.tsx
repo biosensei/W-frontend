@@ -4,7 +4,6 @@ import { useRouteMatch, Link } from 'react-router-dom'
 import { ButtonMenu, ButtonMenuItem, Text } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import Switch from "react-switch";
-import { FaQuestionCircle } from 'react-icons/fa'
 
 const BtnMenu = styled.button`
   -webkit-box-align: center;
@@ -23,6 +22,9 @@ const BtnMenu = styled.button`
   max-height: 30px;
   max-width: 120px;
   padding: 12px;
+
+  text-shadow: 0px 0px 4px #fff;
+  box-shadow: 0px 0px 2px #fff;
   `
 
 
@@ -33,7 +35,7 @@ const FarmTabButtons = ({ stakedOnly, setStakedOnly, tokenMode }) => {
 
   return (
     <Wrapper>
-      <ActionsWrapper style={{ marginTop: '20px'}}
+      <ActionsWrapper style={{ marginTop: '40px'}}
 >
         {/*
         <ToggleWrapper>
@@ -46,20 +48,20 @@ const FarmTabButtons = ({ stakedOnly, setStakedOnly, tokenMode }) => {
 
           <BtnMenu as={Link} to={`${url}`} 
           style={{
-            marginRight: '10px',
+            marginRight: '6px',
             marginTop: '0px',
-            marginLeft: '10px',
-            width: '1180%',
+            marginLeft: '00px',
+            width: '100%',
           }} >
-            {TranslateString(6928, 'Active Pools')}
+            {TranslateString(6928, 'Active')}
           </BtnMenu>
           <BtnMenu as={Link} 
           to={`${url}/history`}
           style={{
             marginRight: '0px',
             marginTop: '0px',
-            width: '80%',}} >
-            {TranslateString(7200, 'Past')}
+            width: '100%',}} >
+            {TranslateString(7200, 'Inactive')}
           </BtnMenu>
       </ActionsWrapper>
 

@@ -124,19 +124,6 @@ const CardActions: React.FC<FarmCardActionsProps> = ({ farm, ethereum, account }
           {TranslateString(999, 'Enable')}
         </StyledBtn>
         
-        {(
-          labo.isLocked.unlockWalletButton 
-          ? 
-        
-          (
-            <ReactTooltip id='happyFace' type='info'>
-            <span style={{'color': 'white'}}>Do not add liquidity yet, this is a test token.</span>
-            </ReactTooltip>
-          )
-          :
-          ''
-        )
-        } 
       </Flex>
       </span>
     )

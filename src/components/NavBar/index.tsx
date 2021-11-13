@@ -47,19 +47,27 @@ const Price = styled.button`
   padding: 12px;
   `
 
-const Logo = styled.p`
-  font-size: 30px;
-  color: #1E2129 !important;
-  padding-bottom: 0px;
-  @media screen and (max-width: 800px) {
-    font-size: 21px;
-  }
-`
+  const Wallet = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 500;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 35px;
+  max-width: 102px;
+  padding: 12px;
 
-const Sub = styled.p`
-  font-size: 13px;
-  color: #1F2237;
-`
+  text-shadow: 0px 0px 5px #fff;
+  box-shadow: 0px 0px 5px #fff;
+  `
 
 
 const NavBar = (props) => {
@@ -219,14 +227,24 @@ const NavBar = (props) => {
 
 
                         <li className="web3li outsideMainNav">
-                          <Link to="/" className="nav-links connect">
+                          <Link 
+                          to="/" 
+                          className="nav-links connect">
                           { account != null && account.length > 1? 
-                            <Price style={{'marginTop': '-2px', 'marginLeft': '30px'}}>{account.substring(0,( isOnPhone ? 8 : 8))} <p style={{'color': 'white'}}>...</p></Price>:
-                              <UnlockButton style={{
-                                marginLeft: '35px',
-                                marginTop: '-4px',
-                                width: '80%',
-                              }}>Connect</UnlockButton>}
+                            <Wallet 
+                              style={{
+                              'marginTop': '-5px', 
+                              'marginLeft': '30px'}}>
+                                {account.substring(0,( isOnPhone ? 8 : 8))} 
+
+                              <p style={{'color': 'white'}}>...</p>
+                            </Wallet>
+                            :
+                            <UnlockButton style={{
+                              marginLeft: '35px',
+                              marginTop: '-4px',
+                              width: '80%',}}>...
+                            </UnlockButton>}
                           </Link>
                         </li>
                  </ul>
@@ -237,7 +255,7 @@ const NavBar = (props) => {
                 <li className="web3li insideMainNav">
                   <Link to="/" className="nav-links connect">
                   { account != null && account.length > 1? 
-                    <Price>{account.substring(0,( isOnPhone ? 8 : 8)).concat("")} <p style={{'color': 'white'}}>...</p></Price>:
+                    <Wallet>{account.substring(0,( isOnPhone ? 8 : 8)).concat("")} <p style={{'color': 'white'}}>...</p></Wallet>:
 
                   <UnlockButton style={{
                     backgroundColor: 'rgb(22, 35, 73) !important',

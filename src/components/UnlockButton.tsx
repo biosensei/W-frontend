@@ -23,6 +23,8 @@ const UnlockBtn = styled.button`
   max-height: 35px;
   max-width: 140px;
   padding: 12px;
+
+  text-shadow: 0px 0px 5px #fff;
   box-shadow: 0px 0px 5px #fff;
   `
 

@@ -1,12 +1,12 @@
 import React, { useState } from 'react'
 import BigNumber from 'bignumber.js'
-import { Button, Flex, Heading } from '@pancakeswap-libs/uikit'
+import {  Flex, Heading } from '@pancakeswap-libs/uikit'
 import useI18n from 'hooks/useI18n'
 import labo from 'config/constants/labo'
 import { useHarvest } from 'hooks/useHarvest'
 import { getBalanceNumber } from 'utils/formatBalance'
 import styled from 'styled-components'
-import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaHistory, FaHandHolding, FaHandHoldingUsd, FaQuestion, FaQuestionCircle } from 'react-icons/fa';
+import { FaHandHoldingUsd} from 'react-icons/fa';
 import useStake from '../../../../hooks/useStake'
 import {usePriceCakeBusd} from "../../../../state/hooks";
 
@@ -16,15 +16,6 @@ interface FarmCardActionsProps {
   earnings?: BigNumber
   pid?: number
 }
-
-const Staked = styled.div`
-  font-size: 10px;
-  align-items: center;
-  color: ${(props) => props.theme.colors.primary};
-  display: flex;
-  margin-top: 3px;
-  justify-content: flex-end;
-`
 
 const USDStaked = styled.text`
   font-size: 15px;
@@ -86,16 +77,13 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
 
   return (
     <Flex mb='10px' justifyContent='space-between' alignItems='center'>
+
       <Heading color={rawEarningsBalance === 0 ? 'textDisabled' : 'text'}>
           <LPStaked style={{'color': 'white', 'fontSize': '16px'}}>
               {displayBalance}
           </LPStaked>
-
           {earnings.gt(0) && <USDStaked>~${displayBalanceUsd}</USDStaked>}
-
       </Heading>
-
-
 
       <BalanceAndCompound>
         {pid === labo.pids.pidLabo ?
@@ -117,6 +105,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
             {TranslateString(999, 'Compound')}
           </StyledBtn>
           : null}
+
         <StyledBtn
           disabled={rawEarningsBalance === 0 || pendingTx}
           onClick={async () => {
@@ -125,6 +114,7 @@ const HarvestAction: React.FC<FarmCardActionsProps> = ({ earnings, pid }) => {
             setPendingTx(false)}}
           style={{'color': 'white'}}>Claim  &nbsp;<FaHandHoldingUsd/>
         </StyledBtn>
+
       </BalanceAndCompound>
     </Flex>
   )

@@ -283,52 +283,45 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </Flex>
 
         <Wrapper alignItems="end">
+
         <Flex alignItems="end">
+
           <StyledCardActions style={{alignItems:"end"}} >
-            
             {!account && <UnlockButton />}
-            {account &&
-              (needsApproval && !isOldSyrup ? (
-                <div style={{ flex: 1 }}>
+            {account && (needsApproval && !isOldSyrup ? (
+            
+            <div style={{ flex: 1 }}>
+              <StyledBtn 
+                style={{minWidth:'100px', maxWidth:'150px', boxShadow:'0px 0px 5px #fff', 'marginTop':'10px'}}
+                disabled={isFinished || requestedApproval}
+                onClick={handleApprove}>
+                Enable Staking
+              </StyledBtn>
+            </div>
 
-                  <StyledBtn 
-                  style={{minWidth:'100px', maxWidth:'150px', boxShadow:'0px 0px 5px #fff', 'marginTop':'10px'}}
-                  disabled={isFinished || requestedApproval}
-                  onClick={handleApprove}
-                  >
-                    Enable Staking
-                  </StyledBtn>
-                </div>
-              ) : (
-                <>
-                  <StyledBtn 
-                    style={{marginTop:'20px'}}
-                    disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
-                    onClick={
-                      isOldSyrup
-                        ? async () => {
-                            setPendingTx(true)
-                            await onUnstake('0')
-                            setPendingTx(false)
-                          }
-                        : onPresentWithdraw
-                    }>
-                  Unstake (0,0)
-                  </StyledBtn>
+            ) : ( <>
 
-                  <StyledActionSpacer/>
+              <StyledBtn 
+                style={{marginTop:'20px'}}
+                disabled={stakedBalance.eq(new BigNumber(0)) || pendingTx}
+                onClick={ isOldSyrup ? async () => {
+                  setPendingTx(true)
+                  await onUnstake('0')
+                  setPendingTx(false)} : onPresentWithdraw }>
+                Unstake (0,0)
+              </StyledBtn>
 
-                  {!isOldSyrup && (
-                  <StyledBtn2 
-                    style={{marginTop:'20px'}} 
-                    disabled={isFinished && sousId !== 0} 
-                    onClick={onPresentDeposit}>
-                    Stake (3,3)
-                  </StyledBtn2>)}
-                </>
-              ))}
-          </StyledCardActions>       
-        </Flex>
+              <StyledActionSpacer/>
+                {!isOldSyrup && (
+                <StyledBtn2 
+                  style={{marginTop:'20px'}} 
+                  disabled={isFinished && sousId !== 0} 
+                  onClick={onPresentDeposit}>
+                  Stake (3,3)
+                </StyledBtn2>)} </> ))}
+              </StyledCardActions> 
+                    
+            </Flex>
         </Wrapper>
       </div>
     </Card>

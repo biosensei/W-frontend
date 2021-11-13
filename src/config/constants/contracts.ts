@@ -2,8 +2,8 @@ import labo from "./labo"
 
 export default {
   cake: {
-    1666600000: labo.addr.LaboAddr,
-    1666700000: labo.addr.LaboAddrTestnet,
+    1666600000: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',
+    1666700000: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',
   },
   rvrs: {
     1666600000: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',

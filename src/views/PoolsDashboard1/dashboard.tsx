@@ -189,7 +189,9 @@ const MoneyWheel: React.FC = () => {
 
   const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0);
   const cakeSupply = getBalanceNumber(circSupply);
+  
   const circulatingMath = new BigNumber(cakeSupply).minus(5000000);
+
   const circulatingRVRS = circulatingMath.toNumber().toFixed(0);
 
   const mCap = misPrice.times(circulatingRVRS).toNumber().toFixed(0);

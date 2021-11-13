@@ -14,7 +14,7 @@ import CakeWalletBalance from 'views/Home/components/CakeWalletBalance'
 import CardValue from 'views/Home/components/CardValue'
 import DashboardPage from 'components/layout/DashboardPage'
 import farms from 'state/farms'
-import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaHistory, FaHandHolding, FaHandHoldingUsd, FaQuestion, FaQuestionCircle, FaArrowLeft, FaLongArrowAltLeft } from 'react-icons/fa';
+import { FaQuestionCircle, FaArrowLeft, FaLongArrowAltLeft } from 'react-icons/fa';
 
 import { useTotalRewards } from 'hooks/useTickets'
 
@@ -99,24 +99,6 @@ const Stat = styled.text`
   text-shadow: 0px 0px 10px #ccc;
 `
 
-const Stat2 = styled.text`
-  font-size: 15px;
-  font-weight: 700;
-  text-shadow: 0px 0px 10px #ccc;
-`
-
-const DCard = styled.div`
-  background: #2E3543;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 1px 1px 3px #fff;
-  background-image: linear-gradient(to right, #3B4557 , #2B3344);
-
-
-
-  position: center;
-  text-align: center;
-`
 
 const Sub = styled.p`
 color: #7F8997;
@@ -226,20 +208,17 @@ const MoneyWheel: React.FC = () => {
               <Flex justifyContent='space-between' alignItems='left'  ml='10px' mr='10px'  marginBottom='-5px' mt='0px'> 
 
                 <Flex>
-                  <Test>{TranslateString(9299, 'Stake')}&nbsp; (<FaLongArrowAltLeft/>, <FaLongArrowAltLeft/>)</Test>
-                   
+                  <Test>{TranslateString(9299, 'Single Stake')}&nbsp; (<FaLongArrowAltLeft/>, <FaLongArrowAltLeft/>)</Test>
                 </Flex>
+                <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
 
-                  <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
-
-                </Flex>
+              </Flex>
 
               <ExpandingWrapper expanded={showExpandableSection}>
+
               <DetailsCard>
 
-
-
-              <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='40px' mt="35px"  marginBottom='0px'  > 
+                  <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='40px' mt="35px"  marginBottom='0px'  > 
                     <Stat>${tokenPrice}</Stat>
                     <Stat>${mCap}</Stat>
                   </Flex>
@@ -263,10 +242,7 @@ const MoneyWheel: React.FC = () => {
                     <Stat><FaQuestionCircle/> Stakers mint RVRS and benefit from mutual collaboration.</Stat>
                   </Flex>
 
-
-
                 </DetailsCard>
-
               </ExpandingWrapper>
             </DashCard>
           </div>

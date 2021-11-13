@@ -377,22 +377,25 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
                 <StyledActionSpacer/>
 
-                {!isOldSyrup && (
-                <StyledBtn disabled={isFinished || isDepositFinished}  onClick={onPresentDeposit}>
-                  Bond Assets
-                </StyledBtn>)}</>))}
-
-                <div style={{ marginRight:'30px', marginLeft:'10px'}}>
+                  {!isOldSyrup && (
+                    <StyledBtn 
+                      disabled={isFinished || isDepositFinished}  
+                      onClick={onPresentDeposit}>
+                      Bond Assets
+                    </StyledBtn>)}
+                  
                   {account && harvest && !isOldSyrup && (
-                  <ClaimBtn
-                    disabled={!earnings.toNumber() || pendingTx}
-                    onClick={async () => {
-                      setPendingTx(true)
-                      await onReward()
-                      setPendingTx(false)
-                    }}>Claim
-                  </ClaimBtn>)}
-                </div>
+                    <ClaimBtn
+                      style={{ marginLeft:'20px' }}
+                      disabled={!earnings.toNumber() || requestedApproval || pendingTx}
+                      onClick={async () => {
+                        setPendingTx(true)
+                        await onReward()
+                        setPendingTx(false)}}>
+                      Claim
+                    </ClaimBtn>)}
+                    </>))}
+
               </StyledCardActions>
             </CCARD>
         </ExpandingWrapper>
@@ -426,22 +429,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           )}
         </StyledDetails> */}
 
-        
-
-
-{/*
-      <CardFooter
-        tokenName={tokenName}
-        projectLink={projectLink}
-        totalStaked={totalStaked}
-        blocksRemaining={blocksRemaining}
-        isFinished={isFinished}
-        blocksUntilStart={blocksUntilStart}
-        poolCategory={poolCategory}
-        tokenPoolAddress={tokenPoolAddress}
-        quoteTokenPoolAddress={quoteTokenPoolAddress}
-/> */}
-    </Card>  </DashboardPage2>
+    </Card>  
+    </DashboardPage2>
 
   )
 

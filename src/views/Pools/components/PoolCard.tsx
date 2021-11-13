@@ -211,31 +211,30 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     }
   }, [onApprove, setRequestedApproval])
 
-  const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
+  const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
-  const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
+  const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
-
-
+  const UserStakedBalance = stakedBalance.toNumber();
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
 
       <div style={{padding: '34px'}}>
 
-        <Wrapper justifyContent="space-between" 
-        alignItems="center" mb="0px" 
-        paddingLeft='150px' 
-        paddingRight='150px' 
-        paddingTop='10px'
-        paddingBottom='20px'
-         >
+        <Wrapper 
+          justifyContent="space-between" 
+          alignItems="center" mb="0px" 
+          paddingLeft='150px' 
+          paddingRight='150px' 
+          paddingTop='10px'
+          paddingBottom='20px'
+          >
 
           <Flex flexDirection="column" alignItems='center'>
             <QuoteTitle2>APY</QuoteTitle2>
             <QuoteTitle>{APY}%</QuoteTitle>
           </Flex>
-
           <Flex  flexDirection="column" alignItems='center' marginTop='0px'>
             <QuoteTitle2> TVL</QuoteTitle2>
             <QuoteTitle >${TVL}</QuoteTitle>
@@ -248,7 +247,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
         </Flex>
 
-
         <Flex justifyContent='space-between' marginTop='5px'>
           <Text1>Staked Balance</Text1>
           <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
@@ -259,22 +257,23 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <SmallText>${getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })}</SmallText>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='3px'>
+        <Flex justifyContent='space-between' marginTop='5px'>
           <SmallText>Expected Balance (7 Days)</SmallText>
           <SmallText>...Fetching</SmallText>
         </Flex>
 
         <Divider/>
 
-        <Flex justifyContent='space-between' marginTop='8px'>
+        <Flex justifyContent='space-between' marginTop='7px'>
           <Text1> 2% Withdrawal For</Text1>
           <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining </WithdrawalFeeTimer>
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='3px'>
-          <Text1> APY</Text1>
+          <Text1> Annual Yield</Text1>
           <Text1>{APY}%</Text1>
         </Flex>
+
 
         <Wrapper alignItems="end">
         <Flex alignItems="end">

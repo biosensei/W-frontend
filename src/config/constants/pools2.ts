@@ -3,7 +3,7 @@ import { QuoteToken, PoolCategory, Pool2Config } from './types'
 const pools2: Pool2Config[] = [
   {
     sousId: 1,
-    tokenName: 'RVRS',
+    tokenName: 'UST',
     quoteTokenSymbol: QuoteToken.UST,
     stakingTokenName: QuoteToken.UST,
     // this is UST
@@ -28,7 +28,7 @@ const pools2: Pool2Config[] = [
    },
    {
     sousId: 2,
-    tokenName: 'RVRS',
+    tokenName: 'RVRS & ONE LP',
     tokenPoolAddress: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',
     quoteTokenSymbol: QuoteToken.RVRS,
     quoteTokenPoolAddress: '0x5A24E33c1F3AC55B96F818D40d0ad97F71b42658',

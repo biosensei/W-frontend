@@ -11,8 +11,8 @@ const pools2: Pool2Config[] = [
     quoteTokenPoolAddress: '0x224e64ec1BDce3870a6a6c777eDd450454068FEC',
     tokenPoolAddress: '0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE',
     contractAddress: {
-      1666700000: '0xb4b35A9bA3cef0565A0039392f9c58982E9aA573',
-      1666600000: '0xb4b35A9bA3cef0565A0039392f9c58982E9aA573',
+      1666700000: '0xA144063168d7d08B61D1870eC1AA1030Cb9fC4E8',
+      1666600000: '0xA144063168d7d08B61D1870eC1AA1030Cb9fC4E8',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://www.app.artemisprotocol.one',

@@ -166,7 +166,9 @@ const MoneyWheel: React.FC = () => {
   const { account } = useWallet()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
+
   const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress()))
+  
   const eggPrice = usePriceCakeBusd().toNumber()
 
   const totalSupply = useTotalSupply()
@@ -188,6 +190,7 @@ const MoneyWheel: React.FC = () => {
   const tokenPrice = cakePriceUsd.toNumber().toFixed(2);
 
   const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0);
+
   const cakeSupply = getBalanceNumber(circSupply);
   
   const circulatingMath = new BigNumber(cakeSupply).minus(5000000);

@@ -5,6 +5,7 @@ import ModalActions from 'components/ModalActions'
 import TokenInput from 'components/TokenInput'
 import useI18n from 'hooks/useI18n'
 import { getFullDisplayBalance } from 'utils/formatBalance'
+import styled from 'styled-components'
 
 interface WithdrawModalProps {
   max: BigNumber
@@ -13,6 +14,47 @@ interface WithdrawModalProps {
   tokenName?: string
   valueUsd?: number
 }
+
+const StyledBtn = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 108px;
+  padding: 25px;
+  `
+
+  const StyledBtn2 = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 600;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 100px;
+  padding: 25px;
+
+  text-shadow: 0px 0px 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+  `
 
 const WithdrawModal: React.FC<WithdrawModalProps> = (
     { onConfirm, onDismiss, max, tokenName = '', valueUsd= 0 }) => {
@@ -35,7 +77,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = (
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={`Withdraw ${tokenName}`} onDismiss={onDismiss}>
+    <Modal title={`Unstake ${tokenName}`} onDismiss={onDismiss}>
       <TokenInput
         onSelectMax={handleSelectMax}
         onChange={handleChange}
@@ -45,19 +87,12 @@ const WithdrawModal: React.FC<WithdrawModalProps> = (
         symbol={tokenName}
       />
       <ModalActions>
-        <Button style={{
-          'borderRadius': '5px',
-          'color': "white !important",
-          'border': "0 !important"
-          }} onClick={onDismiss}>
+        <StyledBtn2
+          onClick={onDismiss}>
           {TranslateString(462, 'Cancel')}
-        </Button>
-        <Button
-        style={{
-          'borderRadius': '5px',
-          'color': "white !important",
-          'border': "0 !important"
-          }}
+        </StyledBtn2>
+        <StyledBtn
+
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -66,8 +101,8 @@ const WithdrawModal: React.FC<WithdrawModalProps> = (
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(464, 'Confirm')}
-        </Button>
+          {pendingTx ? TranslateString(4288, '.....') : TranslateString(4624, 'Unstake')}
+        </StyledBtn>
       </ModalActions>
     </Modal>
   )

@@ -48,7 +48,7 @@ const StyledBtn = styled.button`
   display: inline-flex;
   min-height: 18px;
   max-height: 30px;
-  max-width: 90px;
+  max-width: 100px;
   padding: 25px;
 
   text-shadow: 0px 0px 10px #fff;
@@ -85,11 +85,15 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         symbol={tokenName}
       />
       <ModalActions>
-        <StyledBtn  onClick={onDismiss}>
+        <StyledBtn
+        style={{justifyContent:"center" }}
+        onClick={onDismiss}>
           {TranslateString(462, 'Cancel')}
         </StyledBtn>
         <StyledBtn2
           disabled={pendingTx}
+          style={{justifyContent:"center" }}
+
           onClick={async () => {
             setPendingTx(true)
             await onConfirm(val)

@@ -27,6 +27,28 @@ const StyledBtn = styled.button`
   padding: 25px;
   `
 
+  const StyledBtn2 = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 600;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 100px;
+  padding: 25px;
+
+  text-shadow: 0px 0px 10px #fff;
+  box-shadow: 0px 0px 10px #fff;
+  `
+
 interface DepositModalProps {
   max: BigNumber
   onConfirm: (amount: string) => void
@@ -59,7 +81,7 @@ const DepositModal: React.FC<DepositModalProps> = (
   return (
 
     <Modal 
-    title={`${TranslateString(3120, 'Deposit')} ${tokenName}`} 
+    title={`${TranslateString(3120, 'Stake')} ${tokenName}`} 
     onDismiss={onDismiss}>
       
       <TokenInput
@@ -79,7 +101,7 @@ const DepositModal: React.FC<DepositModalProps> = (
           onClick={onDismiss}>{TranslateString(462, 'Cancel')}
         </StyledBtn>
 
-        <StyledBtn 
+        <StyledBtn2 
           style={{justifyContent:"center" }}
           disabled={pendingTx}
           onClick={async () => {
@@ -87,8 +109,8 @@ const DepositModal: React.FC<DepositModalProps> = (
             await onConfirm(val)
             setPendingTx(false)
             onDismiss()}}>
-            {pendingTx ? TranslateString(4818, 'Pending') : TranslateString(4624, 'Deposit')}
-          </StyledBtn>
+            {pendingTx ? TranslateString(4818, 'Pending') : TranslateString(4624, 'Stake')}
+          </StyledBtn2>
 
         </ModalActions>
 

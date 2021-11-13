@@ -31,9 +31,9 @@ const StyledBtn = styled.button`
   max-height: 30px;
   max-width: 108px;
   padding: 25px;
-  `
+`
 
-  const StyledBtn2 = styled.button`
+const StyledBtn2 = styled.button`
   -webkit-box-align: center;
   align-items: center;
   background-color: rgba(0, 0, 0,0) !important;
@@ -52,7 +52,6 @@ const StyledBtn = styled.button`
   padding: 25px;
 
   text-shadow: 0px 0px 10px #fff;
-
   box-shadow: 0px 0px 10px #fff;
   `
 
@@ -86,10 +85,14 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
         symbol={tokenName}
       />
       <ModalActions>
-        <StyledBtn2 onClick={onDismiss}>
+        <StyledBtn2 
+          onClick={onDismiss}
+          style={{justifyContent:"center" }}>
+
           {TranslateString(4162, 'Cancel (3, 3)')}
         </StyledBtn2>
         <StyledBtn
+          style={{justifyContent:"center" }}
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -98,7 +101,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, '.....') : TranslateString(4164, 'Unstake')}
+          {pendingTx ? TranslateString(4828, '.....') : TranslateString(4164, 'Unstake')}
         </StyledBtn>
       </ModalActions>
     </Modal>

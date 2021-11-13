@@ -101,10 +101,14 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         symbol={tokenName}
       />
       <ModalActions>
-        <StyledBtn onClick={onDismiss}>
+        <StyledBtn onClick={onDismiss}  style={{justifyContent:"center" }}
+>
+          
           {TranslateString(462, 'Cancel')}
         </StyledBtn>
         <StyledBtn2
+          style={{justifyContent:"center" }}
+
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)

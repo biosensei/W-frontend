@@ -36,8 +36,8 @@ const pools2: Pool2Config[] = [
     stakingTokenName: QuoteToken.ONERVRS,
     stakingTokenAddress: '0xCDe0A00302CF22B3Ac367201FBD114cEFA1729b4',
     contractAddress: {
-      1666700000: '0x7429FF70159be178c8a92bEd81068BcB2a6d0686',
-      1666600000: '0x7429FF70159be178c8a92bEd81068BcB2a6d0686',
+      1666700000: '0xEC7826201c7fCaDBd048C0226c861E1df2759F8D',
+      1666600000: '0xEC7826201c7fCaDBd048C0226c861E1df2759F8D',
     },
     poolCategory: PoolCategory.CORE,
     projectLink: 'https://www.app.artemisprotocol.one',

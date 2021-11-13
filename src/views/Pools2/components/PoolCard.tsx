@@ -85,7 +85,7 @@ const StyledBtn = styled.button`
   box-shadow: 1px 1px 10px #ccc;
 
   `
-  const StyledClaim = styled.button`
+const StyledClaim = styled.button`
   -webkit-box-align: center;
   align-items: center;
   background-color: #2E3543 !important;
@@ -105,24 +105,24 @@ const StyledBtn = styled.button`
   padding: 20px;
   `
 
-  const ClaimBtn = styled.button`
-  -webkit-box-align: center;
-  align-items: center;
-  margin-top: 18px;
-  background-color: rgba(0, 0, 0,0) !important;
-  border: 1px;
-  border-style: solid !important;
-  border-color: #ffff !important;
-  border-radius: 10px;
-  color: #ffff;
-  font-size: 15px;
-  font-weight: 400;
-  width: 100%;
-  display: inline-flex;
-  min-height: 18px;
-  max-height: 30px;
-  max-width: 80px;
-  padding: 20px;
+const ClaimBtn = styled.button`
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 18px;
+    background-color: rgba(0, 0, 0,0) !important;
+    border: 1px;
+    border-style: solid !important;
+    border-color: #ffff !important;
+    border-radius: 10px;
+    color: #ffff;
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    display: inline-flex;
+    min-height: 18px;
+    max-height: 30px;
+    max-width: 80px;
+    padding: 20px;
   `
 
 
@@ -168,6 +168,17 @@ const DashboardPage2 = styled(Container)`
     padding-top: 21px;
     padding-bottom: 32px;
   }
+`
+
+
+const Divider = styled.div`
+  background-color: #7B7B7B;
+  height: 1px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 25px;
+  margin-bottom: 15px;
+  width: 100%;
 `
 
 
@@ -260,12 +271,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   }, [onApprove, setRequestedApproval])
 
   const APR = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
-
-  const ROI = apy && apy.div(6).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
-
-  const DailyROI = apy && apy.div(6).div(60).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
-
-
+  const NetROI = apy && apy.div(365).times(daysRemaining).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
+  const FiveDayROI = apy && apy.div(365).times(5).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
   const TVL = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
 
   return (
@@ -281,9 +288,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
         </Flex>
 
-
-     
-
       </Wrapper>
 
       <DCard>
@@ -291,11 +295,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
       <Wrapper justifyContent="space-between" alignItems="center" mb="0px">
 
 
-
-
-
         <Flex  flexDirection="column" alignItems='start' >
-            <Quote>Returns</Quote>
+            <Quote>ROI</Quote>
             <Quote3>{APR}%</Quote3>
           </Flex>
 
@@ -305,9 +306,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           </Flex>
 
           <Flex flexDirection="column" alignItems='start' >
-            <Quote>TVL</Quote>
+            <Quote>TVB</Quote>
             <Quote3>${TVL}</Quote3>
           </Flex>
+
 
         <Flex justifyContent='right'>
           <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
@@ -327,19 +329,23 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
             <Flex justifyContent='space-between' marginTop='10px'>
               <Quote> Estimated ROI ({daysRemaining} Days)</Quote>
-              <Quote> ${TVL}</Quote>
+              <Quote>{NetROI}%</Quote>
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
               <Quote> Estimated ROI (5 Days)</Quote>
-              <Quote>TODO</Quote>
+              <Quote>{FiveDayROI}%</Quote>
             </Flex>
+            
+            <Divider/>
 
 
             <Flex justifyContent='space-between' marginTop='25px'>
               <Quote> Your Bonded Assets</Quote>
               <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
             </Flex>
+
+            
 
             <Flex marginTop='0px' justifyContent='space-between'>
               <Quote> Claimable Rewards</Quote>

@@ -1,14 +1,12 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
-import { Toggle } from '@pancakeswap-libs/uikit'
 import { usePriceCakeBusd } from 'state/hooks'
 import {Link} from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
-import {Accordion, Button, Card, useAccordionToggle} from 'react-bootstrap';
-import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaGithub } from 'react-icons/fa';
+import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub } from 'react-icons/fa';
 import ReactTooltip from 'react-tooltip';
 import labo from 'config/constants/labo';
 
@@ -24,49 +22,28 @@ const {viewportWidth, viewportHeight} = getWindowDimensions()
 
 const isOnPhone = viewportWidth < 680
 
-const Token = styled.img`
-  margin-right: 10px;
-`
 
-const Price = styled.button`
-  -webkit-box-align: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0,0) !important;
-  border: 1px;
-  border-style: solid !important;
-  border-color: #ffff !important;
-  border-radius: 10px;
-  color: #ffff;
-  font-size: 15px;
-  font-weight: 400;
-  width: 100%;
-  display: inline-flex;
-  min-height: 18px;
-  max-height: 30px;
-  max-width: 107px;
-  padding: 12px;
-  `
 
   const Wallet = styled.button`
-  -webkit-box-align: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0,0) !important;
-  border: 1px;
-  border-style: solid !important;
-  border-color: #ffff !important;
-  border-radius: 10px;
-  color: #ffff;
-  font-size: 15px;
-  font-weight: 500;
-  width: 100%;
-  display: inline-flex;
-  min-height: 18px;
-  max-height: 35px;
-  max-width: 102px;
-  padding: 12px;
+    -webkit-box-align: center;
+    align-items: center;
+    background-color: rgba(0, 0, 0,0) !important;
+    border: 1px;
+    border-style: solid !important;
+    border-color: #ffff !important;
+    border-radius: 10px;
+    color: #ffff;
+    font-size: 15px;
+    font-weight: 500;
+    width: 100%;
+    display: inline-flex;
+    min-height: 18px;
+    max-height: 35px;
+    max-width: 102px;
+    padding: 12px;
 
-  text-shadow: 0px 0px 5px #fff;
-  box-shadow: 0px 0px 5px #fff;
+    text-shadow: 0px 0px 5px #fff;
+    box-shadow: 0px 0px 5px #fff;
   `
 
 
@@ -75,87 +52,6 @@ const NavBar = (props) => {
   const cakePriceUsd = usePriceCakeBusd()
   const [isChecked, setIsChecked] = useState(false);
 
-  const LightSwitch = () => {
-  
-    const toggle = () => setIsChecked(!isChecked);
-  
-    return (
-      <>
-        <div style={{ marginBottom: "32px" }}>
-          <Toggle checked={isChecked} onChange={toggle} />
-        </div>
-      </>
-    );
-  }
-
-  function CustomToggle({ eventKey }) {
-    const decoratedOnClick = useAccordionToggle(eventKey);
-  
-    return (
-        <li className="nav-tab dropdown">
-        <Link to="/" className="nav-links" onClick={decoratedOnClick}>
-          About
-        </Link>
-        </li>
-    );
-  }
-  
-  function InfoToggle() {
-    return (
-      <Accordion id="infoToggleMobile">
-        <Card style={{"backgroundColor": "#161616", "border": "0"}}>
-          <Card.Header style={{"backgroundColor": "#161616", "border": "0"}}>
-            <CustomToggle eventKey="0" />
-          </Card.Header>
-          <Accordion.Collapse eventKey="0">
-            <Card.Body style={{"backgroundColor": "#161616", "border": "0"}}>
-            <ul className="dropdown-items">
-            <li>
-               <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/artemis" className="nav-links">
-                <FaVoteYea />  <span className="dditem">Vote</span>
-               </a>
-           </li>
-
-            <li>
-               <a target="_blanK" rel="noreferrer" href="https://artemischarts.northeurope.cloudapp.azure.com/" className="nav-links">
-                 <FaChartBar />  <span className="dditem">Charts</span>
-                   </a>
-                  </li>
-                <li>
-                  <a target="_blanK" rel="noreferrer" href="https://artemis-protocol.gitbook.io/artemis/" className="nav-links">
-                    <FaBook /> <span className="dditem">Docs</span>
-                  </a>
-                </li>
-                <li>
-                  <a target="_blanK" rel="noreferrer" href="https://github.com/ArtemisProtocol" className="nav-links">
-                    <FaCode /> <span className="dditem">Code</span>
-                  </a>
-                </li>
-
-                <li>
-                  <a target="_blanK" rel="noreferrer" href="https://twitter.com/ArtemisProtoco1" className="nav-links">
-                    <FaTwitter />  <span className="dditem">Twitter</span>
-                  </a>
-                </li>
-
-                <li>
-                  <a target="_blanK" rel="noreferrer" href="https://t.me/ProtocolArtemis" className="nav-links">
-                    <FaTelegramPlane />  <span className="dditem">Telegram</span>
-                  </a>
-                </li>
-                <li>
-                  <a target="_blanK" rel="noreferrer" href="https://discord.gg/zqkTCQS8" className="nav-links">
-                    <FaDiscord />  <span className="dditem">Disocord</span>
-                  </a>
-                </li>
-              </ul>
-            </Card.Body>
-          </Accordion.Collapse>
-        </Card>
-      </Accordion>
-    );
-  }
-
 
   return (
     <div>
@@ -163,12 +59,17 @@ const NavBar = (props) => {
         
           <div className="nav-wrapper">
 
-
               <nav>
-              <object type="image/svg+xml" 
-              data="/images/banner.svg" 
-              width="230px" style={{'marginTop': '50px', 'marginBottom': '15px', 'marginLeft': '10px'}}>&nbsp;</object>
-             
+
+                <object 
+                  type="image/svg+xml" 
+                  data="/images/banner.svg" 
+                  width="230px" 
+                  style={{'marginTop': '50px', 
+                          'marginBottom': '15px', 
+                          'marginLeft': '10px'}}>
+                  &nbsp;
+                </object>
 
                 <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle"/>
                 <button type="button" className="menu-btn" onClick={()=>{setIsChecked(!isChecked)}}>
@@ -180,21 +81,19 @@ const NavBar = (props) => {
                   <div className="nav-container">
                       <ul className="nav-tabs">
 
-                      <li className="nav-tab">
+                        <li className="nav-tab">
                           <Link to="/pools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Pools</span>
                           </Link>
                         </li>
-
 
                         <li className="nav-tab">
                           <Link to="/bonding" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Bonding</span>
                           </Link>
                         </li>
-
                         
-                      <li className="nav-tab">
+                        <li className="nav-tab">
                           <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span  className="dditem">Stake (3, 3)</span>
                           </Link>
@@ -278,11 +177,10 @@ const NavBar = (props) => {
                  </ul>
                   </div>
               </nav>
-
-          </div>
-      </header>
-  </div>
-  )
+            </div>
+          </header>
+        </div>
+        )
 }
 
 

@@ -4,7 +4,7 @@
 
 // RVRS Addresses
 
-const masterChef = '0xa385399B4dE3B5f01a31b0E753f32E18e526db8f'
+const masterChef = '0xeEA71889c062c135014Ec34825a1958c87A2Ac61'
 
 // Labo ADDRESSES
 

@@ -39,7 +39,7 @@ const App: React.FC = () => {
         <Suspense fallback>
           <Switch>
 
-            {/*
+            
             <Route path="/" exact>
             <Farms />
             </Route>
@@ -55,7 +55,7 @@ const App: React.FC = () => {
               <Pools/>
             </Route>
 
-            */ }
+            
             <Route component={NotFound} />
           </Switch>
         </Suspense>

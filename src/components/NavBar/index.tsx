@@ -201,7 +201,7 @@ const NavBar = (props) => {
                         </li>
 
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/" className="nav-links">
+                          <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
                             <FaEnvelopeOpenText style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 

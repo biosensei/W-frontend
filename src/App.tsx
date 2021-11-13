@@ -43,6 +43,9 @@ const App: React.FC = () => {
             <Route path="/" exact>
             <Farms />
             </Route>
+            <Route path="/bonding">
+              <Pools2 />
+            </Route>
             <Route path="/pools">
               <Farms />
             </Route>

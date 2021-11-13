@@ -20,6 +20,49 @@ const GuideLink = styled.span`
   color: #0073ff;
 `
 
+
+const StyledBtn = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 100px;
+  padding: 25px;
+  `
+
+  const StyledBtn2 = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 108px;
+  padding: 25px;
+
+  text-shadow: 0px 0px 10px #fff;
+
+  box-shadow: 0px 0px 8px #fff;
+  `
+
 interface DepositModalProps {
   max: BigNumber
   onConfirm: (amount: string) => void
@@ -47,14 +90,8 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
   }, [fullBalance, setVal])
 
   return (
-    <Modal title={`${TranslateString(999, 'Burn')} ${tokenName} Tokens`} onDismiss={onDismiss}>
-      <Blablabla >
-      <FaBurn/> By entering these pools, you understand and agree that 
-        <br />
-        100% of your deposited ${tokenName} will be burned to earn the
-        <br />
-        reward tokens over the remaining duration of the pool <FaBurn/>
-        </Blablabla>
+    <Modal 
+    title={`${TranslateString(999, 'Bond')} ${tokenName}`} onDismiss={onDismiss}>
 
       <TokenInput
         value={val}
@@ -64,11 +101,14 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
         symbol={tokenName}
       />
       <ModalActions>
-        <Button fullWidth variant="secondary" onClick={onDismiss}>
+        <StyledBtn onClick={onDismiss}  style={{justifyContent:"center" }}
+>
+          
           {TranslateString(462, 'Cancel')}
-        </Button>
-        <Button
-          fullWidth
+        </StyledBtn>
+        <StyledBtn2
+          style={{justifyContent:"center" }}
+
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
@@ -77,8 +117,8 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
             onDismiss()
           }}
         >
-          {pendingTx ? TranslateString(488, 'Pending Confirmation') : TranslateString(4624, 'Burn')}
-        </Button>
+          {pendingTx ? TranslateString(4288, '.....') : TranslateString(4624, 'Confirm')}
+        </StyledBtn2>
       </ModalActions>
     </Modal>
   )

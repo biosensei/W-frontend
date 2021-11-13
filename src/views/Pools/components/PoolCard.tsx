@@ -14,6 +14,8 @@ import { useSousHarvest } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { getCakeAddress } from 'utils/addressHelpers'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
 import CompoundModal from './CompoundModal'
@@ -43,6 +45,13 @@ const Text1 = styled.p`
   font-weight: 400;
   margin-bottom: 0px;
   text-shadow: 0px 0px 0px #ccc;
+`
+
+const Text11 = styled.p`
+  color: #EBEBEB;
+  font-size: 15px;
+  font-weight: 800;
+  margin-bottom: 0px;
 `
 
 const Divider = styled.div`
@@ -162,6 +171,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     quoteTokenPoolAddress,
     earnToken,
   } = pool
+
+  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us',{ maximumFractionDigits: 0 });
+
+
+
   // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
@@ -225,6 +239,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
+  const FiveDayROI = apr && apr.div(365).times(7).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+
+
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
 
@@ -252,15 +269,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
         <Flex justifyContent='space-between' marginTop='26px'>
           <Text1>Unstaked Balance</Text1>
-          <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
+          <Text11>{cakeBalance}</Text11>
+        </Flex>
+
+        <Flex justifyContent='space-between' marginTop='13px'>
+          <Text1>Staked Balance</Text1>
+          <Balance  fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='5px'>
-          <Text1>Staked Balance</Text1>
-          <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
-        </Flex>
-
-        <Flex justifyContent='space-between' marginTop='2px'>
           <SmallText>Balance in UST</SmallText>
           <SmallText>${getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })}</SmallText>
         </Flex>
@@ -273,13 +290,18 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         <Divider/>
 
         <Flex justifyContent='space-between' marginTop='7px'>
-          <Text1> 2% Withdrawal For</Text1>
+          <Text1> 5% Withdrawal Fee For:</Text1>
           <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining </WithdrawalFeeTimer>
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='3px'>
           <Text1> Annual Yield</Text1>
           <Text1>{APY}%</Text1>
+        </Flex>
+
+        <Flex justifyContent='space-between' marginTop='12px'>
+          <Text1> 7 Day ROI</Text1>
+          <Text1>{FiveDayROI}%</Text1>
         </Flex>
 
         <Wrapper alignItems="end">

@@ -173,21 +173,21 @@ const NavBar = (props) => {
                       <ul className="nav-tabs">
 
                       <li className="nav-tab">
-                          <Link to="/LiquidityPools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/pools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Pools</span>
                           </Link>
                         </li>
 
 
                         <li className="nav-tab">
-                          <Link to="/BondingPools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/bonding" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Bonding</span>
                           </Link>
                         </li>
 
                         
                       <li className="nav-tab">
-                          <Link to="/Stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                          <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
                             <span className="dditem">Stake (3, 3)</span>
                           </Link>
                         </li>
@@ -201,14 +201,14 @@ const NavBar = (props) => {
                           <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
                             <FaBook style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
-
+                        
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol" className="nav-links">
+                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/reverseprotocol" className="nav-links">
                             <FaDiscord style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/reverseprotocol" className="nav-links">
+                          <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol" className="nav-links">
                             <FaGithub style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
 
@@ -225,7 +225,7 @@ const NavBar = (props) => {
                               <UnlockButton style={{
                                 marginLeft: '35px',
                                 marginTop: '-4px',
-                                width: '70%',
+                                width: '80%',
                               }}>Connect</UnlockButton>}
                           </Link>
                         </li>

@@ -16,13 +16,14 @@ const UnlockBtn = styled.button`
   border-radius: 10px;
   color: #ffff;
   font-size: 15px;
-  font-weight: 400;
+  font-weight: 500;
   width: 100%;
   display: inline-flex;
   min-height: 18px;
-  max-height: 30px;
-  max-width: 105px;
+  max-height: 35px;
+  max-width: 140px;
   padding: 12px;
+  box-shadow: 0px 0px 5px #fff;
   `
 
 
@@ -36,22 +37,9 @@ const UnlockButton = (props) => {
       <UnlockBtn 
       disabled={ labo.isLocked.unlockWalletButton } 
       onClick={onPresentConnectModal} {...props}>
-        {TranslateString(2922, 'Connect')}
+        {TranslateString(2922, 'Connect Wallet')}
       </UnlockBtn>
-      {(
-        labo.isLocked.unlockWalletButton 
-        ? 
-      
-        (
-          <ReactTooltip id='happyFace3' type='info'>
-          <span style={{'color': 'white'}}>Do not add liquidity yet, this is a test token.</span>
-          </ReactTooltip>
-        )
-        :
-        ''
-        
-      )
-      } 
+     
     </span>
   )
 }

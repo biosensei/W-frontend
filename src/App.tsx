@@ -41,15 +41,15 @@ const App: React.FC = () => {
             <Route path="/" exact>
             <Farms />
             </Route>
-            <Route path="/LiquidityPools">
+            <Route path="/pools">
               <Farms />
             </Route>
 
-            <Route path="/BondingPools">
+            <Route path="/bonding">
               <Pools2/>
             </Route>
 
-            <Route path="/Stake">
+            <Route path="/stake">
               <Pools/>
             </Route>
             <Route component={NotFound} />

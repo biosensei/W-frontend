@@ -41,13 +41,11 @@ const Farm: React.FC = () => {
         // Handle single staking pools
         quoteTokens = new BigNumber(pool2.totalStaked).div(new BigNumber(10).pow(18)).div(2)
     }
-    console.log(pool2)
-    console.log(quoteTokens && quoteTokens.toNumber())
 
     const tvl = getTotalValueFromQuoteTokens(quoteTokens, pool2.quoteTokenSymbol, prices)
 
     // console.log("APY", pool2, tvl && tvl.toNumber())
-    const rewardTokenPrice = lookupPrice(pool2.tokenName, prices)
+    const rewardTokenPrice = lookupPrice(QuoteToken.RVRS, prices)
     // console.log("price", pool2.tokenName, rewardTokenPrice && rewardTokenPrice.toNumber())
 
     const totalRewardPricePerYear = rewardTokenPrice.times(pool2.tokenPerBlock).times(BLOCKS_PER_YEAR)

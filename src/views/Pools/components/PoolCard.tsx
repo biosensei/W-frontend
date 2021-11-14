@@ -248,19 +248,16 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       <div style={{padding: '34px'}}>
 
         <Wrapper 
-          justifyContent="space-between" 
-          alignItems="center" mb="0px" 
-          paddingLeft='150px' 
-          paddingRight='150px' 
-          paddingTop='10px'
-          paddingBottom='20px'
+          justifyContent="center" 
+          alignItems="center"
+          padding='20px' 
           >
 
           <Flex flexDirection="column" alignItems='center'>
             <QuoteTitle2>APY</QuoteTitle2>
             <QuoteTitle>{APY}%</QuoteTitle>
           </Flex>
-          <Flex  flexDirection="column" alignItems='center' marginTop='0px'>
+          <Flex  flexDirection="column" alignItems='center' marginLeft='60px'>
             <QuoteTitle2> TVL</QuoteTitle2>
             <QuoteTitle >${TVL}</QuoteTitle>
           </Flex>
@@ -278,23 +275,32 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='5px'>
-          <SmallText>Balance in UST</SmallText>
+          <SmallText>Balance (in UST)</SmallText>
           <SmallText>${getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })}</SmallText>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='5px'>
-          <SmallText>Expected Balance (7 Days)</SmallText>
-          <SmallText>...Fetching</SmallText>
+        <Flex justifyContent='space-between' marginTop='7px'>
+          <Text1> Withdrawal Fee</Text1>
+          <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining </WithdrawalFeeTimer>
+
         </Flex>
+
+        
+        <Flex justifyContent='space-between' marginTop='10px'>
+          <SmallText>Fee: 5% and then 0%</SmallText>
+        </Flex>
+
+        {/* <Flex justifyContent='space-between' marginTop='5px'>
+          <SmallText>Expected Balance (7 Days)</SmallText>
+          <SmallText>...</SmallText>
+  </Flex> */ }
 
         <Divider/>
 
-        <Flex justifyContent='space-between' marginTop='7px'>
-          <Text1> 5% Withdrawal Fee For:</Text1>
-          <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining </WithdrawalFeeTimer>
-        </Flex>
 
-        <Flex justifyContent='space-between' marginTop='3px'>
+
+
+        <Flex justifyContent='space-between' marginTop='12px'>
           <Text1> Annual Yield</Text1>
           <Text1>{APY}%</Text1>
         </Flex>

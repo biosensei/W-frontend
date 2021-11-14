@@ -301,7 +301,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           </Flex>
 
           <Flex  flexDirection="column" alignItems='start' >
-            <Quote>Incentives End</Quote>
+            <Quote>Ends</Quote>
             <Quote3>{daysRemaining} Days</Quote3>
           </Flex>
 

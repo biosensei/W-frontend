@@ -241,7 +241,14 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
+  const StakedUSDBalance = getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })
+
+  const StakedUSDBalanceMath = getBalanceNumber(stakedBalanceUsd)
+
   const FiveDayROI = apr && apr.div(365).times(7).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+  const OneDayROI = apr && apr.div(365).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+
+  const ExpectedBalance = apr && apr.div(365).times(7).times(0.01).times(getBalanceNumber(stakedBalanceUsd)).plus(getBalanceNumber(stakedBalanceUsd)).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
 
   return (
@@ -286,10 +293,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
         <Flex justifyContent='space-between' marginTop='5px'>
           <SmallText>Balance (in UST)</SmallText>
-          <SmallText>${getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })}</SmallText>
+          <SmallText>${StakedUSDBalance}</SmallText>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='7px'>
+        <Flex justifyContent='space-between' marginTop='5px'>
+          <SmallText>Expected Balance (7 Days)</SmallText>
+          <SmallText>${ExpectedBalance}</SmallText>
+        </Flex>
+
+        <Flex justifyContent='space-between' marginTop='10px'>
           <Text1> Withdrawal Fee</Text1>
           <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining </WithdrawalFeeTimer>
 
@@ -318,6 +330,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         <Flex justifyContent='space-between' marginTop='12px'>
           <Text1> 7 Day ROI</Text1>
           <Text1>{FiveDayROI}%</Text1>
+        </Flex>
+
+        <Flex justifyContent='space-between' marginTop='12px'>
+          <Text1> 1 Day ROI</Text1>
+          <Text1>{OneDayROI}%</Text1>
         </Flex>
 
         <Wrapper alignItems="end">

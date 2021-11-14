@@ -231,7 +231,7 @@ const MoneyWheel: React.FC = () => {
               <Flex justifyContent='space-between' alignItems='left'  ml='10px' mr='10px'  marginBottom='-5px' mt='0px'> 
 
                 <Flex>
-                  <Test>{TranslateString(9299, 'Pools')}&nbsp;</Test>
+                  <Test>{TranslateString(9299, 'Farm')}&nbsp;</Test>
                     {account ? (
                       <StyledBtn id="harvest-all" disabled={balancesWithValue.length <= 0 || pendingTx} 
                       onClick={harvestAllFarms} style={{'marginLeft':'15px', 'marginTop':'-5px'}}>

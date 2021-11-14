@@ -81,24 +81,24 @@ const NavBar = (props) => {
                   <div className="nav-container">
                       <ul className="nav-tabs">
 
+                      <li className="nav-tab">
+                          <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                            <span  className="dditem">Stake</span>
+                          </Link>
+                        </li>
+
                         <li className="nav-tab">
-                          <Link to="/pools" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Pools</span>
+                          <Link to="/farm" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                            <span className="dditem">Farm</span>
                           </Link>
                         </li>
 
                         <li className="nav-tab">
                           <Link to="/bonding" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Bonding</span>
+                            <span className="dditem">Bonding Pools</span>
                           </Link>
                         </li>
                         
-                        <li className="nav-tab">
-                          <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span  className="dditem">Stake (3, 3)</span>
-                          </Link>
-                        </li>
-
                         <li>
                           <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
                             <FaEnvelopeOpenText style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>

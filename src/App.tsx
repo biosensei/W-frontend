@@ -38,19 +38,16 @@ const App: React.FC = () => {
       </NavBar>
         <Suspense fallback>
           <Switch>
-
-            
             <Route path="/" exact>
-            <Farms />
+            <Pools/>
+
             </Route>
             <Route path="/bonding">
               <Pools2 />
             </Route>
-            <Route path="/pools">
+            <Route path="/farm">
               <Farms />
             </Route>
-
-
             <Route path="/stake">
               <Pools/>
             </Route>

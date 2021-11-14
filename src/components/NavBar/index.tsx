@@ -108,11 +108,7 @@ const NavBar = (props) => {
                           <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
                             <FaBook style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
                         </li>
-                        
-                        <li>
-                          <a target="_blanK" rel="noreferrer" href="https://discord.gg/reverseprotocol" className="nav-links">
-                            <FaDiscord style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
-                        </li>
+
 
                         <li>
                           <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol" className="nav-links">

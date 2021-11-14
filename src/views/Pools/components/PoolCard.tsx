@@ -16,6 +16,8 @@ import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
+import {Link} from "react-router-dom";
+import { FaExternalLinkAlt, FaLink } from 'react-icons/fa'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
 import CompoundModal from './CompoundModal'
@@ -239,7 +241,14 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
+  const StakedUSDBalance = getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })
+
+  const StakedUSDBalanceMath = getBalanceNumber(stakedBalanceUsd)
+
   const FiveDayROI = apr && apr.div(365).times(7).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+  const OneDayROI = apr && apr.div(365).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+
+  const ExpectedBalance = apr && apr.div(365).times(7).times(0.01).times(getBalanceNumber(stakedBalanceUsd)).plus(getBalanceNumber(stakedBalanceUsd)).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
 
   return (
@@ -262,9 +271,17 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             <QuoteTitle >${TVL}</QuoteTitle>
           </Flex>
         </Wrapper>
+        
+        <Flex justifyContent='space-between' marginTop='35px'>
+          <a 
+          target="_blanK" 
+          rel="noreferrer" 
+          href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" 
+          className="nav-links"
+          >Swap <FaExternalLinkAlt/></a>
+        </Flex>
 
-
-        <Flex justifyContent='space-between' marginTop='26px'>
+        <Flex justifyContent='space-between' marginTop='14px'>
           <Text1>Unstaked Balance</Text1>
           <Text11>{cakeBalance}</Text11>
         </Flex>
@@ -276,10 +293,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
         <Flex justifyContent='space-between' marginTop='5px'>
           <SmallText>Balance (in UST)</SmallText>
-          <SmallText>${getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })}</SmallText>
+          <SmallText>${StakedUSDBalance}</SmallText>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='7px'>
+        <Flex justifyContent='space-between' marginTop='5px'>
+          <SmallText>Expected Balance (7 Days)</SmallText>
+          <SmallText>${ExpectedBalance}</SmallText>
+        </Flex>
+
+        <Flex justifyContent='space-between' marginTop='10px'>
           <Text1> Withdrawal Fee</Text1>
           <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining </WithdrawalFeeTimer>
 
@@ -308,6 +330,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         <Flex justifyContent='space-between' marginTop='12px'>
           <Text1> 7 Day ROI</Text1>
           <Text1>{FiveDayROI}%</Text1>
+        </Flex>
+
+        <Flex justifyContent='space-between' marginTop='12px'>
+          <Text1> 1 Day ROI</Text1>
+          <Text1>{OneDayROI}%</Text1>
         </Flex>
 
         <Wrapper alignItems="end">

@@ -137,7 +137,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
     ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
     : '-'
 
-  const BLOCKS_PER_YEAR = new BigNumber(30 * 60 * 24 * 365) // first 30 is for 2s block times
+  const BLOCKS_PER_YEAR = new BigNumber(60 * 60 * 24 * 365) // first 30 is for 2s block times
   const rewPerYear = new BigNumber(farm.vikingPerBlock).times(farm.poolWeight) .div(new BigNumber(10).pow(18)).times(BLOCKS_PER_YEAR)
   const farmApyFixed = rewPerYear.times(cakePrice).div(totalValue).times(100)
   const farmAPY = ( farmApyFixed ? ` ${farmApyFixed && farmApyFixed.toNumber().toLocaleString(undefined, {

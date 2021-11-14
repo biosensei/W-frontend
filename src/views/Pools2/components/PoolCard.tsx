@@ -275,6 +275,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const FiveDayROI = apy && apy.div(365).times(5).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
   const TVL = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
 
+
+  const Profit = apy && apy.div(365).times(daysRemaining).minus(100).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
+
   return (
 
     <DashboardPage2>
@@ -296,8 +299,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
 
         <Flex  flexDirection="column" alignItems='start' >
-            <Quote>ROI</Quote>
-            <Quote3>{NetROI}%</Quote3>
+            <Quote>Net ROI</Quote>
+            <Quote3>+ {Profit}%</Quote3>
           </Flex>
 
           <Flex  flexDirection="column" alignItems='start' >
@@ -328,20 +331,21 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote> Estimated ROI ({daysRemaining} Days)</Quote>
-              <Quote>{NetROI}%</Quote>
-            </Flex>
-
-            <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote> Estimated ROI (5 Days)</Quote>
-              <Quote>{FiveDayROI}%</Quote>
-            </Flex>
-
-            <Flex justifyContent='space-between' marginTop='10px'>
               <Quote> Rewards Paid In</Quote>
               <Quote>RVRS</Quote>
             </Flex>
             
+
+            <Flex justifyContent='space-between' marginTop='10px'>
+              <Quote> Total Returns </Quote>
+              <Quote>{NetROI}%</Quote>
+            </Flex>
+
+            <Flex justifyContent='space-between' marginTop='10px'>
+            <Quote>Net Returns</Quote>
+            <Quote>{Profit}%</Quote>
+            </Flex>
+
             <Divider/>
 
 

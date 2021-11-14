@@ -302,15 +302,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='10px'>
-          <Text1> Withdrawal Fee</Text1>
+          <Text1> 5% Withdrawal Fee</Text1>
           <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining </WithdrawalFeeTimer>
 
         </Flex>
 
-        
-        <Flex justifyContent='space-between' marginTop='10px'>
-          <SmallText>Fee: 5% and then 0%</SmallText>
-        </Flex>
 
         {/* <Flex justifyContent='space-between' marginTop='5px'>
           <SmallText>Expected Balance (7 Days)</SmallText>

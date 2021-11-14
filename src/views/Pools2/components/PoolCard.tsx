@@ -326,7 +326,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           <CCARD>
 
           <Flex justifyContent='space-between' marginTop='20px'>
-              <Quote> Total Value Bonded</Quote>
+              <Quote> Total Value Forfeited</Quote>
               <Quote> ${TVL}</Quote>
             </Flex>
 
@@ -337,12 +337,12 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote> Total Returns </Quote>
+              <Quote>Total Returns </Quote>
               <Quote>{NetROI}%</Quote>
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
-            <Quote>Net Returns</Quote>
+            <Quote>Expected Net Returns</Quote>
             <Quote>{Profit}%</Quote>
             </Flex>
 

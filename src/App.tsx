@@ -44,9 +44,15 @@ const App: React.FC = () => {
             </Route>
             <Route path="/reverseum">
               <Pools2 />
+
+              </Route>
+            <Route path="/bonding">
+              <Pools2 />
+
             </Route>
             <Route path="/farm">
               <Farms />
+
             </Route>
             <Route path="/stake">
               <Pools/>

@@ -208,7 +208,7 @@ const MoneyWheel: React.FC = () => {
               <Flex justifyContent='space-between' alignItems='left'  ml='10px' mr='10px'  marginBottom='-5px' mt='0px'> 
 
                 <Flex>
-                  <Test>{TranslateString(9299, 'Single Stake')}&nbsp; (<FaLongArrowAltLeft/>, <FaLongArrowAltLeft/>)</Test>
+                  <Test>{TranslateString(9299, 'Single Stake')}</Test>
                 </Flex>
                 <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
 

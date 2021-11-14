@@ -154,7 +154,7 @@ const Farm: React.FC = () => {
 
     const totalRewardPricePerYear = rewardTokenPrice.times(farm0.vikingPerBlock).div(BIG_TEN.pow(18)).times(farm0.poolWeight).times(BLOCKS_PER_YEAR).times(2)
     // const totalStakingTokenInPool = stakingTokenPriceInBNB.times(getBalanceNumber(pool.totalStaked))
-    const apr = totalRewardPricePerYear.div(tvl).times(100)
+    const apr = totalRewardPricePerYear.div(tvl).times(100).times(2)
     const apy = aprToApy(apr)
     // console.log("TVL", pool.stakingTokenName, tvl && tvl.toNumber(), apy && apy.toNumber())
 

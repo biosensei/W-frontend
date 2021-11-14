@@ -144,7 +144,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
     minimumFractionDigits: 0,
     maximumFractionDigits: 0,
   })}%` : '...loading' )
-  const Weekly = ( farmApyFixed ? ` ${farmApyFixed && farmApyFixed.div(52).toNumber().toLocaleString(undefined, {
+  const Weekly = ( farmApyFixed ? ` ${farmApyFixed && farmApyFixed.div(53).toNumber().toLocaleString(undefined, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   })}%` : '...loading' )
@@ -195,7 +195,7 @@ const FarmCard: React.FC<FarmCardProps> = ({
         </Flex> )}
 
         <Flex justifyContent='space-between' alignItems='center'  mt="15px"  marginBottom='6px'  >
-            <Text01>7 Days</Text01>
+            <Text01>7 Day ROI</Text01>
             <Text01>Your Stake</Text01>
           </Flex>
 

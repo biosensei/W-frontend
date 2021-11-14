@@ -245,7 +245,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
   const StakedUSDBalanceMath = getBalanceNumber(stakedBalanceUsd)
 
-  const FiveDayROI = apr && apr.div(365).times(7).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+  const FiveDayROI = apr && apr.div(45).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const OneDayROI = apr && apr.div(365).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
   const ExpectedBalance = apr && apr.div(365).times(7).times(0.01).times(getBalanceNumber(stakedBalanceUsd)).plus(getBalanceNumber(stakedBalanceUsd)).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
@@ -328,10 +328,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <Text1>{FiveDayROI}%</Text1>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='12px'>
-          <Text1> 1 Day ROI</Text1>
-          <Text1>{OneDayROI}%</Text1>
-        </Flex>
 
         <Wrapper alignItems="end">
 

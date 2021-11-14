@@ -94,8 +94,8 @@ const NavBar = (props) => {
                         </li>
 
                         <li className="nav-tab">
-                          <Link to="/bonding" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Bonding Pools</span>
+                          <Link to="/reverseum" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                            <span className="dditem">Reverseum Pools</span>
                           </Link>
                         </li>
                         

@@ -91,7 +91,7 @@ const DepositModal: React.FC<DepositModalProps> = ({ max, onConfirm, onDismiss, 
 
   return (
     <Modal 
-    title={`${TranslateString(999, 'Bond')} ${tokenName}`} onDismiss={onDismiss}>
+    title={`${TranslateString(999, 'Forfeit')} ${tokenName}`} onDismiss={onDismiss}>
 
       <TokenInput
         value={val}

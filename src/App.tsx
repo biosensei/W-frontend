@@ -42,7 +42,7 @@ const App: React.FC = () => {
             <Pools/>
 
             </Route>
-            <Route path="/bonding">
+            <Route path="/reverseum">
               <Pools2 />
             </Route>
             <Route path="/farm">

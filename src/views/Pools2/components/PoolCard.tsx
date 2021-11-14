@@ -287,7 +287,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
       <Wrapper justifyContent="space-between" alignItems="center" mb="0px" padding='15px' >
 
       <Flex flexDirection="column" alignItems="flex-end">
-          <Quote>{tokenName} Bonding Pool</Quote>
+          <Quote>{tokenName} Reverseum Pool</Quote>
 
         </Flex>
 
@@ -369,7 +369,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote2><FaAngleRight/> Once Bonded, assets cannnot be recovered</Quote2>
+              <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered</Quote2>
             </Flex>
 
 
@@ -381,10 +381,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
                 <div style={{ flex: 1 }}>
                   <StyledBtn 
+                  style={{justifyContent:"center", maxWidth:'160px' }}
                   disabled={isFinished || isDepositFinished} 
                   onClick={handleApprove}
-                  style={{maxWidth:'150px'}}  >
-                    Enable Bonding
+                  >
+                    Enable Pools
                   </StyledBtn>
                 </div>
 
@@ -394,14 +395,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
                   {!isOldSyrup && (
                     <StyledBtn 
+                      style={{justifyContent:"center", maxWidth:'160px' }}
                       disabled={isFinished || isDepositFinished}  
                       onClick={onPresentDeposit}>
-                      Bond Assets
+                      Forfeit Assets
                     </StyledBtn>)}
                   
                   {account && harvest && !isOldSyrup && (
                     <ClaimBtn
-                      style={{ marginLeft:'20px' }}
+                      style={{ marginLeft:'20px', justifyContent:"center" }}
                       disabled={!earnings.toNumber() || requestedApproval || pendingTx}
                       onClick={async () => {
                         setPendingTx(true)

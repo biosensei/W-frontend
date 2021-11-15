@@ -75,6 +75,7 @@ export enum QuoteToken {
   'MISSONIC' = 'MIS-SONIC',
   'RVRS' = 'RVRS',
   'ONERVRS' = 'ONE-RVRS',
+  'USTRVRS' = 'UST-RVRS'
 }
 
 export enum PoolCategory {

@@ -50,6 +50,30 @@ const pools2: Pool2Config[] = [
     endBlock: 20004471,
     lockBlock: 20004471,
     tokenDecimals: 18,
+  },
+  {
+    sousId: 3,
+    tokenName: 'RVRS & UST LP',
+    tokenPoolAddress: '0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE',
+    quoteTokenSymbol: QuoteToken.RVRS,
+    quoteTokenPoolAddress: '0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE',
+    stakingTokenName: QuoteToken.USTRVRS,
+    stakingTokenAddress: '0xF8838fcC026d8e1F40207AcF5ec1DA0341c37fe2',
+    contractAddress: {
+      1666700000: '0x37B380C2593a172e92a5f0BbAcA3BCfc9091060B',
+      1666600000: '0x37B380C2593a172e92a5f0BbAcA3BCfc9091060B',
+    },
+    poolCategory: PoolCategory.CORE,
+    projectLink: 'https://www.app.artemisprotocol.one',
+    harvest: true,
+    tokenPerBlock: '1',
+    sortOrder: 1,
+    isFinished: false,
+    isDepositFinished: false,
+    startBlock: 19462293,
+    endBlock: 19759997,
+    lockBlock: 19759997,
+    tokenDecimals: 18,
   }
 ]
 

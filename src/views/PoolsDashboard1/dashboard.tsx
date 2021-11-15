@@ -197,7 +197,7 @@ const MoneyWheel: React.FC = () => {
 
   const circulatingRVRS = circulatingMath.toNumber().toFixed(0);
 
-  const mCap = misPrice.times(circulatingRVRS).toNumber().toFixed(0);
+  const mCap = misPrice.times(circulatingRVRS).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
   const marketCap = ( misPrice.times(circSupply).isNaN() || ! misPrice.times(circSupply).isFinite() 
   ? new BigNumber(0) : misPrice.times(circSupply) );

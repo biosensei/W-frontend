@@ -46,13 +46,13 @@ export const { setPoolsPublicData, setPoolsUserData, updatePoolsUserData } = Poo
 
 // Thunks
 export const fetchPoolsPublicDataAsync = () => async (dispatch) => {
-  const totalStakings = await fetchPoolsTotalStaking()
+  const { userInfo, pricePerFullShare } = await fetchPoolsTotalStaking()
 
   const liveData = poolsConfig.map((pool) => {
-    console.log('fetchPoolsPublicDataAsync', totalStakings)
     return {
       ...pool,
-      totalStaked: totalStakings[0].amount
+      totalStaked: userInfo[0].amount,
+      pricePerShare: pricePerFullShare[0].toString()
     }
   })
 

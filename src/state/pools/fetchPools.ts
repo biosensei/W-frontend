@@ -1,4 +1,5 @@
 import masterchefAbi from 'config/abi/masterchef.json';
+import autorvrsAbi from 'config/abi/autorvrs.json';
 import multicall from 'utils/multicall';
 import {getAutoRvrsAddress, getMasterChefAddress} from 'utils/addressHelpers';
 import BigNumber from 'bignumber.js';
@@ -14,5 +15,14 @@ export const fetchPoolsTotalStaking = async () => {
   ];
   const userInfo = await multicall(masterchefAbi, calls);
 
-  return userInfo;
+  const calls2 = [
+    {
+      address: getAutoRvrsAddress(),
+      name: 'getPricePerFullShare',
+      params: []
+    }
+  ];
+  const pricePerFullShare = await multicall(autorvrsAbi, calls2);
+
+  return { userInfo, pricePerFullShare };
 };

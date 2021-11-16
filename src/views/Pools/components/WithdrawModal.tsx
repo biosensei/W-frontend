@@ -7,10 +7,14 @@ import TokenInput from '../../../components/TokenInput'
 import useI18n from '../../../hooks/useI18n'
 import { getFullDisplayBalance } from '../../../utils/formatBalance'
 
+
+const DEFAULT_TOKEN_DECIMALS = new BigNumber(10).pow(18)
+
 interface WithdrawModalProps {
   max: BigNumber
   onConfirm: (amount: string) => void
   onDismiss?: () => void
+  pricePerShare?: BigNumber
   tokenName?: string
 }
 
@@ -55,7 +59,7 @@ const StyledBtn2 = styled.button`
   box-shadow: 0px 0px 10px #fff;
   `
 
-const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '' }) => {
+const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max, tokenName = '', pricePerShare= DEFAULT_TOKEN_DECIMALS }) => {
   const [val, setVal] = useState('')
   const [pendingTx, setPendingTx] = useState(false)
   const TranslateString = useI18n()
@@ -73,6 +77,12 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
   const handleSelectMax = useCallback(() => {
     setVal(fullBalance)
   }, [fullBalance, setVal])
+
+  const getSharesFromAmount = (amount) => {
+      const shares = new BigNumber(amount).times(DEFAULT_TOKEN_DECIMALS).div(pricePerShare)
+      console.log('getSharesFromAmount', pricePerShare, amount, shares.toString())
+      return shares.toFixed(18).toString()
+  }
 
   return (
     <Modal title={`Unstake ${tokenName}` } onDismiss={onDismiss}>
@@ -96,7 +106,7 @@ const WithdrawModal: React.FC<WithdrawModalProps> = ({ onConfirm, onDismiss, max
           disabled={pendingTx}
           onClick={async () => {
             setPendingTx(true)
-            await onConfirm(val)
+            await onConfirm(getSharesFromAmount(val))
             setPendingTx(false)
             onDismiss()
           }}

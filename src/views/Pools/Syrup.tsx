@@ -131,11 +131,6 @@ const Farm: React.FC = () => {
         new BigNumber(0)
     const tvl = getTotalValueFromQuoteTokens(quoteTokens, pool.quoteTokenSymbol, prices)
 
-    console.log(pool)
-    console.log(quoteTokens && quoteTokens.toNumber())
-    console.log(tvl && tvl.toNumber())
-    console.log(farm0)
-
     const reverseAtlastUserAction = pool.userData ?
         new BigNumber(pool.userData.reverseAtlastUserAction) :
         new BigNumber(0)
@@ -173,6 +168,7 @@ const Farm: React.FC = () => {
   const [finishedPools, openPools] = partition(poolsWithApy, (pool) => pool.isFinished)
   const { url, isExact } = useRouteMatch()
   const TranslateString = useI18n()
+  console.log(poolsWithApy)
 
   return (
     <Page>

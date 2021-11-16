@@ -16,7 +16,7 @@ import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
-import { FaExternalLinkAlt } from 'react-icons/fa'
+import { FaExternalLinkAlt, FaGithub, FaLongArrowAltRight } from 'react-icons/fa'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
 import Card from './Card'
@@ -240,15 +240,14 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
             <QuoteTitle >${TVL}</QuoteTitle>
           </Flex>
         </Wrapper>
-        
-        <Flex justifyContent='space-between' marginTop='35px'>
-          <a 
-          target="_blanK" 
-          rel="noreferrer" 
-          href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" 
-          className="nav-links"
-          >Swap <FaExternalLinkAlt/></a>
+
+        <Flex justifyContent='space-between' marginTop='14px'>
+        <a target="_blanK" 
+        rel="noreferrer" 
+        href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" 
+        className="nav-links">Swap <FaLongArrowAltRight/></a>
         </Flex>
+
 
         <Flex justifyContent='space-between' marginTop='14px'>
           <Text1>Unstaked Balance</Text1>
@@ -271,8 +270,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         </Flex>
 
         <Flex justifyContent='space-between' marginTop='10px'>
-          <Text1> 5% Withdrawal Fee</Text1>
-          <WithdrawalFeeTimer secondsRemaining={secondsRemaining}> Remaining</WithdrawalFeeTimer>
+          <Text1>Withdrawal Fee (Deprecated)</Text1>
+          <Text11>0%</Text11>
+
 
         </Flex>
 

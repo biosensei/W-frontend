@@ -16,11 +16,9 @@ import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool } from 'state/types'
 import useTokenBalance from 'hooks/useTokenBalance'
 import { getCakeAddress } from 'utils/addressHelpers'
-import {Link} from "react-router-dom";
-import { FaExternalLinkAlt, FaLink } from 'react-icons/fa'
+import { FaExternalLinkAlt } from 'react-icons/fa'
 import DepositModal from './DepositModal'
 import WithdrawModal from './WithdrawModal'
-import CompoundModal from './CompoundModal'
 import Card from './Card'
 import {usePriceCakeBusd} from "../../../state/hooks";
 import useWithdrawFeeTimer from "./useWithdrawFeeTimer";
@@ -136,15 +134,6 @@ const StyledBtn2 = styled.button`
   box-shadow: 0px 0px 7px #ffff;
 `
 
-const CCARD = styled.div`
-  background: #1E2129;
-  border-radius: 20px;
-  flex-direction: column;
-  justify-content: space-around;
-  padding: 30px;
-  position: center;
-  text-align: center;
-`
 
 interface PoolWithApy extends Pool {
   apy: BigNumber
@@ -160,25 +149,18 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
     sousId,
     stakingTokenName,
     stakingTokenAddress,
-    harvest,
     apr,
     apy,
     tokenDecimals,
     poolCategory,
-    totalStaked,
     isFinished,
     userData,
     stakingLimit,
-    tokenPoolAddress,
-    quoteTokenPoolAddress,
-    earnToken,
   } = pool
 
   const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
-
-
-  // Pools using native BNB behave differently than pools using a token
+  // Pools using native ONE behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
   const stakingTokenContract = useERC20(stakingTokenAddress)
@@ -188,7 +170,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const { onUnstake } = useSousUnstake(sousId)
   const { onReward } = useSousHarvest(sousId, isBnbPool)
   const rvrsPrice = usePriceCakeBusd()
-
   const { secondsRemaining, hasUnstakingFee } = useWithdrawFeeTimer(
       userData ? userData.lastDepositedTime.toNumber() : 0,
       parseInt('259200', 10)
@@ -196,18 +177,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
-
   const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const earnings = new BigNumber(userData?.pendingReward || 0)
   const stakedBalanceUsd = stakedBalance.times(rvrsPrice)
-
   const isOldSyrup = stakingTokenName === QuoteToken.SYRUP
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
   const isCardActive = isFinished && accountHasStakedBalance
-
   const convertedLimit = new BigNumber(stakingLimit).multipliedBy(new BigNumber(10).pow(tokenDecimals))
   const [onPresentDeposit] = useModal(
     <DepositModal
@@ -215,10 +193,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       onConfirm={onStake}
       tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
     />,
-  )
-
-  const [onPresentCompound] = useModal(
-    <CompoundModal earnings={earnings} onConfirm={onStake} tokenName={stakingTokenName} />,
   )
 
   const [onPresentWithdraw] = useModal(
@@ -240,14 +214,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
 
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
-
   const StakedUSDBalance = getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })
-
-  const StakedUSDBalanceMath = getBalanceNumber(stakedBalanceUsd)
-
   const FiveDayROI = apr && apr.div(45).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
-  const OneDayROI = apr && apr.div(365).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
-
   const ExpectedBalance = apr && apr.div(365).times(7).times(0.01).times(getBalanceNumber(stakedBalanceUsd)).plus(getBalanceNumber(stakedBalanceUsd)).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
 

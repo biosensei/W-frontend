@@ -135,7 +135,14 @@ const Quote = styled.p`
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 0px;
-    text-shadow: 1px 1px 5px #ccc;
+    text-shadow: 0px 0px 5px #ccc;
+`
+
+const Rewards = styled.p`
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    text-shadow: 0px 0px 0px #ccc;
 `
 
 const Quote2 = styled.p`
@@ -230,6 +237,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const blocksDepositFinished = Math.max(lockBlock - block, 0)
+
+  const blocksRemaining = Math.ceil(endBlock - block).toLocaleString('en-us',{ maximumFractionDigits: 1 })
   
   const isOldSyrup = stakingTokenName === QuoteToken.SYRUP
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -309,7 +318,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             <Quote3>${TVL}</Quote3>
           </Flex>
 
-
         <Flex justifyContent='right'>
           <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
         </Flex>
@@ -325,8 +333,12 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
               <Quote> Total Value Forfeited</Quote>
               <Quote> ${TVL}</Quote>
             </Flex>
-
             <Flex justifyContent='space-between' marginTop='10px'>
+              <Quote> Blocks of Vesting Remaining</Quote>
+              <Quote>{blocksRemaining}</Quote>
+            </Flex>
+
+            <Flex justifyContent='space-between' marginTop='20px'>
               <Quote>Expected Returns </Quote>
               <Quote>{NetROI}%</Quote>
             </Flex>
@@ -336,24 +348,17 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             <Quote>{Profit}%</Quote>
             </Flex>
 
-            <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote> Rewards Paid In</Quote>
-              <Quote>RVRS</Quote>
-            </Flex>
-
             <Divider/>
 
-
             <Flex justifyContent='space-between' marginTop='25px'>
-              <Quote> Your Bonded Assets</Quote>
+              <Rewards> Your Forfeited Assets</Rewards>
               <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
             </Flex>
 
             
-
             <Flex marginTop='0px' justifyContent='space-between'>
-              <Quote> Claimable Rewards</Quote>
-              <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished} />
+              <Rewards> Claimable RVRS</Rewards>
+              <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished}>Rewards</Balance>
 
               {sousId === 0 && account && harvest && (
               <HarvestButton
@@ -363,12 +368,12 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             </Flex>
 
 
-            <Flex justifyContent='space-between' marginTop='10px'>
+            <Flex justifyContent='space-between' marginTop='20px'>
               <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered.</Quote2>
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote2><FaAngleRight/> Rewards are linearly vested for {daysRemaining} days and paid every ~ 2 seconds.</Quote2>
+              <Quote2><FaAngleRight/> Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times).</Quote2>
             </Flex>
 
 

@@ -148,7 +148,7 @@ const MoneyWheel: React.FC = () => {
   const { account } = useWallet()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
-  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress()))
+  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us',{ maximumFractionDigits: 1 });
   const eggPrice = usePriceCakeBusd().toNumber()
 
   const totalSupply = useTotalSupply()
@@ -172,7 +172,8 @@ const MoneyWheel: React.FC = () => {
   const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0);
   const cakeSupply = getBalanceNumber(circSupply);
   const circulatingMath = new BigNumber(cakeSupply).minus(5000000);
-  const circulatingRVRS = circulatingMath.toNumber().toFixed(0);
+  const circulatingRVRS = circulatingMath.toNumber();
+  const circulatingRvrsString = circulatingRVRS.toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
   const mCap = misPrice.times(circulatingRVRS).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
@@ -229,7 +230,7 @@ const MoneyWheel: React.FC = () => {
                   </Flex>
 
                   <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='40px'    mt="20px"  marginBottom='0px'  > 
-                    <Stat>{circulatingRVRS}</Stat>
+                    <Stat>{circulatingRvrsString}</Stat>
                     <Stat>{cakeBalance} RVRS</Stat>
                   </Flex>
 

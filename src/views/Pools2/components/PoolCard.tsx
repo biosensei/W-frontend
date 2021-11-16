@@ -225,10 +225,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const earnings = new BigNumber(userData?.pendingReward || 0)
 
-  const blocksUntilStart = Math.max(startBlock - block, 0)
-
-  const blocksRemaining = Math.max(endBlock - block, 0)
-
   const daysRemaining = Math.ceil((endBlock - block)*2*0.000277778*0.0416667)
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
@@ -304,12 +300,12 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           </Flex>
 
           <Flex  flexDirection="column" alignItems='start' >
-            <Quote>Ends</Quote>
+            <Quote>Vesting</Quote>
             <Quote3>{daysRemaining} Days</Quote3>
           </Flex>
 
           <Flex flexDirection="column" alignItems='start' >
-            <Quote>TVB</Quote>
+            <Quote>TVL</Quote>
             <Quote3>${TVL}</Quote3>
           </Flex>
 
@@ -331,19 +327,18 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote> Rewards Paid In</Quote>
-              <Quote>RVRS</Quote>
-            </Flex>
-            
-
-            <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote>Total Returns </Quote>
+              <Quote>Expected Returns </Quote>
               <Quote>{NetROI}%</Quote>
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
             <Quote>Expected Net Returns</Quote>
             <Quote>{Profit}%</Quote>
+            </Flex>
+
+            <Flex justifyContent='space-between' marginTop='10px'>
+              <Quote> Rewards Paid In</Quote>
+              <Quote>RVRS</Quote>
             </Flex>
 
             <Divider/>
@@ -369,7 +364,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered</Quote2>
+              <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered.</Quote2>
+            </Flex>
+
+            <Flex justifyContent='space-between' marginTop='10px'>
+              <Quote2><FaAngleRight/> Rewards are linearly vested for {daysRemaining} days and paid every ~ 2 seconds.</Quote2>
             </Flex>
 
 

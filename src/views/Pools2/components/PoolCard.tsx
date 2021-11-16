@@ -348,11 +348,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             <Quote>{Profit}%</Quote>
             </Flex>
 
-
-
-
             <Divider/>
-
 
             <Flex justifyContent='space-between' marginTop='25px'>
               <Rewards> Your Forfeited Assets</Rewards>
@@ -377,7 +373,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote2><FaAngleRight/> Rewards in RVRS are linearly vested for {daysRemaining} days and paid every ~ 2 seconds.</Quote2>
+              <Quote2><FaAngleRight/> Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times).</Quote2>
             </Flex>
 
 

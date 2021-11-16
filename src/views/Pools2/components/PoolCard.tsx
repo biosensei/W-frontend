@@ -135,7 +135,14 @@ const Quote = styled.p`
     font-size: 15px;
     font-weight: 500;
     margin-bottom: 0px;
-    text-shadow: 1px 1px 5px #ccc;
+    text-shadow: 0px 0px 5px #ccc;
+`
+
+const Rewards = styled.p`
+    font-size: 15px;
+    font-weight: 600;
+    margin-bottom: 0px;
+    text-shadow: 0px 0px 0px #ccc;
 `
 
 const Quote2 = styled.p`
@@ -225,15 +232,13 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const earnings = new BigNumber(userData?.pendingReward || 0)
 
-  const blocksUntilStart = Math.max(startBlock - block, 0)
-
-  const blocksRemaining = Math.max(endBlock - block, 0)
-
   const daysRemaining = Math.ceil((endBlock - block)*2*0.000277778*0.0416667)
 
   const [showExpandableSection, setShowExpandableSection] = useState(false)
 
   const blocksDepositFinished = Math.max(lockBlock - block, 0)
+
+  const blocksRemaining = Math.ceil(endBlock - block).toLocaleString('en-us',{ maximumFractionDigits: 1 })
   
   const isOldSyrup = stakingTokenName === QuoteToken.SYRUP
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
@@ -304,15 +309,14 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           </Flex>
 
           <Flex  flexDirection="column" alignItems='start' >
-            <Quote>Ends</Quote>
+            <Quote>Vesting</Quote>
             <Quote3>{daysRemaining} Days</Quote3>
           </Flex>
 
           <Flex flexDirection="column" alignItems='start' >
-            <Quote>TVB</Quote>
+            <Quote>TVL</Quote>
             <Quote3>${TVL}</Quote3>
           </Flex>
-
 
         <Flex justifyContent='right'>
           <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
@@ -329,15 +333,13 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
               <Quote> Total Value Forfeited</Quote>
               <Quote> ${TVL}</Quote>
             </Flex>
-
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote> Rewards Paid In</Quote>
-              <Quote>RVRS</Quote>
+              <Quote> Blocks of Vesting Remaining</Quote>
+              <Quote>{blocksRemaining}</Quote>
             </Flex>
-            
 
-            <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote>Total Returns </Quote>
+            <Flex justifyContent='space-between' marginTop='20px'>
+              <Quote>Expected Returns </Quote>
               <Quote>{NetROI}%</Quote>
             </Flex>
 
@@ -348,17 +350,15 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
             <Divider/>
 
-
             <Flex justifyContent='space-between' marginTop='25px'>
-              <Quote> Your Bonded Assets</Quote>
+              <Rewards> Your Forfeited Assets</Rewards>
               <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
             </Flex>
 
             
-
             <Flex marginTop='0px' justifyContent='space-between'>
-              <Quote> Claimable Rewards</Quote>
-              <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished} />
+              <Rewards> Claimable RVRS</Rewards>
+              <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished}>Rewards</Balance>
 
               {sousId === 0 && account && harvest && (
               <HarvestButton
@@ -368,8 +368,12 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             </Flex>
 
 
+            <Flex justifyContent='space-between' marginTop='20px'>
+              <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered.</Quote2>
+            </Flex>
+
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered</Quote2>
+              <Quote2><FaAngleRight/> Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times).</Quote2>
             </Flex>
 
 

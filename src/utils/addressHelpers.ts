@@ -38,3 +38,12 @@ export const getAutoRvrsAddress = () => {
 export const getRvrsAddress = () => {
   return addresses.rvrs[chainId]
 }
+export const getUstAddress = () => {
+  return addresses.ust[chainId]
+}
+export const getRvrsOneAddress = () => {
+  return addresses.rvrsOne[chainId]
+}
+export const getRvrsUstAddress = () => {
+  return addresses.rvrsUst[chainId]
+}

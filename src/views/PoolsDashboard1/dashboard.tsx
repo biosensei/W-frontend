@@ -166,39 +166,25 @@ const MoneyWheel: React.FC = () => {
   const { account } = useWallet()
   const TranslateString = useI18n()
   const farmsWithBalance = useFarmsWithBalance()
-
-  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress()))
-  
+  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us',{ maximumFractionDigits: 1 })
   const eggPrice = usePriceCakeBusd().toNumber()
-
   const totalSupply = useTotalSupply()
   const burnedBalance = useBurnedBalance(getCakeAddress())
-
   const [showExpandableSection, setShowExpandableSection] = useState(false)
-
-
-
   const earningsSum = farmsWithBalance.reduce((accum, farm) => {
     return accum + new BigNumber(farm.balance).div(new BigNumber(10).pow(18)).toNumber()
   }, 0)
   const balancesWithValue = farmsWithBalance.filter((balanceType) => balanceType.balance.toNumber() > 0)
-
   const { onReward } = useAllHarvest(balancesWithValue.map((farmWithBalance) => farmWithBalance.pid))
-
   const cakePriceUsd = usePriceCakeBusd()
   const misPrice = usePriceCakeBusd();
   const tokenPrice = cakePriceUsd.toNumber().toFixed(2);
-
   const circSupply = totalSupply ? totalSupply.minus(burnedBalance) : new BigNumber(0);
-
   const cakeSupply = getBalanceNumber(circSupply);
-  
   const circulatingMath = new BigNumber(cakeSupply).minus(5000000);
-
-  const circulatingRVRS = circulatingMath.toNumber().toFixed(0);
-
+  const circulatingRVRS = circulatingMath.toNumber();
+  const circulatingRvrsString = circulatingMath.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const mCap = misPrice.times(circulatingRVRS).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
-
   const marketCap = ( misPrice.times(circSupply).isNaN() || ! misPrice.times(circSupply).isFinite() 
   ? new BigNumber(0) : misPrice.times(circSupply) );
 
@@ -232,10 +218,12 @@ const MoneyWheel: React.FC = () => {
 
                 <Flex>
                   <Test>{TranslateString(9299, 'Farm')}&nbsp;</Test>
-                    {account ? (
-                      <StyledBtn id="harvest-all" disabled={balancesWithValue.length <= 0 || pendingTx} 
-                      onClick={harvestAllFarms} style={{'marginLeft':'15px', 'marginTop':'-5px'}}>
-                      {pendingTx ? <FaHandHoldingUsd/> : <FaHandHoldingUsd/>} </StyledBtn>) : (<FaHandHoldingUsd/>)}
+                  <StyledBtn 
+                      id="harvest-all" 
+                      disabled={balancesWithValue.length <= 0 || pendingTx} 
+                      onClick={harvestAllFarms} 
+                      style={{'marginLeft':'15px', 'marginTop':'-5px'}}>
+                      {pendingTx ? <FaHandHoldingUsd/> : <FaHandHoldingUsd/>} </StyledBtn>
                 </Flex>
 
                   <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
@@ -257,7 +245,7 @@ const MoneyWheel: React.FC = () => {
                   </Flex>
 
                   <Flex justifyContent='space-between' alignItems='center' ml='20px' mr='40px'    mt="20px"  marginBottom='0px'  > 
-                    <Stat>{circulatingRVRS}</Stat>
+                    <Stat>{circulatingRvrsString}</Stat>
                     <Stat>{cakeBalance} RVRS</Stat>
                   </Flex>
 

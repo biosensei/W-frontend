@@ -160,8 +160,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   } = pool
 
   const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us',{ maximumFractionDigits: 0 });
-
-  // Pools using native ONE behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
   const stakingTokenContract = useERC20(stakingTokenAddress)
@@ -175,7 +173,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       userData ? userData.lastDepositedTime.toNumber() : 0,
       parseInt('259200', 10)
   );
-
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
   const allowance = new BigNumber(userData?.allowance || 0)
@@ -195,11 +192,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
     />,
   )
-
   const [onPresentWithdraw] = useModal(
     <WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={stakingTokenName} pricePerShare={pricePerShare} />,
   )
-
   const handleApprove = useCallback(async () => {
     try {
       setRequestedApproval(true)
@@ -212,11 +207,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
       console.error(e)
     }
   }, [onApprove, setRequestedApproval])
-
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const StakedUSDBalance = getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })
-  const FiveDayROI = apr && apr.div(45).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+  const FiveDayROI = apr && apr.div(50).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const ExpectedBalance = apr && apr.div(365).times(7).times(0.01).times(getBalanceNumber(stakedBalanceUsd)).plus(getBalanceNumber(stakedBalanceUsd)).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
 

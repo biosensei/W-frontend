@@ -277,10 +277,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
   const APR = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
   const NetROI = apy && apy.div(365).times(daysRemaining).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
+  const dailyROI = apy && apy.div(365).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
   const FiveDayROI = apy && apy.div(365).times(5).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
   const TVL = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
-
-
   const Profit = apy && apy.div(365).times(daysRemaining).minus(100).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
 
   return (
@@ -304,8 +303,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
 
         <Flex  flexDirection="column" alignItems='start' >
-            <Quote>Net ROI</Quote>
-            <Quote3>+ {Profit}%</Quote3>
+            <Quote>Daily Returns</Quote>
+            <Quote3>{dailyROI}%</Quote3>
           </Flex>
 
           <Flex  flexDirection="column" alignItems='start' >
@@ -314,7 +313,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           </Flex>
 
           <Flex flexDirection="column" alignItems='start' >
-            <Quote>TVL</Quote>
+            <Quote>TVF</Quote>
             <Quote3>${TVL}</Quote3>
           </Flex>
 
@@ -333,20 +332,21 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
               <Quote> Total Value Forfeited</Quote>
               <Quote> ${TVL}</Quote>
             </Flex>
+
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote> Blocks of Vesting Remaining</Quote>
-              <Quote>{blocksRemaining}</Quote>
+              <Quote>Daily Returns</Quote>
+              <Quote>{dailyROI}%</Quote>
+            </Flex>
+
+            <Flex justifyContent='space-between' marginTop='10px'>
+              <Quote>Current Net ROI</Quote>
+              <Quote>{Profit}%</Quote>
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='20px'>
-              <Quote>Expected Returns </Quote>
-              <Quote>{NetROI}%</Quote>
+              <Quote2><FaAngleRight/> Net ROI = (Days Remaining * Daily Returns) - 100</Quote2>
             </Flex>
 
-            <Flex justifyContent='space-between' marginTop='10px'>
-            <Quote>Expected Net Returns</Quote>
-            <Quote>{Profit}%</Quote>
-            </Flex>
 
             <Divider/>
 
@@ -369,11 +369,11 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
 
             <Flex justifyContent='space-between' marginTop='20px'>
-              <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered.</Quote2>
+              <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered</Quote2>
             </Flex>
 
             <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote2><FaAngleRight/> Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times).</Quote2>
+              <Quote2><FaAngleRight/> Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times)</Quote2>
             </Flex>
 
 

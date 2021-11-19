@@ -125,6 +125,26 @@ const ClaimBtn = styled.button`
     padding: 20px;
   `
 
+  const ClaimBtn2 = styled.button`
+    -webkit-box-align: center;
+    align-items: center;
+    margin-top: 18px;
+    background-color: rgba(0, 0, 0,0) !important;
+    border: 1px;
+    border-style: solid !important;
+    border-color: #ffff !important;
+    border-radius: 10px;
+    color: #ffff;
+    font-size: 15px;
+    font-weight: 400;
+    width: 100%;
+    display: inline-flex;
+    min-height: 18px;
+    max-height: 30px;
+    max-width: 180px;
+    padding: 20px;
+  `
+
 
   const ExpandingWrapper = styled.div<{ expanded: boolean }>`
   height: ${(props) => (props.expanded ? '100%' : '0px')};
@@ -223,7 +243,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const { onUnstake } = useSousUnstakeBurn(sousId)
   const { onReward } = useSousHarvestBurn(sousId, isBnbPool)
 
-  console.log("PoolCard", pool2)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
 
@@ -414,7 +433,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
                         setPendingTx(false)}}>
                       Claim
                     </ClaimBtn>)}
+
                     </>))}
+
+                    
 
               </StyledCardActions>
             </CCARD>

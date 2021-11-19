@@ -91,7 +91,7 @@ const pools2: Pool2Config[] = [
     projectLink: 'https://www.app.artemisprotocol.one',
     harvest: true,
     tokenPerBlock: '1.2',
-    sortOrder: 4,
+    sortOrder: 1,
     isFinished: false,
     isDepositFinished: false,
     startBlock: 19567881,

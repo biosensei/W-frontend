@@ -74,3 +74,25 @@ export const useSousHarvestBurn = (sousId, isUsingBnb = false) => {
 
   return { onReward: handleHarvest }
 }
+
+export const useSousHarvestBurn2 = (sousId, isUsingBnb = false) => {
+  const dispatch = useDispatch()
+  const { account } = useWallet()
+  const sousChefContract = useSousChefBurn(sousId)
+  const masterChefContract = useMasterchef()
+
+  const handleHarvest = useCallback(async () => {
+    if (sousId === 0) {
+      await harvest(masterChefContract, 0, account)
+    } else if (isUsingBnb) {
+      await soushHarvestBnb(sousChefContract, account)
+    } else {
+      await soushHarvestBurn(sousChefContract, account)
+    }
+    dispatch(updateUserPendingReward2(sousId, account))
+    dispatch(updateUserBalance(sousId, account))
+  }, [account, dispatch, isUsingBnb, masterChefContract, sousChefContract, sousId])
+
+  return { onReward: handleHarvest }
+}
+

@@ -50,10 +50,10 @@ export const useSousStakeBurn = (sousId, isUsingBnb = false) => {
 
   const handleSousStake = useCallback(
     async (amount: string) => {
-      if (sousId === 0) {
+      if (sousId <= 3) {
         await sousStakeBurn(sousChefContract, amount, account)
       } else {
-        await sousStakeBurn(sousChefContract, amount, account)
+        await sousStakeBurn2(sousChefContract, amount, account)
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))

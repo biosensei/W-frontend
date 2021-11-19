@@ -223,6 +223,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const { onUnstake } = useSousUnstakeBurn(sousId)
   const { onReward } = useSousHarvestBurn(sousId, isBnbPool)
 
+  const { onReward2 } = useSousHarvestBurn2(sousId, isBnbPool)
+
+
   console.log("PoolCard", pool2)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
@@ -414,7 +417,20 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
                         setPendingTx(false)}}>
                       Claim
                     </ClaimBtn>)}
+
+                    {account && harvest && !isOldSyrup && (
+                    <ClaimBtn
+                      style={{ marginLeft:'20px', justifyContent:"center" }}
+                      disabled={!earnings.toNumber() || requestedApproval || pendingTx}
+                      onClick={async () => {
+                        setPendingTx(true)
+                        await onReward2()
+                        setPendingTx(false)}}>
+                      Claim (ETH-RVRS)
+                    </ClaimBtn>)}
                     </>))}
+
+                    
 
               </StyledCardActions>
             </CCARD>

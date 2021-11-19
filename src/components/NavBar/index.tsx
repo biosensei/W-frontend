@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
-import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub } from 'react-icons/fa';
+import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub, FaClipboard } from 'react-icons/fa';
 import ReactTooltip from 'react-tooltip';
 import labo from 'config/constants/labo';
 
@@ -100,24 +100,36 @@ const NavBar = (props) => {
                         </li>
                         
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
-                            <FaEnvelopeOpenText style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
+                          <a target="_blank" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-icon">
+                            <FaEnvelopeOpenText />
+                          </a>
                         </li>
 
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
-                            <FaBook style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
-                        </li>
-
-
-                        <li>
-                          <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol" className="nav-links">
-                            <FaGithub style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
+                          <a target="_blank" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-icon">
+                            <FaBook />
+                          </a>
                         </li>
 
                         <li>
-                          <a target="_blanK" rel="noreferrer" href="https://twitter.com/RVRSProtocol" className="nav-links">
-                            <FaTwitter style={{'marginTop': '10px', 'marginLeft': '20px'}}/></a>
+                          <a target="_blank" rel="noreferrer" href="https://github.com/ReverseProtocol" className="nav-icon">
+                            <FaGithub />
+                          </a>
+                        </li>
+
+                        <li>
+                          <a target="_blank" rel="noreferrer" href="https://twitter.com/RVRSProtocol" className="nav-icon">
+                            <FaTwitter />
+                          </a>
+                        </li>
+
+                        <li>
+                          <a href="#0"
+                            className="nav-icon"
+                            onClick={() => navigator.clipboard.writeText('0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE')}
+                          >
+                            <FaClipboard />
+                          </a>
                         </li>
 
 

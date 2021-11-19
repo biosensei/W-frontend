@@ -26,6 +26,25 @@ h1 {
 	z-index: 81;
 }
 
+.nav-icon {
+	margin-top: 10px;
+	margin-left: 20px;
+	box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+	outline-color: rgba(255, 255, 255, .5);
+	outline-offset: 0;
+	text-shadow: none;
+	transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+	border-radius: 5px;
+}
+
+.nav-icon:hover {
+	/*border: solid red 1px;*/
+	box-shadow: inset -1px -2px 2px rgba(255, 255, 255, .5), 0 0 0 rgba(255, 255, 255, .5);
+	outline-color: whitesmoke;
+	outline-offset: 15px;
+	text-shadow: 1px 1px 2px #427388;
+}
+
 .logo-container {
 	display: flex;
 	justify-content: center;
@@ -58,10 +77,8 @@ h1 {
 
 .nav-tab {
 	padding: 10px 22px;
-	margin: 10;
+	margin: 10px;
 	border-right: 0px solid #eee;
-	
-	
 }
 
 
@@ -89,7 +106,9 @@ h1 {
 }
 
 /* Change color of dropdown links on hover */
-/* .dropdown-content li:hover {background-color: #f9f9f9} */
+.dropdown-content li:hover {
+	background-color: #f9f9f9
+}
 
 /* Show the dropdown menu on hover */
 .dropdown:hover .dropdown-content {
@@ -104,7 +123,7 @@ h1 {
 	display: flex;
   }
 
-  .dditem{
+  .dditem {
 	  margin-left: 5px;
   }
 
@@ -116,6 +135,24 @@ h1 {
 	  display: none;
   }
 
+}
+
+
+.dditem {
+	padding: 3px;
+	box-shadow: inset 0 0 20px rgba(255, 255, 255, 0);
+	outline-color: rgba(255, 255, 255, .5);
+	outline-offset: 0;
+	text-shadow: none;
+	transition: all 1250ms cubic-bezier(0.19, 1, 0.22, 1);
+	border-radius: 5px;
+}
+
+.dditem:hover {
+	box-shadow: inset -1px -2px 2px rgba(255, 255, 255, .3), 0 0 0 rgba(255, 255, 255, .2);
+	outline-color: transparent;
+	outline-offset: 15px;
+	text-shadow: 1px 1px 2px #427388;
 }
 
 @media screen and (max-width: 1050px) {

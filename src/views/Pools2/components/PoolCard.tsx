@@ -11,7 +11,7 @@ import { useSousStake, useSousStakeBurn } from 'hooks/useStake'
 import { useSousUnstake, useSousUnstakeBurn } from 'hooks/useUnstake'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
-import { useSousHarvestBurn, useSousHarvestBurn2 } from 'hooks/useHarvest'
+import { useSousHarvestBurn } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
@@ -243,9 +243,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const { onUnstake } = useSousUnstakeBurn(sousId)
   const { onReward } = useSousHarvestBurn(sousId, isBnbPool)
 
-  const { onReward2 } = useSousHarvestBurn2(sousId, isBnbPool)
-
-  console.log("PoolCard", pool2)
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
 
@@ -437,16 +434,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
                       Claim
                     </ClaimBtn>)}
 
-                    {account && harvest && !isOldSyrup && (
-                    <ClaimBtn2
-                      style={{ marginLeft:'20px', justifyContent:"center" }}
-                      disabled={!earnings.toNumber() || requestedApproval || pendingTx}
-                      onClick={async () => {
-                        setPendingTx(true)
-                        await onReward2()
-                        setPendingTx(false)}}>
-                      Claim (ETH-RVRS)
-                    </ClaimBtn2>)}
                     </>))}
 
                     

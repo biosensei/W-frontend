@@ -127,3 +127,12 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
       return tx.transactionHash
     })
 }
+
+export const sousStakeBurn2 = async (sousChefContract, amount, account) => {
+  return sousChefContract.methods
+    .transact(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
+    .send({ from: account, gasPrice: 1000000000, gasLimit: 206490 })
+    .on('transactionHash', (tx) => {
+      return tx.transactionHash
+    })
+}

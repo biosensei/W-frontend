@@ -347,7 +347,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
               <Quote2><FaAngleRight/> Net ROI = (Days Remaining * Daily Returns) - 100</Quote2>
             </Flex>
 
-
             <Divider/>
 
             <Flex justifyContent='space-between' marginTop='25px'>

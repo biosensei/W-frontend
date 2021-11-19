@@ -19,6 +19,7 @@ import sousChef from 'config/abi/sousChef.json'
 import autoRvrs from 'config/abi/autorvrs.json'
 import sousChefBnb from 'config/abi/sousChefBnb.json'
 import sousChefBurn from 'config/abi/sousChefBurn.json'
+import sousChefBurn2 from 'config/abi/sousChefBurn2.json'
 
 const useContract = (abi: AbiItem, address: string, contractOptions?: ContractOptions) => {
   const web3 = useWeb3()
@@ -105,7 +106,10 @@ export const useAutoRvrs = () => {
 
 export const useSousChefBurn = (id) => {
   const config = pools2Config.find((pool) => pool.sousId === id)
-  const rawAbi = config.poolCategory === PoolCategory.BINANCE ? sousChefBnb : sousChefBurn
+  let rawAbi = sousChefBurn
+  if (id > 3) {
+    rawAbi = sousChefBurn2
+  }
   const abi = (rawAbi as unknown) as AbiItem
   return useContract(abi, config.contractAddress[process.env.REACT_APP_CHAIN_ID])
 }

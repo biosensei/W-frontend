@@ -29,10 +29,10 @@ export const useSousStake = (sousId, isUsingBnb = false) => {
 
   const handleSousStake = useCallback(
     async (amount: string) => {
-      if (sousId <= 3) {
+      if (sousId === 0) {
         await sousStake(sousChefContract, amount, account)
       } else {
-        await sousStakeBurn2(sousChefContract, amount, account)
+        await sousStake(sousChefContract, amount, account)
       }
       dispatch(updateUserStakedBalance(sousId, account))
       dispatch(updateUserBalance(sousId, account))

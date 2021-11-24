@@ -21,14 +21,17 @@ const StyledText = styled(Text)<TextProps>`
 
 const Balance: React.FC<BalanceProps> = ({ value, fontSize, color, decimals, isDisabled, unit }) => {
   const previousValue = useRef(0)
-
+  let dec = decimals
+  if (value > 0 && value < 0.001) {
+    dec = 9
+  }
   useEffect(() => {
     previousValue.current = value
   }, [value])
 
   return (
     <StyledText bold color={color} fontSize={fontSize} isDisabled={isDisabled}>
-      <CountUp start={previousValue.current} end={value} decimals={decimals} duration={1} separator="," />
+      <CountUp start={previousValue.current} end={value} decimals={dec} duration={1} separator="," />
       {value && unit && <span>{unit}</span>}
     </StyledText>
   )

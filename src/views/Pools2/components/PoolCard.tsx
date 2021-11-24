@@ -300,7 +300,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const FiveDayROI = apy && apy.div(365).times(5).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
   const TVL = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
   const Profit = apy && apy.div(365).times(daysRemaining).minus(100).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
-
+  // console.log(pool2.sousId, pool2.tvl && pool2.tvl.toNumber())
   return (
 
     <DashboardPage2>

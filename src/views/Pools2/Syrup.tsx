@@ -43,6 +43,7 @@ const Farm: React.FC = () => {
     }
 
     const tvl = getTotalValueFromQuoteTokens(quoteTokens, pool2.quoteTokenSymbol, prices)
+    // console.log(pool2.sousId, quoteTokens && quoteTokens.toNumber(), tvl && tvl.toNumber())
 
     // console.log("APY", pool2, tvl && tvl.toNumber())
     const rewardTokenPrice = lookupPrice(QuoteToken.RVRS, prices)

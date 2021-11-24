@@ -76,7 +76,8 @@ export enum QuoteToken {
   'RVRS' = 'RVRS',
   'ONERVRS' = 'ONE-RVRS',
   'USTRVRS' = 'UST-RVRS',
-  'ETHRVRS' = 'ETH-RVRS'
+  'ETHRVRS' = 'ETH-RVRS',
+  'USDCRVRS' = 'USDC-RVRS'
 }
 
 export enum PoolCategory {

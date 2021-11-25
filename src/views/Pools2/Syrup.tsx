@@ -56,7 +56,7 @@ const Farm: React.FC = () => {
 
     return {
       ...pool2,
-      isFinished: pool2.sousId === 0 ? false : pool2.isFinished || block > pool2.endBlock,
+      isFinished: pool2.sousId === 0 ? false : pool2.isFinished && block > pool2.endBlock,
       apy,
       tvl
     }

@@ -6,9 +6,8 @@ import {Link} from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
-import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub, FaClipboard } from 'react-icons/fa';
-import ReactTooltip from 'react-tooltip';
-import labo from 'config/constants/labo';
+import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub, FaClipboard } from 'react-icons/fa'
+
 
 function getWindowDimensions() {
   const { innerWidth: viewportWidth, innerHeight: viewportHeight } = window;
@@ -17,6 +16,13 @@ function getWindowDimensions() {
     viewportHeight
   };
 }
+
+const twitterIcon = () => <FaTwitter />
+const gitIcon = () => <FaGithub />
+const clipboardIcon = () => <FaClipboard />
+const discordIcon = () => <FaDiscord />
+const governanceIcon = () => <FaBook />
+
 
 const {viewportWidth, viewportHeight} = getWindowDimensions()
 
@@ -46,123 +52,98 @@ const isOnPhone = viewportWidth < 680
     box-shadow: 0px 0px 5px #fff;
   `
 
+const NavTab = ({ path, text }) => {
+  return (
+    <li className="nav-tab">
+      <Link to={path}>
+        <span className="tab-span">{text}</span>
+      </Link>
+    </li>
+  )
+}
+
+const NavIcon = ({ icon, href, newTab}: any) => {
+  const targetProp: string = newTab === true ? '' : ''
+  const relProp: string = newTab === true ? 'noreferrer' : ''
+
+  return (
+    <li>
+      { newTab ?
+        <a target="_blank" rel="noreferrer" href={href} className="nav-icon">
+          {icon}
+        </a>
+      :
+        <a href={href}
+           className="nav-icon"
+           onClick={() => navigator.clipboard.writeText('0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE')}>
+          {icon}
+        </a>
+      }
+    </li>
+  )
+}
 
 const NavBar = (props) => {
   const { account, connect, reset } = useWallet()
   const cakePriceUsd = usePriceCakeBusd()
   const [isChecked, setIsChecked] = useState(false);
 
-
   return (
     <div>
       <header>
-        
-          <div className="nav-wrapper">
+        <div className="nav-wrapper">
+          <nav>
+            <object
+              type="image/svg+xml"
+              data="/images/banner.svg"
+              width="230px"
+              style={{'marginTop': '50px',
+                      'marginBottom': '15px',
+                      'marginLeft': '10px'}}>
+              &nbsp;
+            </object>
+            <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle" />
 
-              <nav>
+            <div className="nav-container">
+              <ul className="nav-tabs">
+                <NavTab path='/stake' text='Stake' />
+                <NavTab path='/farm' text='Farm' />
+                <NavTab path='/reverseum' text='Reverseum Pools' />
+                <NavIcon icon={twitterIcon()} href="https://twitter.com/RVRSProtocol" newTab />
+                <NavIcon icon={gitIcon()} href="https://github.com/ReverseProtocol" newTab />
+                <NavIcon icon={governanceIcon()} href="https://gov.harmony.one/#/reverse" newTab />
+                <NavIcon icon={discordIcon()} href="https://discord.gg/ANBzKtMV8c" newTab />
+                <NavIcon icon={clipboardIcon()} href="#0" />
+                <li className="web3li outsideMainNav">
+                  <Link
+                    to="/"
+                    className="nav-links connect">
+                    { account != null && account.length > 1 ?
+                      <Wallet
+                        style={{
+                        'marginTop': '-5px',
+                        'marginLeft': '30px'}}>
+                          {account.substring(0,( isOnPhone ? 8 : 8))}
 
-                <object 
-                  type="image/svg+xml" 
-                  data="/images/banner.svg" 
-                  width="230px" 
-                  style={{'marginTop': '50px', 
-                          'marginBottom': '15px', 
-                          'marginLeft': '10px'}}>
-                  &nbsp;
-                </object>
-
-                <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle"/>
-                <button type="button" className="menu-btn" onClick={()=>{setIsChecked(!isChecked)}}>
-                  <div className="menu"/>
-                  <div className="menu"/>
-                  <div className="menu"/>
-                </button>
-                
-                  <div className="nav-container">
-                      <ul className="nav-tabs">
-
-                      <li className="nav-tab">
-                          <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span  className="dditem">Stake</span>
-                          </Link>
-                        </li>
-
-                        <li className="nav-tab">
-                          <Link to="/farm" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Farm</span>
-                          </Link>
-                        </li>
-
-                        <li className="nav-tab">
-                          <Link to="/reverseum" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
-                            <span className="dditem">Reverseum Pools</span>
-                          </Link>
-                        </li>
-                        
-                        <li>
-                          <a target="_blank" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-icon">
-                            <FaEnvelopeOpenText />
-                          </a>
-                        </li>
-
-                        <li>
-                          <a target="_blank" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-icon">
-                            <FaBook />
-                          </a>
-                        </li>
-
-                        <li>
-                          <a target="_blank" rel="noreferrer" href="https://github.com/ReverseProtocol" className="nav-icon">
-                            <FaGithub />
-                          </a>
-                        </li>
-
-                        <li>
-                          <a target="_blank" rel="noreferrer" href="https://twitter.com/RVRSProtocol" className="nav-icon">
-                            <FaTwitter />
-                          </a>
-                        </li>
-
-                        <li>
-                          <a href="#0"
-                            className="nav-icon"
-                            onClick={() => navigator.clipboard.writeText('0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE')}
-                          >
-                            <FaClipboard />
-                          </a>
-                        </li>
-
-
-                        <li className="web3li outsideMainNav">
-                          <Link 
-                          to="/" 
-                          className="nav-links connect">
-                          { account != null && account.length > 1? 
-                            <Wallet 
-                              style={{
-                              'marginTop': '-5px', 
-                              'marginLeft': '30px'}}>
-                                {account.substring(0,( isOnPhone ? 8 : 8))} 
-
-                              <p style={{'color': 'white'}}>...</p>
-                            </Wallet>
-                            :
-                            <UnlockButton style={{
-                              marginLeft: '35px',
-                              marginTop: '-4px',
-                              width: '80%',}}>...
-                            </UnlockButton>}
-                          </Link>
-                        </li>
-                 </ul>
-                
-                <ul className="web3buttons">
-
-
-                <li className="web3li insideMainNav">
-                  <Link to="/" className="nav-links connect">
-                  { account != null && account.length > 1? 
-                    <Wallet>{account.substring(0,( isOnPhone ? 8 : 8)).concat("")} <p style={{'color': 'white'}}>...</p></Wallet>:
+                        <p style={{'color': 'white'}}>...</p>
+                      </Wallet>
+                      :
+                      <UnlockButton style={{
+                        marginLeft: '35px',
+                        marginTop: '-4px',
+                        width: '100%',}}>...
+                      </UnlockButton>
+                    }
+                  </Link>
+                </li>
+              </ul>
+              <ul className="web3buttons">
+              <li className="web3li insideMainNav">
+                <Link to="/" className="nav-links connect">
+                { account != null && account.length > 1?
+                  <Wallet>{account.substring(0,( isOnPhone ? 8 : 8)).concat("")}
+                    <p style={{'color': 'white'}}>...</p>
+                  </Wallet>:
 
                   <UnlockButton style={{
                     backgroundColor: 'rgb(22, 35, 73) !important',
@@ -178,17 +159,19 @@ const NavBar = (props) => {
                     padding: '15px',
                     minHeight: '21px',
                     maxHeight: '33px',
-                  }}>Connect</UnlockButton>
-                  }
-                  </Link>
-                  </li>
-                 </ul>
-                  </div>
-              </nav>
+                  }}>
+                    Connect
+                  </UnlockButton>
+                }
+                </Link>
+              </li>
+             </ul>
             </div>
-          </header>
+          </nav>
         </div>
-        )
+      </header>
+    </div>
+  )
 }
 
 

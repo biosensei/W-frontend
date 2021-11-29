@@ -108,7 +108,7 @@ const SvgHero = styled.div`
 
 export const aprToApy = (apr: number): BigNumber => {
   const cmpd = 1000;
-  const apy = new BigNumber(apr).div(100).div(cmpd).plus(1).pow(cmpd).minus(1).times(100);
+  const apy = new BigNumber(apr).div(100).div(365).plus(1).pow(365).minus(1).times(100);
 
   return apy.isNaN() || !apy.isFinite() ? null : apy;
 };

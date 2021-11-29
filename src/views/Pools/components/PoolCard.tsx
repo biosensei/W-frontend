@@ -235,8 +235,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           </Flex>
         </Wrapper>
 
-        <Flex justifyContent='space-between' marginTop='14px'>
-        <a target="_blanK" 
+        <Flex justifyContent='space-between' marginTop='14px'> 
+        <a style={{textShadow:'0px 0px 8px #fff', borderRadius:'10px', border:'1px', borderStyle:'solid !important', borderColor:'white'}} target="_blanK" 
         rel="noreferrer" 
         href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" 
         className="nav-links">Swap <FaLongArrowAltRight/></a>
@@ -288,7 +288,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
         <Flex alignItems="end">
 
           <StyledCardActions style={{alignItems:"end"}} >
-            {!account && <UnlockButton />}
             {account && (needsApproval && !isOldSyrup ? (
             
             <div style={{ flex: 1 }}>

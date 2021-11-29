@@ -310,7 +310,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
       <Wrapper justifyContent="space-between" alignItems="center" mb="0px" padding='15px' >
 
       <Flex flexDirection="column" alignItems="flex-end">
-          <Quote>{tokenName} Reverseum Pool</Quote>
+          <Quote>{tokenName} Bonding Pool</Quote>
 
         </Flex>
 
@@ -332,7 +332,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           </Flex>
 
           <Flex flexDirection="column" alignItems='start' >
-            <Quote>TVF</Quote>
+            <Quote>TVB</Quote>
             <Quote3>${TVL}</Quote3>
           </Flex>
 
@@ -348,7 +348,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           <CCARD>
 
           <Flex justifyContent='space-between' marginTop='20px'>
-              <Quote> Total Value Forfeited</Quote>
+              <Quote> Total Value Bonded</Quote>
               <Quote> ${TVL}</Quote>
             </Flex>
 
@@ -398,7 +398,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
             <StyledCardActions >
                 
-              {!account && <UnlockButton />}
               {account && (needsApproval && !isOldSyrup ? (
 
                 <div style={{ flex: 1 }}>
@@ -420,7 +419,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
                       style={{justifyContent:"center", maxWidth:'160px' }}
                       disabled={isFinished || isDepositFinished}  
                       onClick={onPresentDeposit}>
-                      Forfeit Assets
+                      Bond Assets
                     </StyledBtn>)}
                   
                   {account && harvest && !isOldSyrup && (

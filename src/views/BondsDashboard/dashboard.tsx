@@ -14,7 +14,7 @@ import CakeWalletBalance from 'views/Home/components/CakeWalletBalance'
 import CardValue from 'views/Home/components/CardValue'
 import DashboardPage from 'components/layout/DashboardPage'
 import farms from 'state/farms'
-import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaHistory, FaHandHolding, FaHandHoldingUsd, FaQuestion, FaQuestionCircle, FaMonument } from 'react-icons/fa';
+import { FaTelegramPlane, FaTwitter, FaDiscord, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaTwitterSquare, FaEnvelopeOpenText, FaDochub, FaHistory, FaHandHolding, FaHandHoldingUsd, FaQuestion, FaQuestionCircle, FaMonument, FaLongArrowAltRight } from 'react-icons/fa';
 import { useTotalRewards } from 'hooks/useTickets'
 import useTokenBalance, { useTotalSupply, useBurnedBalance, useUstTreasuryBalance, useRvrsOneTreasuryBalance, useRvrsUstTreasuryBalance } from 'hooks/useTokenBalance'
 import { Link } from 'react-router-dom'
@@ -241,62 +241,18 @@ const MoneyWheel: React.FC = () => {
                       disabled={balancesWithValue.length <= 0 || pendingTx} 
                       onClick={harvestAllFarms} 
                       style={{'marginLeft':'15px', 'marginTop':'-5px'}}>
-                      {pendingTx ? <FaHandHoldingUsd/> : <FaHandHoldingUsd/>} </StyledBtn>
+                      {pendingTx ? <FaHandHoldingUsd/> : <FaHandHoldingUsd/>} 
+                </StyledBtn>
               </Flex>
-              <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
+              <Flex>
+              <a style={{textShadow:'0px 0px 8px #fff', borderRadius:'10px', border:'1px', borderStyle:'solid !important', borderColor:'white'}} target="_blanK" 
+                rel="noreferrer" 
+                href="https://docs.google.com/spreadsheets/d/1Ocl8Gx8rA4Zbzcsxb8-EuFNEQNlTsMLsMMRazixz_gk/edit?usp=sharing" 
+                className="nav-links">Treasury Strategies <FaLongArrowAltRight/></a>
+              </Flex>
+
+
             </Flex>
-
-            <ExpandingWrapper expanded={showExpandableSection}>
-              <DetailsCard>
-                <Flex justifyContent="left" mt="30px"  marginBottom='8px' >
-                  <Stat><FaMonument/>Estimated Treasury Value</Stat>
-                </Flex>
-                
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' marginLeft='5px'>
-                    <Sub>~${treasuryBalance}</Sub>
-                  </Flex>
-
-                <Flex justifyContent="left" mt="10px"  marginBottom='8px' >
-                  <Stat><FaChartBar/> Reverseum Distribution</Stat>
-                </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' marginLeft='5px'>
-                    <Sub>~{ustTreasuryBalanceString} UST in Treasury</Sub>
-                  </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' marginLeft='5px'>
-                    <Sub>~${RvrsOneValueString} In RVRS-ONE</Sub>
-                  </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' marginLeft='5px'>
-                    <Sub>~${RvrsUstValueString} In RVRS-UST</Sub>
-                  </Flex>
-
-                <Flex justifyContent="left" mt="10px"  marginBottom='8px' >
-                  <Stat><FaProjectDiagram/> Strategies</Stat>
-                </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' marginLeft='5px' >
-                    <Sub>~$112,000, Sushiswap (138% APY)</Sub>
-                  </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' marginLeft='5px'>
-                    <Sub>~$400,000, Mirror/Spectrum (56% APY) </Sub>
-                  </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' marginLeft='5px'>
-                    <Sub>~$372,800, Anchor (20% APY) </Sub>
-                  </Flex>
-
-                  <Flex justifyContent="left" mt="1px"  marginBottom='8px' marginLeft='5px'>
-                    <Sub>~$100,000, Ethereum (0% APY) </Sub>
-                  </Flex>
-
-                <Flex justifyContent="left" mt="10px"  marginBottom='8px' >
-                  <Stat><FaHistory/> Strategies Balance Updated Every ~48hs*</Stat>
-                </Flex>
-              </DetailsCard>
-            </ExpandingWrapper>
           </DashCard>
         </div>
       </DashboardCard>

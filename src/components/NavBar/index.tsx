@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
-import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub, FaClipboard } from 'react-icons/fa'
+import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub, FaClipboard, FaExchangeAlt } from 'react-icons/fa'
 
 
 function getWindowDimensions() {
@@ -22,6 +22,7 @@ const gitIcon = () => <FaGithub />
 const clipboardIcon = () => <FaClipboard />
 const discordIcon = () => <FaDiscord />
 const governanceIcon = () => <FaBook />
+const swapIcon = () => <FaExchangeAlt />
 
 
 const {viewportWidth, viewportHeight} = getWindowDimensions()
@@ -108,12 +109,12 @@ const NavBar = (props) => {
               <ul className="nav-tabs">
                 <NavTab path='/stake' text='Stake' />
                 <NavTab path='/farm' text='Farm' />
-                <NavTab path='/reverseum' text='Reverseum Pools' />
+                <NavTab path='/reverseum' text='Bonding' />
+                <NavIcon icon={swapIcon()} href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" newTab />
                 <NavIcon icon={twitterIcon()} href="https://twitter.com/RVRSProtocol" newTab />
-                <NavIcon icon={gitIcon()} href="https://github.com/ReverseProtocol" newTab />
                 <NavIcon icon={governanceIcon()} href="https://gov.harmony.one/#/reverse" newTab />
-                <NavIcon icon={discordIcon()} href="https://discord.gg/ANBzKtMV8c" newTab />
                 <NavIcon icon={clipboardIcon()} href="#0" />
+
                 <li className="web3li outsideMainNav">
                   <Link
                     to="/"
@@ -121,17 +122,21 @@ const NavBar = (props) => {
                     { account != null && account.length > 1 ?
                       <Wallet
                         style={{
-                        'marginTop': '-5px',
-                        'marginLeft': '30px'}}>
+                        'marginTop': '5px',
+                        'marginLeft': '5px',
+                        'width': '150px',
+                        'justifyContent': 'center',
+                        }}>
                           {account.substring(0,( isOnPhone ? 8 : 8))}
 
                         <p style={{'color': 'white'}}>...</p>
                       </Wallet>
                       :
                       <UnlockButton style={{
-                        marginLeft: '35px',
-                        marginTop: '-4px',
-                        width: '100%',}}>...
+                        marginLeft: '5px',
+                        marginTop: '3px',
+                        width: '150px',
+                        justifyContent: 'center',}}>...
                       </UnlockButton>
                     }
                   </Link>

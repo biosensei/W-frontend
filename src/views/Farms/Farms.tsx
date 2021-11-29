@@ -113,26 +113,21 @@ const Farms: React.FC<FarmsProps> = (farmsProps) => {
     <Page>
 
     <Flexed2>
-        <PoolsDashboard1/>
+      <PoolsDashboard1/>
     </Flexed2>
 
       <div>
         <FarmsFlex>
-
           <Route exact path={`${path}`}>
             {stakedOnly ? farmsList(stakedOnlyFarms, false) : farmsList(activeFarms, false)}
           </Route>
-
           <Route exact path={`${path}/history`}>
             {farmsList(inactiveFarms, true)}
           </Route>
-
         </FarmsFlex>
 
         <FarmTabButtons stakedOnly={stakedOnly} setStakedOnly={setStakedOnly} tokenMode={tokenMode}/>
-        
       </div>
-      
     </Page>
   )
 }

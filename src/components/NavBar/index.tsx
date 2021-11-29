@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
-import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub, FaClipboard, FaExchangeAlt } from 'react-icons/fa'
+import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub, FaClipboard, FaExchangeAlt, FaVoteYea } from 'react-icons/fa'
 
 
 function getWindowDimensions() {
@@ -21,7 +21,7 @@ const twitterIcon = () => <FaTwitter />
 const gitIcon = () => <FaGithub />
 const clipboardIcon = () => <FaClipboard />
 const discordIcon = () => <FaDiscord />
-const governanceIcon = () => <FaBook />
+const governanceIcon = () => <FaVoteYea />
 const swapIcon = () => <FaExchangeAlt />
 
 
@@ -109,7 +109,7 @@ const NavBar = (props) => {
               <ul className="nav-tabs">
                 <NavTab path='/stake' text='Stake' />
                 <NavTab path='/farm' text='Farm' />
-                <NavTab path='/reverseum' text='Bonding' />
+                <NavTab path='/reverseum' text='Bonding Pools' />
                 <NavIcon icon={swapIcon()} href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" newTab />
                 <NavIcon icon={twitterIcon()} href="https://twitter.com/RVRSProtocol" newTab />
                 <NavIcon icon={governanceIcon()} href="https://gov.harmony.one/#/reverse" newTab />

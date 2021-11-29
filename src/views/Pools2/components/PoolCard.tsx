@@ -322,8 +322,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
 
         <Flex  flexDirection="column" alignItems='start' >
-            <Quote>Daily Returns</Quote>
-            <Quote3>{dailyROI}%</Quote3>
+            <Quote>Current Net ROI</Quote>
+            <Quote3>{Profit}%</Quote3>
           </Flex>
 
           <Flex  flexDirection="column" alignItems='start' >

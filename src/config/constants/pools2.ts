@@ -172,6 +172,30 @@ const pools2: Pool2Config[] = [
         lockBlock: 19969638,
         tokenDecimals: 18,
     },
+    {
+        sousId: 8,
+        tokenName: 'RVRS & UST LP',
+        tokenPoolAddress: '0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE',
+        quoteTokenSymbol: QuoteToken.RVRS,
+        quoteTokenPoolAddress: '0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE',
+        stakingTokenName: QuoteToken.USTRVRS,
+        stakingTokenAddress: '0xF8838fcC026d8e1F40207AcF5ec1DA0341c37fe2',
+        contractAddress: {
+            1666700000: '0xC3A77FefFEaB13687dA54A1A600c36B32555B11A',
+            1666600000: '0xC3A77FefFEaB13687dA54A1A600c36B32555B11A',
+        },
+        poolCategory: PoolCategory.CORE,
+        projectLink: '',
+        harvest: true,
+        tokenPerBlock: '1.12',
+        sortOrder: 1,
+        isFinished: false,
+        isDepositFinished: false,
+        startBlock: 20464386,
+        endBlock: 20680387,
+        lockBlock: 20680387,
+        tokenDecimals: 18,
+    },
 ]
 
 export default pools2

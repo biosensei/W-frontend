@@ -12,7 +12,7 @@ const Card = styled.div<{ isActive?: boolean; isFinished?: boolean }>`
   text-align: center;
   margin-bottom:0px;
   border:0px solid #fff;
-  box-shadow: 1px 1px 10px #ccc;
+  box-shadow: 0px 0px 5px #ccc;
 
 
   `

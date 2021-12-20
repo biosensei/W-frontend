@@ -210,9 +210,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
   const TVL = pool.tvl && pool.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const APY = apy && apy.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const StakedUSDBalance = getBalanceNumber(stakedBalanceUsd).toLocaleString('en-us',{ maximumFractionDigits: 0 })
-  const FiveDayROI = apr && apr.div(50).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+  const FiveDayROI = apr && apr.div(53).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
   const ExpectedBalance = apr && apr.div(365).times(7).times(0.01).times(getBalanceNumber(stakedBalanceUsd)).plus(getBalanceNumber(stakedBalanceUsd)).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
-
+  const TotalAPY = apy && apy.plus(445).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 });
+  const bal = getBalanceNumber(stakedBalance).toLocaleString('en-us',{ maximumFractionDigits: 0 });
 
   return (
     <Card isActive={isCardActive} isFinished={isFinished && sousId !== 0}>
@@ -226,8 +227,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           >
 
           <Flex flexDirection="column" alignItems='center'>
-            <QuoteTitle2>APY</QuoteTitle2>
-            <QuoteTitle>{APY}%</QuoteTitle>
+            <QuoteTitle2>Total APY</QuoteTitle2>
+            <QuoteTitle>{TotalAPY}%</QuoteTitle>
           </Flex>
           <Flex  flexDirection="column" alignItems='center' marginLeft='60px'>
             <QuoteTitle2> TVL</QuoteTitle2>
@@ -235,25 +236,35 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           </Flex>
         </Wrapper>
 
-        <Flex justifyContent='space-between' marginTop='14px'> 
-        <a style={{textShadow:'0px 0px 8px #fff', borderRadius:'10px', border:'1px', borderStyle:'solid !important', borderColor:'white'}} target="_blanK" 
-        rel="noreferrer" 
-        href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" 
-        className="nav-links">Swap <FaLongArrowAltRight/></a>
+        <Flex justifyContent='space-between' marginTop='18px'>
+          <Text1>UST APY</Text1>
+          <Text1>445%</Text1>
         </Flex>
 
+        
+        <Flex justifyContent='space-between' marginTop='10px'>
+          <Text1>RVRS APY</Text1>
+          <Text1>{APY}%</Text1>
+        </Flex>
+
+        <Flex justifyContent='space-between' marginTop='10px'>
+          <Text1> 7 Day ROI</Text1>
+          <Text1>{FiveDayROI}%</Text1>
+        </Flex>
+
+        <Divider/>
 
         <Flex justifyContent='space-between' marginTop='14px'>
           <Text1>Unstaked Balance</Text1>
-          <Text11>{cakeBalance}</Text11>
+          <Text1>{cakeBalance}</Text1>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='13px'>
+        <Flex justifyContent='space-between' marginTop='10px'>
           <Text1>Staked Balance</Text1>
-          <Balance  fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
+          <Text1>{bal}</Text1>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='5px'>
+        <Flex justifyContent='space-between' marginTop='12px'>
           <SmallText>Balance (in UST)</SmallText>
           <SmallText>${StakedUSDBalance}</SmallText>
         </Flex>
@@ -263,24 +274,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool }) => {
           <SmallText>${ExpectedBalance}</SmallText>
         </Flex>
 
-        <Flex justifyContent='space-between' marginTop='10px'>
-          <Text1>Withdrawal Fee (Deprecated)</Text1>
-          <Text11>0%</Text11>
+        
 
 
-        </Flex>
-
-        <Divider/>
-
-        <Flex justifyContent='space-between' marginTop='12px'>
-          <Text1> Annual Yield</Text1>
-          <Text1>{APY}%</Text1>
-        </Flex>
-
-        <Flex justifyContent='space-between' marginTop='12px'>
-          <Text1> 7 Day ROI</Text1>
-          <Text1>{FiveDayROI}%</Text1>
-        </Flex>
 
 
         <Wrapper alignItems="end">

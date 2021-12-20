@@ -154,7 +154,7 @@ const DashboardCard = styled.div`
 
 
   border: 0px solid #fff;
-  box-shadow: 0px 0px 20px #ccc;
+  box-shadow: 0px 0px 5px #ccc;
 `
 
 const DashCard = styled.div`

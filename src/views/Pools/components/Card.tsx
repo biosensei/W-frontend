@@ -13,7 +13,7 @@ text-align: center;
 max-width: 750px;
 
 border:0px solid #fff;
-box-shadow: 1px 1px 10px #ccc;
+box-shadow: 0px 0px 5px #ccc;
 `
 
 export default Card

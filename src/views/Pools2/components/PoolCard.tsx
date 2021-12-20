@@ -82,7 +82,7 @@ const StyledBtn = styled.button`
   max-height: 30px;
   max-width: 128px;
   padding: 20px;
-  box-shadow: 1px 1px 10px #ccc;
+  box-shadow: 0px 0px 5px #ccc;
 
   `
 const StyledClaim = styled.button`

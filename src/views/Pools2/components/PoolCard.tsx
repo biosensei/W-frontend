@@ -362,10 +362,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
               <Quote>{Profit}%</Quote>
             </Flex>
 
-            <Flex justifyContent='space-between' marginTop='20px'>
-              <Quote2><FaAngleRight/> Net ROI = (Days Remaining * Daily Returns) - 100</Quote2>
-            </Flex>
-
             <Divider/>
 
             <Flex justifyContent='space-between' marginTop='25px'>
@@ -385,13 +381,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
               onClick={onPresentCompound}/>)} 
             </Flex>
 
-
             <Flex justifyContent='space-between' marginTop='20px'>
-              <Quote2><FaAngleRight/> Once forfeited to the Reverseum, assets cannot be recovered</Quote2>
-            </Flex>
-
-            <Flex justifyContent='space-between' marginTop='10px'>
-              <Quote2><FaAngleRight/> Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times)</Quote2>
+              <Quote2>Once forfeited to the Reverseum, assets cannot be recovered. Net ROI is is a global indicator that shows the ROI if you would enter at THIS POINT IN TIME, thus over the course of the pool, it will go negative - this does not mean that you PERSONALLY will  necessarily make a loss. Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times)</Quote2>
             </Flex>
 
 

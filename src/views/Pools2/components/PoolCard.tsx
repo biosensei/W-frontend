@@ -15,7 +15,7 @@ import { useSousHarvestBurn } from 'hooks/useHarvest'
 import Balance from 'components/Balance'
 import { QuoteToken, PoolCategory } from 'config/constants/types'
 import { Pool2 } from 'state/types'
-import { FaAngleRight } from 'react-icons/fa'
+import { FaAngleRight, FaHistory } from 'react-icons/fa'
 import ExpandableSectionButton from 'components/ExpandableSectionButton'
 import Container from 'components/layout/Container'
 import DepositModal from './DepositModal'
@@ -179,6 +179,15 @@ const Quote3 = styled.p`
     margin-top: 7px;
 `
 
+const QuoteBox = styled.p`
+  font-size: 15px;
+  font-weight: 700;
+  margin-bottom: 0px;
+  text-shadow: 1px 1px 10px #ccc;
+  box-shadow: 0px 0px 0px #fff;
+  box-color: #fff
+`
+
 const DashboardPage2 = styled(Container)`
   min-height: calc(1vh - 64px);
   padding-top: 16px;
@@ -230,9 +239,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
     stakingLimit,
     tokenPoolAddress,
     quoteTokenPoolAddress,
+    notFinished,
     lockBlock,
   } = pool2
-  // Pools using native BNB behave differently than pools using a token
   const isBnbPool = poolCategory === PoolCategory.BINANCE
   const TranslateString = useI18n()
   const stakingTokenContract = useERC20(stakingTokenAddress)
@@ -242,23 +251,16 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const { onStake } = useSousStakeBurn(sousId, isBnbPool)
   const { onUnstake } = useSousUnstakeBurn(sousId)
   const { onReward } = useSousHarvestBurn(sousId, isBnbPool)
-
   const [requestedApproval, setRequestedApproval] = useState(false)
   const [pendingTx, setPendingTx] = useState(false)
-
   const allowance = new BigNumber(userData?.allowance || 0)
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const earnings = new BigNumber(userData?.pendingReward || 0)
-
   const daysRemaining = Math.ceil((endBlock - block)*2*0.000277778*0.0416667)
-
   const [showExpandableSection, setShowExpandableSection] = useState(false)
-
   const blocksDepositFinished = Math.max(lockBlock - block, 0)
-
   const blocksRemaining = Math.ceil(endBlock - block).toLocaleString('en-us',{ maximumFractionDigits: 1 })
-  
   const isOldSyrup = stakingTokenName === QuoteToken.SYRUP
   const accountHasStakedBalance = stakedBalance?.toNumber() > 0
   const needsApproval = !accountHasStakedBalance && !allowance.toNumber() && !isBnbPool
@@ -301,6 +303,10 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const TVL = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
   const Profit = apy && apy.div(365).times(daysRemaining).minus(100).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
   // console.log(pool2.sousId, pool2.tvl && pool2.tvl.toNumber())
+
+  const ClaimableRVRS = getBalanceNumber(earnings, tokenDecimals).toLocaleString('en-us',{ maximumFractionDigits: 1 })
+  const ForfeitedA = getBalanceNumber(stakedBalance).toLocaleString('en-us',{ maximumFractionDigits: 1 })
+
   return (
 
     <DashboardPage2>
@@ -320,26 +326,31 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
       <Wrapper justifyContent="space-between" alignItems="center" mb="0px">
 
-
-        <Flex  flexDirection="column" alignItems='start' >
+          {notFinished && (
+          <Flex flexDirection="column" alignItems='start' >
             <Quote>Current Net ROI</Quote>
             <Quote3>{Profit}%</Quote3>
-          </Flex>
+          </Flex>)}
 
-          <Flex  flexDirection="column" alignItems='start' >
+          {notFinished && (
+          <Flex flexDirection="column" alignItems='start' >
             <Quote>Vesting</Quote>
             <Quote3>{daysRemaining} Days</Quote3>
-          </Flex>
+          </Flex>)}
+
+          {isFinished && (
+          <Flex flexDirection="column" alignItems='start' >
+            <QuoteBox><FaHistory/>Pool Ended </QuoteBox>
+          </Flex>)}
 
           <Flex flexDirection="column" alignItems='start' >
             <Quote>TVB</Quote>
             <Quote3>${TVL}</Quote3>
           </Flex>
 
-        <Flex justifyContent='right'>
-          <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
-        </Flex>
-
+          <Flex justifyContent='right'>
+            <ExpandableSectionButton onClick={() => setShowExpandableSection(!showExpandableSection)}/>
+          </Flex>
         </Wrapper>
       </DCard>
 
@@ -348,48 +359,47 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           <CCARD>
 
           <Flex justifyContent='space-between' marginTop='20px'>
-              <Quote> Total Value Bonded</Quote>
-              <Quote> ${TVL}</Quote>
+              <Quote>Total Value Bonded</Quote>
+              <Quote>${TVL}</Quote>
             </Flex>
 
+            {notFinished && (
             <Flex justifyContent='space-between' marginTop='10px'>
               <Quote>Daily Returns</Quote>
               <Quote>{dailyROI}%</Quote>
-            </Flex>
+            </Flex>)}
 
+
+            {notFinished && (
             <Flex justifyContent='space-between' marginTop='10px'>
               <Quote>Current Net ROI</Quote>
               <Quote>{Profit}%</Quote>
-            </Flex>
+            </Flex>)}
 
-            <Divider/>
+            {notFinished && (
+            <Divider/>)}
 
             <Flex justifyContent='space-between' marginTop='25px'>
-              <Rewards> Your Forfeited Assets</Rewards>
-              <Balance fontSize="14px" isDisabled={isFinished} value={getBalanceNumber(stakedBalance)} />
+              <Quote> Your Forfeited Assets</Quote>
+              <Quote>{ForfeitedA}</Quote>
             </Flex>
 
             
-            <Flex marginTop='0px' justifyContent='space-between'>
-              <Rewards> Claimable RVRS</Rewards>
-              <Balance value={getBalanceNumber(earnings, tokenDecimals)} isDisabled={isFinished}>Rewards</Balance>
-
-              {sousId === 0 && account && harvest && (
-              <HarvestButton
-              disabled={!earnings.toNumber() || pendingTx}
-              text={pendingTx ? TranslateString(999, 'Compounding') : TranslateString(999, 'Compound')}
-              onClick={onPresentCompound}/>)} 
+            <Flex marginTop='10px' justifyContent='space-between'>
+              <Quote> Claimable RVRS</Quote>
+              <Quote>{ClaimableRVRS}</Quote>
             </Flex>
 
+            {notFinished && (
             <Flex justifyContent='space-between' marginTop='20px'>
               <Quote2>Once forfeited to the Reverseum, assets cannot be recovered. Net ROI is is a global indicator that shows the ROI if you would enter at THIS POINT IN TIME, thus over the course of the pool, it will go negative - this does not mean that you PERSONALLY will  necessarily make a loss. Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times)</Quote2>
-            </Flex>
+            </Flex>)} 
 
 
 
             <StyledCardActions >
                 
-              {account && (needsApproval && !isOldSyrup ? (
+              {account && notFinished && (needsApproval && !isOldSyrup ? (
 
                 <div style={{ flex: 1 }}>
                   <StyledBtn 
@@ -404,6 +414,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
                 ) : ( <>
 
                 <StyledActionSpacer/>
+                
 
                   {!isOldSyrup && (
                     <StyledBtn 

@@ -257,7 +257,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const stakingTokenBalance = new BigNumber(userData?.stakingTokenBalance || 0)
   const stakedBalance = new BigNumber(userData?.stakedBalance || 0)
   const earnings = new BigNumber(userData?.pendingReward || 0)
-  const daysRemaining = Math.ceil((endBlock - block)*2*0.000277778*0.0416667)
+  const daysRemaining = block > startBlock ? (endBlock - block)*2*0.000277778*0.0416667 : (endBlock - startBlock)*2*0.000277778*0.0416667
   const [showExpandableSection, setShowExpandableSection] = useState(false)
   const blocksDepositFinished = Math.max(lockBlock - block, 0)
   const blocksRemaining = Math.ceil(endBlock - block).toLocaleString('en-us',{ maximumFractionDigits: 1 })
@@ -273,14 +273,6 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
       onConfirm={onStake}
       tokenName={stakingLimit ? `${stakingTokenName} (${stakingLimit} max)` : stakingTokenName}
     />,
-  )
-
-  const [onPresentCompound] = useModal(
-    <CompoundModal earnings={earnings} onConfirm={onStake} tokenName={stakingTokenName} />,
-  )
-
-  const [onPresentWithdraw] = useModal(
-    <WithdrawModal max={stakedBalance} onConfirm={onUnstake} tokenName={stakingTokenName} />,
   )
 
   const handleApprove = useCallback(async () => {
@@ -301,7 +293,8 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
   const dailyROI = apy && apy.div(365).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
   const FiveDayROI = apy && apy.div(365).times(5).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
   const TVL = pool2.tvl && pool2.tvl.toNumber().toLocaleString('en-us',{ maximumFractionDigits: 0 })
-  const Profit = apy && apy.div(365).times(daysRemaining).minus(100).toNumber().toLocaleString('en-us',{ maximumFractionDigits: 1 })
+  const NetProfitNumber = apy && apy.div(365).times(daysRemaining).minus(100).toNumber()
+  const Profit = NetProfitNumber && NetProfitNumber.toLocaleString('en-us',{ maximumFractionDigits: 1 })
   // console.log(pool2.sousId, pool2.tvl && pool2.tvl.toNumber())
 
   const ClaimableRVRS = getBalanceNumber(earnings, tokenDecimals).toLocaleString('en-us',{ maximumFractionDigits: 1 })
@@ -329,13 +322,13 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           {notFinished && (
           <Flex flexDirection="column" alignItems='start' >
             <Quote>Current Net ROI</Quote>
-            <Quote3>{Profit}%</Quote3>
+            {NetProfitNumber && NetProfitNumber > 0 ? <Quote3>{Profit}%</Quote3> :  <Quote3>Sold Out</Quote3>}
           </Flex>)}
 
           {notFinished && (
           <Flex flexDirection="column" alignItems='start' >
             <Quote>Vesting</Quote>
-            <Quote3>{daysRemaining} Days</Quote3>
+            <Quote3>{daysRemaining.toLocaleString('en-us',{ maximumFractionDigits: 1 })} Days</Quote3>
           </Flex>)}
 
           {isFinished && (
@@ -373,7 +366,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
             {notFinished && (
             <Flex justifyContent='space-between' marginTop='10px'>
               <Quote>Current Net ROI</Quote>
-              <Quote>{Profit}%</Quote>
+              {NetProfitNumber && NetProfitNumber > 0 ? <Quote3>{Profit}%</Quote3> :  <Quote3>Sold Out</Quote3>}
             </Flex>)}
 
             {notFinished && (
@@ -392,7 +385,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
             {notFinished && (
             <Flex justifyContent='space-between' marginTop='20px'>
-              <Quote2>Once forfeited to the Reverseum, assets cannot be recovered. Net ROI is is a global indicator that shows the ROI if you would enter at THIS POINT IN TIME, thus over the course of the pool, it will go negative - this does not mean that you PERSONALLY will  necessarily make a loss. Rewards in RVRS are linearly vested for {daysRemaining} days (Based on 2s block times)</Quote2>
+              <Quote2>Once forfeited to the Reverseum, assets cannot be recovered.
+                Net ROI is is a global indicator that shows the ROI if you would enter at THIS POINT IN TIME, thus over the course of the pool, it will go negative - this does not mean that you PERSONALLY will  necessarily make a loss.
+                Rewards in RVRS are linearly vested for {daysRemaining.toLocaleString('en-us',{ maximumFractionDigits: 1 })} more days (Based on 2s block times)</Quote2>
             </Flex>)} 
 
 
@@ -419,9 +414,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
                   {!isOldSyrup && (
                     <StyledBtn 
                       style={{justifyContent:"center", maxWidth:'160px' }}
-                      disabled={isFinished || isDepositFinished}  
+                      disabled={isFinished || isDepositFinished || NetProfitNumber && NetProfitNumber < 0}
                       onClick={onPresentDeposit}>
-                      Bond Assets
+                      {NetProfitNumber > 0 ? 'Bond Assets' : 'Sold Out'}
                     </StyledBtn>)}
                   
                   {account && harvest && !isOldSyrup && (

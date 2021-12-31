@@ -17,11 +17,23 @@ const PoolTabButtons = () => {
     <Wrapper>
       <ButtonStyler>
         <ButtonMenu activeIndex={!isExact ? 1 : 0} size="sm" variant="subtle">
-          <ButtonMenuItem as={Link} to={`${url}`}>
-            {TranslateString(999, '')}
+          <ButtonMenuItem as={Link} to={`${url}`}           
+            style={{
+            marginRight: '6px',
+            marginTop: '0px',
+            marginLeft: '0px',
+            width: '80%',
+          }} >
+            {TranslateString(999, 'Active')}
           </ButtonMenuItem>
-          <ButtonMenuItem as={Link} to={`${url}/history`}>
-            {TranslateString(999, '')}
+          <ButtonMenuItem as={Link} to={`${url}/history`}
+                      style={{
+                        marginRight: '6px',
+                        marginTop: '0px',
+                        marginLeft: '5px',
+                        width: '80%',
+                      }}>
+            {TranslateString(999, 'Inactive')}
           </ButtonMenuItem>
         </ButtonMenu>
       </ButtonStyler>

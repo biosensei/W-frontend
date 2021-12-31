@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
-import { Route, useRouteMatch } from 'react-router-dom'
+import { Link, Route, useRouteMatch } from 'react-router-dom'
 import BigNumber from 'bignumber.js'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
 import { BLOCKS_PER_YEAR } from 'config'
 import orderBy from 'lodash/orderBy'
 import partition from 'lodash/partition'
 import useI18n from 'hooks/useI18n'
+import { ButtonMenu, ButtonMenuItem } from '@pancakeswap-libs/uikit'
 import useBlock from 'hooks/useBlock'
 import { getBalanceNumber } from 'utils/formatBalance'
 import {
@@ -19,12 +20,34 @@ import {
 import { QuoteToken, Pool2Category } from 'config/constants/types'
 import FlexLayout from 'components/layout/Flex'
 import Page from 'components/layout/Page'
+import styled from 'styled-components'
+
 import BondsDashboard from 'views/BondsDashboard'
 import PoolCard from './components/PoolCard'
 import PoolTabButtons from './components/PoolTabButtons'
 import Hero2 from './components/Hero'
 
+const BtnMenu = styled.button`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: rgba(0, 0, 0,0) !important;
+  border: 1px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 15px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 18px;
+  max-height: 30px;
+  max-width: 80px;
+  
+  padding: 12px;
 
+  box-shadow: 0px 0px 2px #fff;
+  `
 
 const Farm: React.FC = () => {
   const { path } = useRouteMatch()
@@ -64,30 +87,17 @@ const Farm: React.FC = () => {
 
   const [finishedPools, openPools] = partition(poolsWithApy, (pool2) => pool2.isFinished)
   const { url, isExact } = useRouteMatch()
-
-  
   const [modalOpen, setModalOpen] = useState(true) 
-
   const handleModal = async () => {
     setModalOpen(!modalOpen)
   }  
+
+  
 
   const TranslateString = useI18n()
 
   return (
     <Page>
-
-{/*   <Wrapper>
-        <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm">
-          <ButtonMenuItem as={Link} to={`${url}`} >
-            {TranslateString(698, 'Active')}
-          </ButtonMenuItem>
-          <ButtonMenuItem as={Link} to={`${url}/history`}>
-            {TranslateString(700, 'Inactive')}
-          </ButtonMenuItem>
-        </ButtonMenu>
-      </Wrapper> */}
-
       <BondsDashboard/>
 
       <FlexLayout>
@@ -96,7 +106,6 @@ const Farm: React.FC = () => {
             {orderBy(openPools, ['sortOrder']).map((pool2) => (
               <PoolCard key={pool2.sousId} pool2={pool2} />
             ))}
-            {/* <Coming /> */ }
           </>
         </Route>
         <Route path={`${path}/history`}>
@@ -104,7 +113,30 @@ const Farm: React.FC = () => {
             <PoolCard key={pool2.sousId} pool2={pool2} />
           ))}
         </Route>
-      </FlexLayout> 
+        
+      
+      <BtnMenu as={Link} to={`${url}`}             
+        style={{
+            marginRight: '6px',
+            marginTop: '0px',
+            marginLeft: '0px',
+            justifyContent: 'center'
+          }}>
+          {TranslateString(698, 'Active')}
+        </BtnMenu>
+        <BtnMenu as={Link} to={`${url}/history`}       style={{
+            marginRight: '6px',
+            marginTop: '0px',
+            marginLeft: '0px',
+            justifyContent: 'center'
+          }}>
+          {TranslateString(7200, 'Inactive')}
+        </BtnMenu>
+
+        </FlexLayout> 
+
+
+
 
     </Page>
   )

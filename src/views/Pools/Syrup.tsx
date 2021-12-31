@@ -172,20 +172,6 @@ const Farm: React.FC = () => {
 
   return (
     <Page>
-      
-      {/* <Wrapper>
-        <ButtonMenu activeIndex={isExact ? 0 : 1} size="sm">
-
-            <ButtonMenuItem as={Link} to={`${url}`} >
-              {TranslateString(698, 'Active')}
-            </ButtonMenuItem>
-
-            <ButtonMenuItem as={Link} to={`${url}/history`}>
-              {TranslateString(700, 'Inactive')}
-            </ButtonMenuItem>
-
-        </ButtonMenu>
-      </Wrapper> */ }
 
       <StakeDashboard/>    
 
@@ -195,7 +181,6 @@ const Farm: React.FC = () => {
             {orderBy(openPools, ['sortOrder']).map((pool) => (
               <PoolCard key={pool.sousId} pool={pool} />
             ))}
-            {/*  <Coming /> */}
           </> 
         </Route>
         <Route path={`${path}/history`}>

@@ -399,7 +399,7 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
 
             <StyledCardActions >
                 
-              {account && notFinished && (needsApproval && !isOldSyrup ? (
+              {account && (needsApproval && !isOldSyrup ? (
 
                 <div style={{ flex: 1 }}>
                   <StyledBtn 

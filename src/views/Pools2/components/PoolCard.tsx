@@ -328,7 +328,9 @@ const PoolCard: React.FC<HarvestProps> = ({ pool2 }) => {
           {notFinished && (
           <Flex flexDirection="column" alignItems='start' >
             <Quote>Vesting</Quote>
-            <Quote3>{daysRemaining.toLocaleString('en-us',{ maximumFractionDigits: 1 })} Days</Quote3>
+            {daysRemaining > 0 ?
+                <Quote3>{daysRemaining.toLocaleString('en-us',{ maximumFractionDigits: 1 })} Days</Quote3> :
+                <Quote3>Ended</Quote3>}
           </Flex>)}
 
           {isFinished && (

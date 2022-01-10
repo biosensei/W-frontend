@@ -194,6 +194,9 @@ export const getTotalValueFromQuoteTokens = (quoteTokenAmount, quoteToken, price
   if (quoteToken === QuoteToken.UST || quoteToken === QuoteToken.BUSD) {
     return new BigNumber(2).times(quoteTokenAmount)
   }
+  if (quoteToken === QuoteToken.JEWEL) {
+    return new BigNumber(28).times(quoteTokenAmount)
+  }
   if (quoteToken === QuoteToken.ONE) {
     const price = lookupPrice(QuoteToken.ONE, prices)
     return new BigNumber(2).times(quoteTokenAmount).times(price)

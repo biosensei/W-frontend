@@ -69,6 +69,7 @@ export enum QuoteToken {
   'MISLUNA' = 'MIS-LUNA',
   'LUNA' = 'LUNA',
   'TRANQB' = 'TRANQB',
+  'JEWEL' = 'JEWEL',
   'MISKURO' = 'MIS-KURO',
   'KURO' = 'KURO',
   'SONIC' = 'SONIC',

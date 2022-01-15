@@ -15,7 +15,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
         account,
         account
     )
-    .send({ from: account, gasPrice: 1000000000, gasLimit: 606490 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -24,7 +24,7 @@ export const stake = async (masterChefContract, pid, amount, account) => {
 export const sousStake = async (sousChefContract, amount, account) => {
   return sousChefContract.methods
     .deposit(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account, gasPrice: 1000000000, gasLimit: 806490 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -33,7 +33,7 @@ export const sousStake = async (sousChefContract, amount, account) => {
 export const sousStakeBurn = async (sousChefContract, amount, account) => {
   return sousChefContract.methods
     .transact(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString())
-    .send({ from: account, gasPrice: 1000000000, gasLimit: 206490 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -51,7 +51,7 @@ export const sousStakeBnb = async (sousChefContract, amount, account) => {
 export const unstake = async (masterChefContract, pid, amount, account) => {
   return masterChefContract.methods
     .withdraw(pid, new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
-    .send({ from: account, gasPrice: 1000000000, gasLimit: 206490 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })
@@ -140,7 +140,7 @@ export const soushHarvestBnb = async (sousChefContract, account) => {
 export const sousStakeBurn2 = async (sousChefContract, amount, account) => {
   return sousChefContract.methods
     .transact(new BigNumber(amount).times(new BigNumber(10).pow(18)).toString(), account)
-    .send({ from: account, gasPrice: 1000000000, gasLimit: 206490 })
+    .send({ from: account })
     .on('transactionHash', (tx) => {
       return tx.transactionHash
     })

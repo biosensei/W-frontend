@@ -210,11 +210,6 @@ nav-btn {}
 	display: block;
 	
   }
-  .logo-container {
-	display: none;
-	justify-content: center;
-	align-items: center;
-}
 
 	.nav-container {
 		position: fixed;

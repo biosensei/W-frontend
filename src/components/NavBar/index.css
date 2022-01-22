@@ -157,7 +157,7 @@ nav-btn {}
 
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 100%) {
 
 	#infoToggleDesktop{
 		display: none;
@@ -320,7 +320,7 @@ nav-btn {}
 	box-shadow: none !important;
 }
 
-@media screen and (max-width: 1024px) {
+@media screen and (max-width: 100%) {
     #root .nav-wrapper{
         height: 180px;
         width: 100%;

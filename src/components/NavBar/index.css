@@ -15,11 +15,11 @@ h1 {
 	align-items: center;
 	justify-content: space-between;
 	margin: auto;
-	width: 55%;
+	width: 42%;
 	height: 110px;
 	z-index: 81;
 	border-bottom: 0px solid rgba(255, 255, 255, 0.664);
-	margin-bottom: 20px;
+	margin-bottom: 1px;
 }
 
 .logo-container {

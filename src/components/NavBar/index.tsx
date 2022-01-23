@@ -121,7 +121,6 @@ const Quote = styled.p`
   font-size: 15px;
   font-weight: 500;
   text-shadow: 0px 0px 10px #ccc;
-
   &:hover:not(:disabled),
   &:active:not(:disabled),
   &:focus  {
@@ -185,12 +184,7 @@ const NavBar = (props) => {
             
             <div className="nav-container">
 
-            <object 
-                type="image/svg+xml" 
-                data="/images/logo.png" 
-                width="0px" 
-                style={{'marginTop': '10px', 'marginBottom': '0px', 'marginRight': '10px'}}>&nbsp;
-              </object>
+            
 
               
               <ul className="nav-tabs">
@@ -210,36 +204,7 @@ const NavBar = (props) => {
                     <Quote>Bond</Quote>
                   </Link>
                 </li>
-                <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" className="nav-links">
-                      <span className="dditem"><FaExchangeAlt/></span>
-                    </a>
-                  </li>
-                  <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
-                      <span className="dditem"><FaVoteYea /></span>
-                    </a>
-                  </li>
-                  <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://twitter.com/RVRSProtocol" className="nav-links">
-                      <span className="dditem"><FaTwitter/></span>
-                    </a>
-                  </li>
-                  <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
-                      <span className="dditem"><FaClipboard /></span>
-                    </a>
-                  </li>
-                  <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://discord.gg/J6fTxACe" className="nav-links">
-                      <span className="dditem"><FaDiscord /></span>
-                    </a>
-                  </li>
-                  <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol/" className="nav-links">
-                      <span className="dditem"><FaGithub /></span>
-                    </a>
-                  </li>
+                
               </ul>
 
               <ul className="web3buttons">

@@ -1,12 +1,21 @@
 import React, { useContext, useState } from 'react'
 import styled from 'styled-components'
 import { useWallet } from '@binance-chain/bsc-use-wallet'
+import { Toggle, useModal } from '@pancakeswap-libs/uikit'
 import { usePriceCakeBusd } from 'state/hooks'
 import {Link} from "react-router-dom";
 import './index.css';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import UnlockButton from 'components/UnlockButton'
-import { FaTwitter, FaDiscord, FaBook, FaEnvelopeOpenText, FaGithub, FaClipboard, FaExchangeAlt, FaVoteYea } from 'react-icons/fa'
+import {Accordion, Button, Card, useAccordionToggle} from 'react-bootstrap';
+import { FaChartLine, FaTelegramPlane, FaTwitter, FaDiscord, FaFileAlt, FaGithub, FaTicketAlt, FaChartBar, FaMoneyBillAlt, FaTractor, FaHome, FaPrescriptionBottleAlt, FaTumblrSquare, FaCode, FaFlask, FaBook, FaReddit, FaRocketchat, FaRocket, FaBroadcastTower, FaLayerGroup, FaSeedling, FaExclamationTriangle, FaBootstrap, FaLandmark, FaGamepad, FaCircle, FaParachuteBox, FaVoteYea, FaProjectDiagram, FaShieldAlt, FaFire, FaCloud, FaPlayCircle, FaClipboard, FaUser, FaPlus, FaExpandArrowsAlt, FaExpand, FaExchangeAlt } from 'react-icons/fa';
+import ReactTooltip from 'react-tooltip';
+import { getBalanceNumber } from 'utils/formatBalance'
+import useTokenBalance from 'hooks/useTokenBalance'
+import { getCakeAddress } from 'utils/addressHelpers'
+import { Address } from 'config/constants/types'
+
+
 
 
 function getWindowDimensions() {
@@ -17,84 +26,147 @@ function getWindowDimensions() {
   };
 }
 
-const twitterIcon = () => <FaTwitter />
-const gitIcon = () => <FaGithub />
-const clipboardIcon = () => <FaClipboard />
-const discordIcon = () => <FaDiscord />
-const governanceIcon = () => <FaVoteYea />
-const swapIcon = () => <FaExchangeAlt />
-
 
 const {viewportWidth, viewportHeight} = getWindowDimensions()
-
 const isOnPhone = viewportWidth < 680
+const Price = styled.p`
+  -webkit-box-align: center;
+  align-items: center;
+  background-image: linear-gradient(transparent, transparent);
+  border: 0px;
+  border-style: solid !important;
+  border-color: #ffff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 14px;
+  font-weight: 400;
+  width: 100%;
+  display: inline-flex;
+  min-height: 32px;
+  max-height: 37px;
+  padding: 10px;
+  margin-top: 16px;
+  margin-left: 0px;
+`
+
+const Chain = styled.p`
+  -webkit-box-align: center;
+  align-items: center;
+  background-color: transparent;
+  border: 0px;
+  border-style: solid !important;
+  border-color: transparent !important;
+  border-radius: 10px;
+  color: #0094C6;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  display: inline-flex;
+  min-height: 32px;
+  max-height: 37px;
+  padding: 10px;
+  margin-top: 16px;
+  &:hover:not(:disabled),
+  &:active:not(:disabled),
+  &:focus  {
+    outline: 0;
+    border-color: transparent
+    cursor: pointer;
+    text-shadow: 0px 0px 10px #0094C6;
+  }
+`
+
+const Balance = styled.p`
+  -webkit-box-align: center;
+  align-items: center;
+  background-image: linear-gradient(transparent, transparent);
+  border: 0px;
+  border-style: solid !important;
+  border-color: #transparent !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 14px;
+  font-weight: 500;
+  width: 100%;
+  display: inline-flex;
+  min-height: 32px;
+  max-height: 37px;
+  padding: 10px;
+  margin-right: 10px;
+  margin-left: -8px;
+`
 
 
+const Expand = styled.p`
+  -webkit-box-align: center;
+  align-items: center;
+  background-image: linear-gradient(#394454, #394454);
+  border: 1px #fff;
+  border-style: solid !important;
+  border-color: #fff !important;
+  border-radius: 10px;
+  color: #ffff;
+  font-size: 14px;
+  font-weight: 500;
+  width: 120%;
+  display: inline-flex;
+  min-height: 32px;
+  max-height: 37px;
+  padding: 10px;
+  margin-top: 16px;
+  box-shadow: 0px 0px 3px #FFF;
+`
 
-  const Wallet = styled.button`
-    -webkit-box-align: center;
-    align-items: center;
-    background-color: rgba(0, 0, 0,0) !important;
-    border: 1px;
-    border-style: solid !important;
-    border-color: #ffff !important;
-    border-radius: 10px;
-    color: #ffff;
-    font-size: 15px;
+const Quote = styled.p`
+  font-size: 15px;
+  font-weight: 500;
+  text-shadow: 0px 0px 10px #ccc;
+
+  &:hover:not(:disabled),
+  &:active:not(:disabled),
+  &:focus  {
+    outline: 0;
     font-weight: 500;
-    width: 100%;
-    display: inline-flex;
-    min-height: 18px;
-    max-height: 35px;
-    max-width: 102px;
-    padding: 12px;
-
-    text-shadow: 0px 0px 5px #fff;
-    box-shadow: 0px 0px 5px #fff;
-  `
-
-const NavTab = ({ path, text }) => {
-  return (
-    <li className="nav-tab">
-      <Link to={path}>
-        <span className="tab-span">{text}</span>
-      </Link>
-    </li>
-  )
-}
-
-const NavIcon = ({ icon, href, newTab}: any) => {
-  const targetProp: string = newTab === true ? '' : ''
-  const relProp: string = newTab === true ? 'noreferrer' : ''
-
-  return (
-    <li>
-      { newTab ?
-        <a target="_blank" rel="noreferrer" href={href} className="nav-icon">
-          {icon}
-        </a>
-      :
-        <a href={href}
-           className="nav-icon"
-           onClick={() => navigator.clipboard.writeText('0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE')}>
-          {icon}
-        </a>
-      }
-    </li>
-  )
-}
+    cursor: pointer;
+    text-shadow: 0px 0px 4px #CCCC;
+  }
+`
 
 const NavBar = (props) => {
   const { account, connect, reset } = useWallet()
   const cakePriceUsd = usePriceCakeBusd()
   const [isChecked, setIsChecked] = useState(false);
+  const cakeBalance = getBalanceNumber(useTokenBalance(getCakeAddress())).toLocaleString('en-us',{ maximumFractionDigits: 2 });
+
+  const LightSwitch = () => {
+    const toggle = () => setIsChecked(!isChecked);
+  
+    return (
+      <>
+        <div style={{ marginBottom: "32px" }}>
+          <Toggle checked={isChecked} onChange={toggle} />
+        </div>
+      </>
+    );
+  }
+
+  function CustomToggle({ eventKey }) {
+    const decoratedOnClick = useAccordionToggle(eventKey);
+  
+    return (
+        <li className="nav-tab dropdown">
+        <Link to="/" className="nav-links" onClick={decoratedOnClick}>
+          About
+        </Link>
+        </li>);
+  }
 
   return (
     <div>
       <header>
         <div className="nav-wrapper">
           <nav>
-            <object
+          <object
               type="image/svg+xml"
               data="/images/banner.svg"
               width="230px"
@@ -103,76 +175,152 @@ const NavBar = (props) => {
                       'marginLeft': '10px'}}>
               &nbsp;
             </object>
-            <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle" />
-
+            <input className="hidden" type="checkbox" checked={isChecked} id="menuToggle"/>
+            <button type="button" className="menu-btn" onClick={()=>{setIsChecked(!isChecked)}}>
+              <div className="menu"/>
+              <div className="menu"/>
+              <div className="menu"/>
+            </button>
+    
+            
             <div className="nav-container">
+
+            <object 
+                type="image/svg+xml" 
+                data="/images/logo.png" 
+                width="0px" 
+                style={{'marginTop': '10px', 'marginBottom': '0px', 'marginRight': '10px'}}>&nbsp;
+              </object>
+
+              
               <ul className="nav-tabs">
-                <NavTab path='/stake' text='Stake' />
-                <NavTab path='/farm' text='Farm' />
-                <NavTab path='/reverseum' text='Bonding Pools' />
-                <NavIcon icon={swapIcon()} href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" newTab />
-                <NavIcon icon={twitterIcon()} href="https://twitter.com/RVRSProtocol" newTab />
-                <NavIcon icon={governanceIcon()} href="https://gov.harmony.one/#/reverse" newTab />
-                <NavIcon icon={clipboardIcon()} href="#0" />
 
-                <li className="web3li outsideMainNav">
-                  <Link
-                    to="/"
-                    className="nav-links connect">
-                    { account != null && account.length > 1 ?
-                      <Wallet
-                        style={{
-                        'marginTop': '5px',
-                        'marginLeft': '5px',
-                        'width': '150px',
-                        'justifyContent': 'center',
-                        }}>
-                          {account.substring(0,( isOnPhone ? 8 : 8))}
-
-                        <p style={{'color': 'white'}}>...</p>
-                      </Wallet>
-                      :
-                      <UnlockButton style={{
-                        marginLeft: '5px',
-                        marginTop: '3px',
-                        width: '150px',
-                        justifyContent: 'center',}}>...
-                      </UnlockButton>
-                    }
+                <li className="nav-tab">
+                  <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                    <Quote>Stake</Quote>
                   </Link>
                 </li>
+                <li className="nav-tab">
+                  <Link to="/farm" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                    <Quote>Farm</Quote>
+                  </Link>
+                </li>
+                <li className="nav-tab">
+                  <Link to="/reverseum" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                    <Quote>Bond</Quote>
+                  </Link>
+                </li>
+                <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" className="nav-links">
+                      <span className="dditem"><FaExchangeAlt/></span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
+                      <span className="dditem"><FaVoteYea /></span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://twitter.com/RVRSProtocol" className="nav-links">
+                      <span className="dditem"><FaTwitter/></span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
+                      <span className="dditem"><FaClipboard /></span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://discord.gg/J6fTxACe" className="nav-links">
+                      <span className="dditem"><FaDiscord /></span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol/" className="nav-links">
+                      <span className="dditem"><FaGithub /></span>
+                    </a>
+                  </li>
               </ul>
-              <ul className="web3buttons">
-              <li className="web3li insideMainNav">
-                <Link to="/" className="nav-links connect">
-                { account != null && account.length > 1?
-                  <Wallet>{account.substring(0,( isOnPhone ? 8 : 8)).concat("")}
-                    <p style={{'color': 'white'}}>...</p>
-                  </Wallet>:
 
-                  <UnlockButton style={{
-                    backgroundColor: 'rgb(22, 35, 73) !important',
-                    border: '1px',
-                    color: '#8299dd !important',
-                    borderRadius: '10px',
-                    fontSize: '15px',
-                    fontWeight: '200',
-                    width: '80%',
-                    display: 'inline-flex',
-                    height: '44px',
-                    letterSpacing: '0.03em',
-                    padding: '15px',
-                    minHeight: '21px',
-                    maxHeight: '33px',
-                  }}>
-                    Connect
-                  </UnlockButton>
-                }
-                </Link>
-              </li>
-             </ul>
+              <ul className="web3buttons">
+
+                <li className="web3li insideMainNav">
+                  {account != null && account.length > 1? 
+                    <Price style={{justifyContent:'center'}}>
+                      {account.substring(0,( isOnPhone ? 8 : 8))} 
+                      <p style={{'color': 'white'}}>...</p></Price>:
+                    <UnlockButton style={{
+                      fontSize: '14px',
+                      marginTop: '15px',
+                      width: '100%',
+                      minHeight:'21px',
+                      maxHeight:'37px'}}>Connect
+                    </UnlockButton>
+                  }
+                </li>
+
+              </ul>
             </div>
           </nav>
+
+            <ul className="nav-tabs outsideMainNav">
+
+             <li className="web3li">
+                <Chain>Harmony</Chain> 
+              </li>
+
+              <li className="web3li">
+                {account != null && account.length > 1? 
+                <Price style={{justifyContent:'center'}}> 
+                  <Balance>{cakeBalance} RVRS</Balance>{account.substring(0,6)}...
+                </Price>
+                :
+                <UnlockButton style={{
+                  fontSize: '14px',
+                  marginTop: '15px',
+                  width: '100%',
+                  minHeight:'21px',
+                  maxHeight:'37px'}}>Connect
+                </UnlockButton>
+                }
+              </li>
+
+              <li style={{marginTop:'5px'}} className="nav-tab dropdown" id="wheelToggleDesktop">
+                <Expand style={{justifyContent:'center'}}><FaExpand/></Expand>
+                <ul className="dropdown-content dropdown-items">
+                <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" className="nav-links">
+                      <span className="dditem"><FaExchangeAlt/> Purchase</span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
+                      <span className="dditem"><FaVoteYea /> Govern</span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://twitter.com/RVRSProtocol" className="nav-links">
+                      <span className="dditem"><FaTwitter/> Twitter</span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
+                      <span className="dditem"><FaClipboard /> Gitbook</span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://discord.gg/J6fTxACe" className="nav-links">
+                      <span className="dditem"><FaDiscord /> Discord</span>
+                    </a>
+                  </li>
+                  <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol/" className="nav-links">
+                      <span className="dditem"><FaGithub /> Github</span>
+                    </a>
+                  </li>
+                </ul>
+              </li>
+          </ul>
         </div>
       </header>
     </div>

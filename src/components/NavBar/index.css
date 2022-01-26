@@ -202,6 +202,22 @@ h1 {
 	background-color: #394454;
 	flex-flow: column;
 }
+
+/* Position Reverse Logo and Button */
+.nav-wrapper {
+	display: flex;
+	position: relative;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	align-items: center;
+	justify-content: space-between;
+	margin: auto;
+	width: 62%;
+	height: 90px;
+	z-index: 81;
+	border-bottom: 0px solid rgba(255, 255, 255, 0.664);
+	margin-bottom: 1px;
+}
 /* Removing NavTabs  < 1350 px tablet */
 
 .nav-tabs {
@@ -323,6 +339,7 @@ h1 {
 .web3li{
 	padding: 5px;
 	
+	
 }
 
 
@@ -335,9 +352,9 @@ h1 {
 
 @media screen and (max-width: 1024px) {
     #root .nav-wrapper{
-        height: 90px;
-        width: 100%;
-        padding: 0 25px;
+        height: 100px;
+        width: 90%;
+        padding: 25 25px;
     }
 
     #root .nav-wrapper button.menu-btn{
@@ -388,9 +405,9 @@ h1 {
 
 .hidden {
 	display: none;
-} /* End addition for mobile */
+} 
 
-/* Removing NavTabs from mobile */
+/* Mobile Removal */
 .nav-tabs {
 	display: none;
 	font-weight: 100;
@@ -403,79 +420,6 @@ h1 {
 	padding: 0.5px 15px;
 	margin: 45;
 	border-right: 0px solid rgb(121, 121, 121);
-} /*End removal of NavTabs*/
+} 
 }
 
-@media screen and (max-width: 600px) {
-    #root .nav-wrapper{
-        height: 90px;
-        width: 100%;
-        padding: 0 25px;
-    }
-
-    #root .nav-wrapper button.menu-btn{
-        background-color:transparent;
-        padding: 0px;
-        height: 70px;
-        width: 20px;
-        margin-top: -45px;
-    }
-    #root .nav-wrapper button.menu-btn:hover{
-        background-color:transparent;
-    }
-    
-    /* Additions for mobile */ 
-    
-    
-    .nav-container {
-	position: fixed;
-	display: none;
-	overflow-y: auto;
-	z-index: -1;
-	top: 5;
-	right: 0;
-	width: 80px;
-	height: 110%;
-	background-color: #394454;
-	flex-flow: column;
-}
-    
-.nav-icons {
-	display: flex;
-	font-weight: 100;
-	font-size: 15.5px;
-	list-style: none;
-	border: 0 !important;
-}
-
-
-.nav-icon {
-	padding: 0.5px 15px;
-	margin: 45;
-	border-right: 0px solid rgb(121, 121, 121);
-}
-
-.nav-icon,
-.menu-btn {
-	cursor: pointer;
-}
-
-.hidden {
-	display: none;
-} /* End addition for mobile */
-
-/* Removing NavTabs from mobile */
-.nav-tabs {
-	display: none;
-	font-weight: 100;
-	font-size: 15.5px;
-	list-style: none;
-	border: 0 !important;
-}
-
-.nav-tab {
-	padding: 0.5px 15px;
-	margin: 45;
-	border-right: 0px solid rgb(121, 121, 121);
-} /*End removal of NavTabs*/
-}

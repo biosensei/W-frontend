@@ -186,7 +186,6 @@ const NavBar = (props) => {
 
             
 
-              
               <ul className="nav-tabs">
 
                 <li className="nav-tab">
@@ -204,6 +203,60 @@ const NavBar = (props) => {
                     <Quote>Bond</Quote>
                   </Link>
                 </li>
+             </ul>
+             
+             <ul className="nav-icons">
+             
+             	 <li className="nav-icon">
+             <Link to="/stake" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                    <Quote><FaTractor /></Quote>
+                  </Link>
+                </li>
+                <li className="nav-icon">
+                  <Link to="/farm" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                    <Quote><FaMoneyBillAlt /></Quote>
+                  </Link>
+                </li>
+                <li className="nav-icon">
+                  <Link to="/reverseum" className="nav-links" onClick={()=>{setIsChecked(!isChecked)}}>
+                    <Quote><FaFileAlt /></Quote>
+                  </Link>
+                  </li>
+                <li className="nav-icon">
+                    <a target="_blanK" rel="noreferrer" href="https://app.sushi.com/swap?outputCurrency=0xed0b4b0f0e2c17646682fc98ace09feb99af3ade" className="nav-links">
+                      <span className="msbitem"><FaExchangeAlt /></span>
+                    </a>
+                  </li>
+                  <li className="nav-icon">
+                    <a target="_blanK" rel="noreferrer" href="https://gov.harmony.one/#/reverse" className="nav-links">
+                      <span className="msbitem"><FaVoteYea /></span>
+                    </a>
+                  </li>
+                  <li className="nav-icon">
+                    <a target="_blanK" rel="noreferrer" href="https://twitter.com/RVRSProtocol" className="nav-links">
+                      <span className="msbitem"><FaTwitter/></span>
+                    </a>
+                  </li>
+                  <li className="nav-icon">
+                    <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
+                      <span className="msbitem"><FaBook /></span>
+                    </a>
+                  </li>
+                  <li className="nav-icon">
+                    <a target="_blanK" rel="noreferrer" href="https://discord.gg/J6fTxACe" className="nav-links">
+                      <span className="msbitem"><FaDiscord /></span>
+                    </a>
+                  </li>
+                   <li className="nav-icon">
+                    <a target="_blanK" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1Ocl8Gx8rA4Zbzcsxb8-EuFNEQNlTsMLsMMRazixz_gk/edit#gid=0" className="nav-links">
+                      <span className="msbitem"><FaClipboard /></span>
+                    </a>
+                  </li>
+                  <li className="nav-icon">
+                    <a target="_blanK" rel="noreferrer" href="https://github.com/ReverseProtocol/" className="nav-links">
+                      <span className="msbitem"><FaGithub /></span>
+                    </a>
+                  </li>
                 
               </ul>
 
@@ -270,12 +323,17 @@ const NavBar = (props) => {
                   </li>
                   <li className="nav-tab">
                     <a target="_blanK" rel="noreferrer" href="https://reverse.gitbook.io/docs/" className="nav-links">
-                      <span className="dditem"><FaClipboard /> Gitbook</span>
+                      <span className="dditem"><FaBook /> Gitbook</span>
                     </a>
                   </li>
                   <li className="nav-tab">
                     <a target="_blanK" rel="noreferrer" href="https://discord.gg/J6fTxACe" className="nav-links">
                       <span className="dditem"><FaDiscord /> Discord</span>
+                    </a>
+                  </li>
+                   <li className="nav-tab">
+                    <a target="_blanK" rel="noreferrer" href="https://docs.google.com/spreadsheets/d/1Ocl8Gx8rA4Zbzcsxb8-EuFNEQNlTsMLsMMRazixz_gk/edit#gid=0" className="nav-links">
+                      <span className="dditem"><FaClipboard /> Treasury</span>
                     </a>
                   </li>
                   <li className="nav-tab">

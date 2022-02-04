@@ -243,7 +243,7 @@ const NavBar = (props) => {
                     </a>
                   </li>
                   <li className="nav-icon">
-                    <a target="_blanK" rel="noreferrer" href="https://discord.gg/J6fTxACe" className="nav-links">
+                    <a target="_blanK" rel="noreferrer" href="https://discord.gg/ws3veKrY6r" className="nav-links">
                       <span className="msbitem"><FaDiscord /></span>
                     </a>
                   </li>
@@ -327,7 +327,7 @@ const NavBar = (props) => {
                     </a>
                   </li>
                   <li className="nav-tab">
-                    <a target="_blanK" rel="noreferrer" href="https://discord.gg/J6fTxACe" className="nav-links">
+                    <a target="_blanK" rel="noreferrer" href="https://discord.gg/ws3veKrY6r" className="nav-links">
                       <span className="dditem"><FaDiscord /> Discord</span>
                     </a>
                   </li>

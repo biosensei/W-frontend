@@ -477,8 +477,8 @@ const pools2: Pool2Config[] = [
         stakingTokenName: QuoteToken.UST,
         stakingTokenAddress: UST_ADDRESS,
         contractAddress: {
-            1666700000: '0xcCa508770DD9acCd71299eDaB0117FACB8f94C4B',
-            1666600000: '0xcCa508770DD9acCd71299eDaB0117FACB8f94C4B',
+            1666700000: '0xAC1f9afD2fc5AE09062c56cC42B590DD1682C6F4',
+            1666600000: '0xAC1f9afD2fc5AE09062c56cC42B590DD1682C6F4',
         },
         poolCategory: PoolCategory.CORE,
         projectLink: '',
@@ -489,9 +489,9 @@ const pools2: Pool2Config[] = [
         isFinished: false,
         tokenDecimals: 18,
         tokenPerBlock: '0.029',
-        startBlock: 23526804,
-        endBlock: 23742805,
-        lockBlock: 23742805
+        startBlock: 23527509,
+        endBlock: 23743510,
+        lockBlock: 23743510
     }
 ]
 

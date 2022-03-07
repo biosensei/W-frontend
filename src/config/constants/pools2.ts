@@ -486,12 +486,38 @@ const pools2: Pool2Config[] = [
         isSingleAsset: true,
         isDepositFinished: false,
         notFinished: true,
-        isFinished: false,
+        isFinished: true,
         tokenDecimals: 18,
         tokenPerBlock: '0.029',
         startBlock: 23527509,
         endBlock: 23743510,
         lockBlock: 23743510
+    },
+    {
+        sousId: 20,
+        sortOrder: 85,
+        tokenName: 'UST',
+        tokenPoolAddress: '0xED0B4b0F0E2c17646682fc98ACe09feB99aF3adE',
+        quoteTokenSymbol: QuoteToken.UST,
+        quoteTokenPoolAddress: UST_ADDRESS,
+        stakingTokenName: QuoteToken.UST,
+        stakingTokenAddress: UST_ADDRESS,
+        contractAddress: {
+            1666700000: '0xec070ea1C6aaC34c14156d7F631C4Ce079E0CE80',
+            1666600000: '0xec070ea1C6aaC34c14156d7F631C4Ce079E0CE80',
+        },
+        poolCategory: PoolCategory.CORE,
+        projectLink: '',
+        harvest: true,
+        isSingleAsset: true,
+        isDepositFinished: false,
+        notFinished: true,
+        isFinished: false,
+        tokenDecimals: 18,
+        tokenPerBlock: '0.043',
+        startBlock: 23785238,
+        endBlock: 24001239,
+        lockBlock: 24001239
     }
 ]
 
